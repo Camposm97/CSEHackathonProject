@@ -2,6 +2,7 @@ package scene.layout;
 
 
 import campos.scene.control.MyLabel;
+import campos.util.ImgUtil;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -10,7 +11,6 @@ import javafx.scene.paint.Color;
 import model.User;
 import util.CamposUtil;
 import util.FXUtil;
-import util.ImgUtil;
 
 public class HeaderPane extends BorderPane {
 	private User user;

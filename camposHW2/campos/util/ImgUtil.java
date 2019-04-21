@@ -1,4 +1,4 @@
-package util;
+package campos.util;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -1,5 +1,6 @@
 package scene;
 
+import campos.util.ImgUtil;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -7,7 +8,6 @@ import model.Name;
 import model.User;
 import scene.layout.HeaderPane;
 import util.CamposUtil;
-import util.ImgUtil;
 
 /**
  * Stage is displayed here root (BorderPane) is set with panes on initialization.
