@@ -7,7 +7,6 @@ import campos.models.UserAccountBag;
 import campos.util.EventLoader;
 import campos.util.FXUtil;
 import campos.util.PasswordUtil;
-import campos.util.SignUpUtil;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,7 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
-import scene.layout.UserPane;
+import campos.scene.layout.UserPane;
 
 public class SignUpPane extends UserPane {
 	private TextField tfFirstName, tfLastName, tfGender, tfGpa, tfUsername;

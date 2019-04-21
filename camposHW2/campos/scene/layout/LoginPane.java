@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import scene.layout.UserPane;
+import campos.scene.layout.UserPane;
 
 public class LoginPane extends UserPane {
 	private Label lblStatus;
