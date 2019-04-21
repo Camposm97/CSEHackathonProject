@@ -21,4 +21,9 @@ public class Person {
 	protected Name getName() {
 		return name;
 	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + "]";
+	}
 }

@@ -1,11 +1,13 @@
 package campos.models;
 
+import campos.util.Gender;
+
 public class Name {
 	private String lastName;
 	private String firstName;
-	private String gender;
+	private Gender gender;
 	
-	public Name(String lastName, String firstName, String gender) {
+	public Name(String lastName, String firstName, Gender gender) {
 		super();
 		this.lastName = lastName;
 		this.firstName = firstName;
@@ -28,11 +30,11 @@ public class Name {
 		this.firstName = firstName;
 	}
 
-	public String getGender() {
+	public Gender getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
+	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
 

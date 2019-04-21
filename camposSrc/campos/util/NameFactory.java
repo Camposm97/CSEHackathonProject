@@ -34,9 +34,9 @@ public class NameFactory {
 
 		for (int i = 0; i < n; i++)
 			if (i > (n / 2))
-				nameList.add(new Name(emitLastName(), emitGirlName(), "female"));
+				nameList.add(new Name(emitLastName(), emitGirlName(), Gender.Female));
 			else
-				nameList.add(new Name(emitLastName(), emitBoyName(), "male"));
+				nameList.add(new Name(emitLastName(), emitBoyName(), Gender.Male));
 		return nameList;
 	}
 }

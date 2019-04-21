@@ -19,7 +19,7 @@ public class UserAccountFactory {
 		ArrayList<Name> nameList = nameFactory.emitNames(n);
 		
 		for (int i = 0; i < nameList.size(); i++) {
-			userBag.add(new UserAccount(new Student(nameList.get(i))));
+			userBag.add(new UserAccount(new Student(nameList.get(i), Random.emitMajor())));
 			userBag.sortByUsername();
 		}
 		userBag.display();

@@ -1,15 +1,17 @@
 package campos.scene.layout;
 
+import campos.models.Major;
 import campos.models.Name;
 import campos.models.Student;
 import campos.models.UserAccount;
 import campos.models.UserAccountBag;
-import campos.scene.layout.UserPane;
 import campos.util.EventLoader;
 import campos.util.FXUtil;
+import campos.util.Gender;
 import campos.util.PasswordUtil;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -17,7 +19,9 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
 
 public class SignUpPane extends UserPane {
-	private TextField tfFirstName, tfLastName, tfGender, tfUsername;
+	private TextField tfFirstName, tfLastName, tfUsername;
+	private ComboBox<Gender> cbGender;
+	private ComboBox<Major> cbMajor;
 	private PasswordField tfPass, tfPassReType;
 	private Button btSignUp, btCancel;
 
@@ -41,10 +45,12 @@ public class SignUpPane extends UserPane {
 			btCancel = loadBtCancel();
 			tfFirstName = new TextField();
 			tfLastName = new TextField();
-			tfGender = new TextField();
+//			tfGender = new TextField();
 			tfUsername = loadTfUsername();
 			tfPass = loadTfPass();
 			tfPassReType = loadTfPassReType();
+			cbGender = FXUtil.loadCbGender();
+			cbMajor = FXUtil.loadCbMajor();
 		}
 		
 		public void displayControls() {
@@ -55,14 +61,14 @@ public class SignUpPane extends UserPane {
 			gridPane.add(new Label("First Name:"), 0, 0);
 			gridPane.add(new Label("Last Name:"), 0, 1);
 			gridPane.add(new Label("Gender:"), 0, 2);
-//			gridPane.add(new Label("GPA:"), 0, 3);
+			gridPane.add(new Label("Major:"), 0, 3);
 			gridPane.add(new Label("Username:"), 0, 4);
 			gridPane.add(new Label("Password"), 0, 5);
 			gridPane.add(new Label("Re-Type Password:"), 0, 6);
 			gridPane.add(tfFirstName, 1, 0);
 			gridPane.add(tfLastName, 1, 1);
-			gridPane.add(tfGender, 1, 2);
-//			gridPane.add(tfGpa, 1, 3);
+			gridPane.add(cbGender, 1, 2);
+			gridPane.add(cbMajor, 1, 3);
 			gridPane.add(tfUsername, 1, 4);
 			gridPane.add(tfPass, 1, 5);
 			gridPane.add(tfPassReType, 1, 6);
@@ -174,7 +180,7 @@ public class SignUpPane extends UserPane {
 		public boolean fieldsAreValid() {
 			return !signUpPane.tfFirstName.getText().isEmpty() && 
 					!signUpPane.tfLastName.getText().isEmpty() && 
-					!signUpPane.tfGender.getText().isEmpty() && 
+//					!signUpPane.tfGender.getText().isEmpty() && 
 //					!signUpPane.tfGpa.getText().isEmpty() && 
 					!signUpPane.tfUsername.getText().isEmpty();
 		}
@@ -182,13 +188,13 @@ public class SignUpPane extends UserPane {
 		public void addUserToBag() {
 			String lastName = signUpPane.tfLastName.getText();
 			String firstName = signUpPane.tfFirstName.getText();
-			String gender = signUpPane.tfGender.getText();
+//			String gender = signUpPane.tfGender.getText();
 			
 			String username = signUpPane.tfUsername.getText();
 			String password = signUpPane.tfPass.getText();
 //			double gpa = Double.parseDouble(signUpPane.tfGpa.getText());
 			
-			Student student = new Student(new Name(lastName, firstName, gender));
+			Student student = new Student(new Name(lastName, firstName, cbGender.getValue()), cbMajor.getValue());
 			signUpPane.getUserBag().add(new UserAccount(student, username, password));
 			signUpPane.getUserBag().sortByUsername();
 			System.out.println();

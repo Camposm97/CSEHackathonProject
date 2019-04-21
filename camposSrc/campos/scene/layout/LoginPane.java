@@ -1,7 +1,6 @@
 package campos.scene.layout;
 
 import campos.models.UserAccountBag;
-import campos.scene.layout.UserPane;
 import campos.util.EventLoader;
 import campos.util.FXUtil;
 import campos.util.UserUtil;
@@ -12,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 
 public class LoginPane extends UserPane {
 	private Label lblStatus;
@@ -66,7 +66,7 @@ public class LoginPane extends UserPane {
 			gridPane.add(tfPassword, 1, 2);
 			gridPane.add(FXUtil.asVBox(btLogin), 0, 3, 4, 1);
 			loginPane.setCenter(gridPane);
-			loginPane.setBottom(linkSignUp);
+			loginPane.setBottom(FXUtil.asVBox(linkSignUp));
 		}
 		
 		public Button loadBtLogin() {

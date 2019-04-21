@@ -1,6 +1,6 @@
 package campos.util;
 
-import campos.models.FileBuilt;
+import campos.models.Major;
 
 public class Random {	
 	public static double getGpa() {
@@ -17,7 +17,7 @@ public class Random {
 	}
 	
 	public static String getChars(int n) {
-		String alphabet = "AaBcCcDdEeFfGgHhIiJjKkMmNnOoPpQqRrSsTtUuVvWwXxYyZz !\\\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{|}~";
+		String alphabet = "AaBcCcDdEeFfGgHhIiJjKkMmNnOoPpQqRrSsTtUuVvWwXxYyZz !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~";
 		String str = "";
 		for (int i = 0; i < n; i++)
 			str += alphabet.charAt(getNumber(alphabet.length(), 0));
@@ -26,5 +26,9 @@ public class Random {
 	
 	public static int getNumber(int max, int min) {
 		return (int) ((Math.random() * max) + min);
+	}
+	
+	public static Major emitMajor() {
+		return Major.values()[(int) (Math.random() * Major.values().length)];
 	}
 }

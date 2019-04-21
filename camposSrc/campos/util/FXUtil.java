@@ -1,10 +1,12 @@
 package campos.util;
 
+import campos.models.Major;
 import campos.scene.layout.LoginPane;
 import campos.scene.layout.SignUpPane;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -30,6 +32,24 @@ public class FXUtil {
 		for (Node e : nodes)
 			hBox.getChildren().add(e);
 		return hBox;
+	}
+	
+	public static ComboBox<Gender> loadCbGender() {
+		ComboBox<Gender> cb = new ComboBox<>();
+		cb.setValue(Gender.Male);
+		for (int i = 0; i < Gender.values().length; i++) {
+			cb.getItems().add(Gender.values()[i]);
+		}
+		return cb;
+	}
+	
+	public static ComboBox<Major> loadCbMajor() {
+		ComboBox<Major> cb = new ComboBox<>();
+		cb.setValue(Major.CSE);
+		for (int i = 0; i < Major.values().length; i++) {
+			cb.getItems().add(Major.values()[i]);
+		}
+		return cb;
 	}
 	
 	public static void toSignUpPane(LoginPane loginPane) {
