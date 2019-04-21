@@ -1,15 +1,15 @@
-package application;
+package campos.application;
 
+import campos.models.UserAccountBag;
+import campos.scene.layout.LoginPane;
+import campos.util.EventLoader;
+import campos.util.FXUtil;
+import campos.util.UserAccountFactory;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import models.UserAccountBag;
-import utilities.EventLoader;
-import utilities.FXLoader;
-import utilities.UserAccountFactory;
-import view.LoginPane;
 
 public class Main extends Application {
 	private static final int MAX_ACCOUNTS = 10;
@@ -29,8 +29,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) {
 		stage.setScene(new Scene(root));
-		stage.setWidth(FXLoader.USER_WIDTH);
-		stage.setHeight(FXLoader.USER_HEIGHT);
+		stage.setWidth(FXUtil.USER_WIDTH);
+		stage.setHeight(FXUtil.USER_HEIGHT);
 		stage.setTitle("Login");
 		stage.setResizable(false);
 		stage.show();

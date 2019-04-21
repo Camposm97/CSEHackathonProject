@@ -1,7 +1,7 @@
-package models;
+package campos.models;
 
-import utilities.Random;
-import utilities.UserUtil;
+import campos.util.Random;
+import campos.util.UserUtil;
 
 public class UserAccount {
 	private static int idNumber = 0;

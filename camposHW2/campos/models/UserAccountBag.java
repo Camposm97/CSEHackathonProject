@@ -1,4 +1,4 @@
-package models;
+package campos.models;
 
 public class UserAccountBag {
 	private UserAccount[] users;

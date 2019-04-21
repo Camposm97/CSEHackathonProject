@@ -1,6 +1,6 @@
-package models;
+package campos.models;
 
-public abstract class Person {
+public class Person {
 	private static int idNumber = 0;
 	private String id;
 	protected Name name;

@@ -1,6 +1,6 @@
-package models;
+package campos.models;
 
-import utilities.Random;
+import campos.util.Random;
 
 public class Student extends Person {
 	private double gpa;

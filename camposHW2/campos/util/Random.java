@@ -1,6 +1,6 @@
-package utilities;
+package campos.util;
 
-import models.FileBuilt;
+import campos.models.FileBuilt;
 
 public class Random {	
 	public static double getGpa() {

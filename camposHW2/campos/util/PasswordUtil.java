@@ -1,4 +1,4 @@
-package utilities;
+package campos.util;
 
 public class PasswordUtil {
 	public static boolean isValid(String string) {

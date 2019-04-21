@@ -1,4 +1,4 @@
-package models;
+package campos.models;
 
 import java.io.File;
 import java.io.FileNotFoundException;

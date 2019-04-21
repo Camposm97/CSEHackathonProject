@@ -2,6 +2,7 @@ package demo;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import view.MainWindow;
 
 public class HomeDemo extends Application{
 

@@ -4,5 +4,7 @@
 	<classpathentry kind="src" path="camposHW2"/>
 	<classpathentry kind="src" path="camposSrc"/>
 	<classpathentry kind="src" path="resources"/>
+	<classpathentry kind="src" path="cabreraSrc"/>
+	<classpathentry kind="src" path="doerzSrc"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,13 +1,13 @@
 package scene.layout;
 
 
+import campos.scene.control.MyLabel;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.User;
-import scene.control.MyLabel;
 import util.CamposUtil;
 import util.FXUtil;
 import util.ImgUtil;

@@ -1,8 +1,8 @@
-package utilities;
+package campos.util;
 
-import models.Name;
-import models.UserAccount;
-import view.LoginPane;
+import campos.models.Name;
+import campos.models.UserAccount;
+import campos.scene.layout.LoginPane;
 
 public class UserUtil {
 	public static String createUsername(Name name, String id) {
@@ -28,7 +28,7 @@ public class UserUtil {
 	public static void findValidUser(LoginPane loginPane) {
 		String username = loginPane.getTfUser().getText();
 		String password = loginPane.getTfPassword().getText();
-		UserAccount user = loginPane.getUserAccountBag().findByUsername(username);
+		UserAccount user = loginPane.getUserBag().findByUsername(username);
 		
 		if (user != null && password.equals(user.getPassword())) {
 			loginPane.getLblStatus().setText("Success! :D");

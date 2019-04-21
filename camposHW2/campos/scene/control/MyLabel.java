@@ -1,4 +1,4 @@
-package scene.control;
+package campos.scene.control;
 
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;

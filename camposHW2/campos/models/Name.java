@@ -1,4 +1,4 @@
-package models;
+package campos.models;
 
 public class Name {
 	private String lastName;
