@@ -7,7 +7,6 @@ import model.Name;
 import model.User;
 import scene.layout.HeaderPane;
 import util.CamposUtil;
-import util.FXUtil;
 import util.ImgUtil;
 
 /**
