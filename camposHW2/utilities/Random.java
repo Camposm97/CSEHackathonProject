@@ -2,12 +2,10 @@ package utilities;
 
 import models.FileBuilt;
 
-public class Random {
-	private static final FileBuilt lastNamesFd = new FileBuilt("last_names");
-	private static final double MAX_GPA = 4.0;
-	
+public class Random {	
 	public static double getGpa() {
-		return (Math.random() * MAX_GPA) + 1;
+		final double GPA = 4.0;
+		return (Math.random() * GPA) + 1;
 	}
 	
 	public static String getPassword() {
@@ -28,9 +26,5 @@ public class Random {
 	
 	public static int getNumber(int max, int min) {
 		return (int) ((Math.random() * max) + min);
-	}
-
-	public static String getLastName() {	// O (1)
-		return lastNamesFd.getRandomToken();
 	}
 }

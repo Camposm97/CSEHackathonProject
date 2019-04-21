@@ -1,6 +1,7 @@
 package view;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -14,6 +15,7 @@ public class LoginPane extends UserPane {
 	private TextField tfUser;
 	private PasswordField tfPassword;
 	private Button btLogin, btSignUp;
+	private Hyperlink linkSignUp;
 	
 	public LoginPane(UserAccountBag userBag) {
 		super(userBag);
@@ -24,6 +26,7 @@ public class LoginPane extends UserPane {
 	
 	@Override
 	protected void loadControls() {
+		this.setStyle("-fx-background-color: lightblue");
 		lblStatus = new Label("Please enter your credentials.");
 		lblStatus.setStyle("-fx-font-size: 16;");
 		tfUser = new TextField();

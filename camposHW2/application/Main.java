@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import models.UserAccountBag;
 import utilities.EventLoader;
 import utilities.FXLoader;
-import utilities.LoadUtil;
+import utilities.UserAccountFactory;
 import view.LoginPane;
 
 public class Main extends Application {
@@ -19,11 +19,10 @@ public class Main extends Application {
 	
 	@Override
 	public void init() {
-		userBag = LoadUtil.loadUserAccountBagSorted(MAX_ACCOUNTS);
+		userBag = new UserAccountFactory().loadUserAccountBagSorted(MAX_ACCOUNTS);
 		userBag.display();
 		loginPane = new LoginPane(userBag);
 		root = new BorderPane(loginPane);
-		root.setPadding(new Insets(20));
 		EventLoader.loadEscKey(root);
 	}
 	

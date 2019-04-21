@@ -6,30 +6,22 @@ import view.LoginPane;
 
 public class UserUtil {
 	public static String createUsername(Name name, String id) {
-		String username = partLastName(name.getLastName());
+		String username = parseLastName(name.getLastName());
 		username += name.getFirstName().charAt(0);
 		username += id.charAt(id.length() - 1);
 		return username;
 	}
 	
-	@Deprecated
-	public static String createUsername(String lastName, String firstName, String id) {
-		String username = partLastName(lastName);
-		username += firstName.charAt(0);
-		username += id.charAt(id.length() - 1);
-		return username;
-	}
-	
-	public static String partLastName(String lastName) {
+	public static String parseLastName(String lastName) {
 		String username;
-		if (isFourChar(lastName))
+		if (isLengthFour(lastName))
 			username = lastName.substring(0, 4);
 		else
 			username = lastName;
 		return username;
 	}
 	
-	public static boolean isFourChar(String lastName) {
+	public static boolean isLengthFour(String lastName) {
 		return lastName.length() >= 4;
 	}
 	
