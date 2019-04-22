@@ -1,8 +1,8 @@
-<<<<<<< HEAD
 /campos/
-=======
-/view/
 /controller/
-/model/
+/data/
 /demo/
->>>>>>> 1c7eb4e2c9fe62e91433af2a66ba2fc3f1bb14cf
+/images/
+/model/
+/references/
+/view/
