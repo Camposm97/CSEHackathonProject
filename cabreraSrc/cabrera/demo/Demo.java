@@ -5,7 +5,11 @@ import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 
-public class Demo extends Application{
+/**
+ * LUL
+ * @author Camposm97
+ */
+public class Demo extends Application {
 
 	public static void main(String[] args) {
 		Application.launch(args);
