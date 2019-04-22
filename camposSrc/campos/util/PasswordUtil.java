@@ -2,6 +2,8 @@ package campos.util;
 
 public class PasswordUtil {
 	public static boolean isValid(String string) {
+		if (string.isEmpty())
+			return false;
 		return (hasEightCharacters(string) && hasUpperCase(string) && hasLowerCase(string) && hasSymbol(string));
 	}
 	
