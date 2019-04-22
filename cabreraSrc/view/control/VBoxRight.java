@@ -1,5 +1,6 @@
 package view.control;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -28,10 +29,12 @@ public class VBoxRight {
 		box.getChildren().add(textF);
 		
 		Button button = new Button("Send");
+		button.setPrefWidth(200);
 		box.getChildren().add(button);
 		
 		box.setAlignment(Pos.CENTER);
 		box.setSpacing(10);
+		box.setPadding(new Insets(0,0,0,20));
 	}
 
 	public VBox getVBox() {
