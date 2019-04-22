@@ -8,13 +8,8 @@ import campos.models.UserAccount;
 import campos.models.UserAccountBag;
 
 public class UserAccountFactory {
-	private NameFactory nameFactory;
-	
-	public UserAccountFactory() {
-		this.nameFactory = new NameFactory();
-	}
-	
-	public UserAccountBag loadUserAccountBag(int n) {
+	public static UserAccountBag loadUserAccountBag(int n) {
+		NameFactory nameFactory = new NameFactory();
 		UserAccountBag userBag = new UserAccountBag(n);
 		ArrayList<Name> nameList = nameFactory.emitNames(n);
 		

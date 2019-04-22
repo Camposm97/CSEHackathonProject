@@ -104,6 +104,8 @@ public class SignUpPane extends UserPane {
 			tf.setTooltip(tip);
 			
 			tf.textProperty().addListener((observable, oldValue, newValue) -> {
+				if (newValue.contains("\\"))
+					return;
 				UserAccount user = userBag.findByUsername(newValue);
 				if (user != null) {
 					tfUsername.setStyle("-fx-border-color: red; -fx-background-color: #FFF0F0;");

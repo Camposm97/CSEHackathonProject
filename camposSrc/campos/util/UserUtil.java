@@ -31,7 +31,7 @@ public class UserUtil {
 		
 		UserAccount user = null;
 		
-		if (!username.isEmpty()) {
+		if (!username.isEmpty() || username.contains("\\")) {
 			user = loginPane.getUserBag().findByUsername(username);
 		} 
 		

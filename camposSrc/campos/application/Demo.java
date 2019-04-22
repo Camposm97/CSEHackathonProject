@@ -12,15 +12,14 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class App extends Application {
-	private static final int MAX_ACCOUNTS = 10;
+public class Demo extends Application {
+	private static final int MAX_ACCOUNTS = 20;
 	private UserAccountBag userBag;
 	private BorderPane root;
 	
 	@Override
 	public void init() {
-		UserAccountFactory factory = new UserAccountFactory();
-		userBag = factory.loadUserAccountBag(MAX_ACCOUNTS);
+		userBag = UserAccountFactory.loadUserAccountBag(MAX_ACCOUNTS);
 		root = new BorderPane(new LoginPane(userBag));
 		EventLoader.loadEscKey(root);
 	}
