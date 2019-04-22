@@ -1,8 +1,16 @@
 /campos/
+<<<<<<< HEAD
 /controller/
 /data/
 /demo/
 /images/
 /model/
 /references/
+=======
+/data/
+/images/
+/references/
+/cabrera/
+/demo/
+>>>>>>> f9de368fdf08edf0bfdb1cd3f81899968eeed670
 /view/

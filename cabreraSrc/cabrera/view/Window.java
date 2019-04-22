@@ -1,5 +1,7 @@
-package view;
+package cabrera.view;
 
+import cabrera.view.control.VBoxLeft;
+import cabrera.view.control.VBoxRight;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -7,8 +9,6 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import view.control.VBoxLeft;
-import view.control.VBoxRight;
 
 public class Window {
 	
