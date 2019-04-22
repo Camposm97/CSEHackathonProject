@@ -15,7 +15,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class FXUtil {
@@ -63,8 +62,8 @@ public class FXUtil {
 		DropShadow ds = new DropShadow();
 		ds.setOffsetY(10.0f);
 		ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
-		MyLabel lbl = new MyLabel(TITLE, Color.SEASHELL, 32);
-		lbl.setFont(Font.font("Consolas", FontWeight.THIN, 32));
+		MyLabel lbl = new MyLabel(TITLE, Color.BLACK, 32);
+		lbl.setFont(Font.font("Comic Sans MS", 32));
 		lbl.setEffect(ds);
 		return lbl;
 	}

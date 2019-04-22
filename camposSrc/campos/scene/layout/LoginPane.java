@@ -55,7 +55,7 @@ public class LoginPane extends TerminalPane {
 		
 		public void displayControls() {
 			GridPane gridPane = new GridPane();
-			gridPane.setAlignment(Pos.CENTER);
+			gridPane.setAlignment(Pos.TOP_CENTER);
 			gridPane.setHgap(10);
 			gridPane.setVgap(10);
 			gridPane.add(lblStatus, 0, 0, 4, 1);
@@ -68,9 +68,12 @@ public class LoginPane extends TerminalPane {
 			VBox vBox = FXUtil.asVBox(FXUtil.loadLblTitle(), ImgUtil.loadImgViewRatio(ImgUtil.ICON_MAIN, 0.5));
 			vBox.setPadding(FXUtil.DEFAULT_INSETS);
 			
-			loginPane.setTop(new StackPane(vBox));
+			StackPane pane = new StackPane(linkSignUp);
+			pane.setPadding(FXUtil.DEFAULT_INSETS);
+			
+			loginPane.setTop(vBox);
 			loginPane.setCenter(gridPane);
-			loginPane.setBottom(FXUtil.asVBox(linkSignUp));
+			loginPane.setBottom(pane);
 		}
 		
 		public Button loadBtLogin() {
