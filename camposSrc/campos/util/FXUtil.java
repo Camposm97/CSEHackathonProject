@@ -1,6 +1,8 @@
 package campos.util;
 
+
 import campos.models.Major;
+import campos.scene.control.MyLabel;
 import campos.scene.layout.LoginPane;
 import campos.scene.layout.SignUpPane;
 import javafx.geometry.Insets;
@@ -10,13 +12,15 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class FXUtil {
+	public static final String TITLE = "Connect v1.0";
 	public static final Insets DEFAULT_INSETS = new Insets(10);
 	public static final double BT_WIDTH = 86;
-	public static final double USER_WIDTH = 380;
-	public static final double USER_HEIGHT = 500;
+	public static final double LOG_WIDTH = 380;
+	public static final double LOG_HEIGHT = 524;
 	
 	public static VBox asVBox(Node...nodes) {
 		VBox vBox = new VBox(10);
@@ -52,11 +56,17 @@ public class FXUtil {
 		return cb;
 	}
 	
+	public static MyLabel loadLblTitle() {
+		MyLabel lbl = new MyLabel(TITLE, Color.BLACK, 16);
+		
+		return lbl;
+	}
+	
 	public static void toSignUpPane(LoginPane loginPane) {
 		Stage stage = (Stage) loginPane.getScene().getWindow();
 		stage.setTitle("Sign Up");
-		stage.setWidth(USER_WIDTH);
-		stage.setHeight(USER_HEIGHT);
+		stage.setWidth(LOG_WIDTH);
+		stage.setHeight(LOG_HEIGHT);
 		BorderPane root = (BorderPane) loginPane.getScene().getRoot();
 		root.setCenter(new SignUpPane(loginPane.getUserBag()));
 	}
@@ -64,8 +74,8 @@ public class FXUtil {
 	public static void toLoginPane(SignUpPane signUpPane) {
 		Stage stage = (Stage) signUpPane.getScene().getWindow();
 		stage.setTitle("Login");
-		stage.setWidth(USER_WIDTH);
-		stage.setHeight(USER_HEIGHT);
+		stage.setWidth(LOG_WIDTH);
+		stage.setHeight(LOG_HEIGHT);
 		BorderPane root = (BorderPane) signUpPane.getScene().getRoot();
 		root.setCenter(new LoginPane(signUpPane.getUserBag()));
 	}

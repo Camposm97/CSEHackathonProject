@@ -1,6 +1,8 @@
 package campos.models;
 
-public class UserAccountBag {
+import java.io.Serializable;
+
+public class UserAccountBag implements Serializable {
 	private UserAccount[] users;
 	private int nElems;
 	

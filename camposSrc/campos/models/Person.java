@@ -1,6 +1,8 @@
 package campos.models;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person implements Serializable {
 	private static int idNumber = 0;
 	private String id;
 	protected Name name;

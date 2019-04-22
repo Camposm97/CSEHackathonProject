@@ -1,9 +1,11 @@
 package campos.models;
 
-import campos.util.Random;
-import campos.util.UserUtil;
+import java.io.Serializable;
 
-public class UserAccount {
+import campos.util.Random;
+import campos.util.UserAccountUtil;
+
+public class UserAccount implements Serializable {
 	private static int idNumber = 0;
 	private String id;
 	private Student student;
@@ -13,7 +15,7 @@ public class UserAccount {
 	public UserAccount(Student student) {
 		id = String.valueOf(idNumber++);
 		this.student = student;
-		username = UserUtil.createUsername(student.getName(), id);
+		username = UserAccountUtil.createUsername(student.getName(), id);
 		password = Random.getPassword();
 	}
 	

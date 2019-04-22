@@ -1,8 +1,10 @@
 package campos.models;
 
+import java.io.Serializable;
+
 import campos.util.Gender;
 
-public class Name {
+public class Name implements Serializable {
 	private String lastName;
 	private String firstName;
 	private Gender gender;

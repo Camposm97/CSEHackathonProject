@@ -18,7 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
 
-public class SignUpPane extends UserPane {
+public class SignUpPane extends TerminalPane {
 	private TextField tfFirstName, tfLastName, tfUsername;
 	private ComboBox<Gender> cbGender;
 	private ComboBox<Major> cbMajor;
@@ -45,7 +45,6 @@ public class SignUpPane extends UserPane {
 			btCancel = loadBtCancel();
 			tfFirstName = new TextField();
 			tfLastName = new TextField();
-//			tfGender = new TextField();
 			tfUsername = loadTfUsername();
 			tfPass = loadTfPass();
 			tfPassReType = loadTfPassReType();
@@ -75,27 +74,6 @@ public class SignUpPane extends UserPane {
 			gridPane.add(FXUtil.asHBox(btSignUp, btCancel), 0, 7, 3, 1);
 			signUpPane.setCenter(gridPane);
 		}
-		
-//		private TextField loadTfGpa() {
-//			TextField tf = new TextField();
-//			tf.textProperty().addListener((observable, oldValue, newValue) -> {
-//				try {
-//					double gpa = Double.parseDouble(newValue);
-//					
-//					if (gpa >= 0.0 && gpa <= 4.0) {
-//						tf.setStyle("");
-//						btSignUp.setDisable(false);
-//					} else {
-//						tf.setStyle("-fx-border-color: red; -fx-background-color: #FFF0F0;");
-//						btSignUp.setDisable(true);
-//					}
-//				} catch (Exception e) {
-//					tf.setStyle("-fx-border-color: red; -fx-background-color: #FFF0F0;");
-//					btSignUp.setDisable(true);
-//				}
-//			});
-//			return tf;
-//		}
 		
 		private TextField loadTfUsername() {
 			TextField tf = new TextField();
@@ -182,19 +160,15 @@ public class SignUpPane extends UserPane {
 		public boolean fieldsAreValid() {
 			return !signUpPane.tfFirstName.getText().isEmpty() && 
 					!signUpPane.tfLastName.getText().isEmpty() && 
-//					!signUpPane.tfGender.getText().isEmpty() && 
-//					!signUpPane.tfGpa.getText().isEmpty() && 
 					!signUpPane.tfUsername.getText().isEmpty();
 		}
 		
 		public void addUserToBag() {
 			String lastName = signUpPane.tfLastName.getText();
 			String firstName = signUpPane.tfFirstName.getText();
-//			String gender = signUpPane.tfGender.getText();
 			
 			String username = signUpPane.tfUsername.getText();
 			String password = signUpPane.tfPass.getText();
-//			double gpa = Double.parseDouble(signUpPane.tfGpa.getText());
 			
 			Student student = new Student(new Name(lastName, firstName, cbGender.getValue()), cbMajor.getValue());
 			signUpPane.getUserBag().add(new UserAccount(student, username, password));

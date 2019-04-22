@@ -3,10 +3,10 @@ package campos.scene.layout;
 import campos.models.UserAccountBag;
 import javafx.scene.layout.BorderPane;
 
-public abstract class UserPane extends BorderPane {
+public abstract class TerminalPane extends BorderPane {
 	protected UserAccountBag userBag;
 	
-	public UserPane(UserAccountBag userBag) {
+	public TerminalPane(UserAccountBag userBag) {
 		this.userBag = userBag;
 	}
 	

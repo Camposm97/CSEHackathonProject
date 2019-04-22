@@ -27,8 +27,8 @@ public class Demo extends Application {
 	@Override
 	public void start(Stage stage) {
 		stage.setScene(new Scene(root));
-		stage.setWidth(FXUtil.USER_WIDTH);
-		stage.setHeight(FXUtil.USER_HEIGHT);
+		stage.setWidth(FXUtil.LOG_WIDTH);
+		stage.setHeight(FXUtil.LOG_HEIGHT);
 		stage.setTitle("Login");
 		stage.setResizable(false);
 		ImgUtil.loadStageIcon(stage);

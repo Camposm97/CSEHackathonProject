@@ -26,4 +26,11 @@ public class ImgUtil {
 	public static ImageView loadImgView(String url) {
 		return new ImageView(loadImg(url));
 	}
+	
+	public static ImageView loadImgViewRatio(String url, double ratio) {
+		ImageView iv = new ImageView(loadImg(url));
+		iv.setFitWidth(iv.getImage().getWidth() * ratio);
+		iv.setFitHeight(iv.getImage().getHeight() * ratio);
+		return iv;
+	}
 }
