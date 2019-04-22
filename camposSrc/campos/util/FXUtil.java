@@ -2,17 +2,19 @@ package campos.util;
 
 
 import campos.models.Major;
-import campos.scene.control.MyLabel;
 import campos.scene.layout.LoginPane;
 import campos.scene.layout.SignUpPane;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class FXUtil {
@@ -56,10 +58,15 @@ public class FXUtil {
 		return cb;
 	}
 	
-	public static MyLabel loadLblTitle() {
-		MyLabel lbl = new MyLabel(TITLE, Color.BLACK, 16);
-		
-		return lbl;
+	public static Text loadLblTitle() {
+		InnerShadow is = new InnerShadow();
+		is.setOffsetX(4.0f);
+		is.setOffsetY(4.0f);
+		Text t = new Text(TITLE);
+		t.setFill(Color.ALICEBLUE);
+		t.setFont(Font.font(24));
+		t.setEffect(is);
+		return t;
 	}
 	
 	public static void toSignUpPane(LoginPane loginPane) {
