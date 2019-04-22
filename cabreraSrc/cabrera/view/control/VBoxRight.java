@@ -1,4 +1,4 @@
-package view.control;
+package cabrera.view.control;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

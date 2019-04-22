@@ -1,9 +1,9 @@
-package demo;
+package cabrera.demo;
 
+import cabrera.view.Window;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
-import view.Window;
 
 public class Demo extends Application{
 
