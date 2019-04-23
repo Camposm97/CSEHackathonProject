@@ -13,6 +13,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * @author Camposm97
+ */
 public class Demo extends Application {
 	private static final int MAX_ACCOUNTS = 20;
 	private UserAccountBag userBag;
