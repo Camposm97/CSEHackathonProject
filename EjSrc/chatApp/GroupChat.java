@@ -1,17 +1,14 @@
 package chatApp;
 
-<<<<<<< HEAD
 import java.net.*; 
 import java.io.*; 
 import java.util.*; 
-=======
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.SocketException;
 import java.util.Scanner; 
->>>>>>> 949ffbdcdb9dd57178f0f5b133d67fbfe6e81d25
 public class GroupChat 
 { 
     private static final String TERMINATE = "Exit"; 
