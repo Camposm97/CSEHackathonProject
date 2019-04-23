@@ -1,3 +1,5 @@
+package chatApp;
+
 import java.net.*; 
 import java.io.*; 
 import java.util.*; 
@@ -9,18 +11,22 @@ public class GroupChat
     
     public static void main(String[] args) 
     { 
-        if (args.length != 2) 
-            System.out.println("Two arguments required: <multicast-host> <port-number>"); 
-        else
-        { 
+    	String[] args1 = new String [2];
+    	args1[0] = "239.255.255.255";
+    	args1[1] = "5000";
+//        if (args1.length != 2) 
+//            System.out.println("Two arguments required: <multicast-host> <port-number>"); 
+//        	
+//        else 
+//        { 
             try
             { 
-                InetAddress group = InetAddress.getByName(args[0]); 
-                int port = Integer.parseInt(args[1]); 
+                InetAddress group = InetAddress.getByName(args1[0]); 
+                int port = Integer.parseInt(args1[1]); 
                 Scanner sc = new Scanner(System.in); 
                 System.out.print("Enter your name: "); 
                 name = sc.nextLine(); 
-                MulticastSocket socket = new MulticastSocket(port); 
+                MulticastSocket socket = new MulticastSocket(5000); 
               
                 // Since we are deploying 
                 socket.setTimeToLive(0); 
@@ -65,7 +71,7 @@ public class GroupChat
             } 
         } 
     } 
-} 
+//} 
 class ReadThread implements Runnable 
 { 
     private MulticastSocket socket; 
@@ -76,7 +82,7 @@ class ReadThread implements Runnable
     { 
         this.socket = socket; 
         this.group = group; 
-        this.port = port; 
+        this.port = 5000; 
     } 
       
     @Override
