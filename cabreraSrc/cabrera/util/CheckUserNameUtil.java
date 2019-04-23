@@ -8,16 +8,16 @@ public class CheckUserNameUtil {
 	public static ObservableList<String> filterList(ObservableList<String> temp, String input) {
 		ObservableList<String> newList = FXCollections.observableArrayList();
 		temp.forEach((String) -> {
-			String testList = null;
-			String testInput = null;
-			//boolean isNull = (testList == null && testInput == null);
+			String testList = "";
+			String testInput = "";
 			if (!(input.length() > String.length())) {
 				testList = String.substring(0, input.length()).toUpperCase();
 				testInput = input.toUpperCase();
+			} else {
+			testList = "";
+			testInput = "";
 			}
-			System.out.println(testInput + " testInput");
-			System.out.println(testList + " testList");
-			if (testInput.equals(testList) && testList != null) {
+			if (!testList.equals("")  &&testInput.equals(testList)) {
 				newList.add(String);
 			}
 

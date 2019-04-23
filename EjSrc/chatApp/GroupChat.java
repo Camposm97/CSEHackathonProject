@@ -1,11 +1,17 @@
-import java.net.*; 
-import java.io.*; 
-import java.util.*; 
+package chatApp;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.InetAddress;
+import java.net.MulticastSocket;
+import java.net.SocketException;
+import java.util.Scanner; 
 public class GroupChat 
 { 
     private static final String TERMINATE = "Exit"; 
     static String name; 
     static volatile boolean finished = false; 
+    
     public static void main(String[] args) 
     { 
         if (args.length != 2) 
