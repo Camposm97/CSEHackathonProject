@@ -10,7 +10,7 @@ public class CheckUserNameUtil {
 		temp.forEach((String) -> {
 			String testList = "";
 			String testInput = "";
-			if (!(input.length() > String.length())) {
+			if (input.length() <= String.length()) {
 				testList = String.substring(0, input.length()).toUpperCase();
 				testInput = input.toUpperCase();
 			} else {
