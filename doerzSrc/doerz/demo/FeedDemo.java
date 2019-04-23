@@ -1,10 +1,10 @@
-package demo;
+package doerz.demo;
 
+import doerz.view.MainWindow;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import view.MainWindow;
 
-public class HomeDemo extends Application{
+public class FeedDemo extends Application{
 
 	public static void main(String[] args) {
 		launch(args);
