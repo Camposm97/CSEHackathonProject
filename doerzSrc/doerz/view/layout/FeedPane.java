@@ -15,21 +15,20 @@ import util.Dummy;
  */
 
 public class FeedPane {
-	private Button dummyBtn;									// testing
+//	private Button dummyBtn;									// testing
 	private ScrollPane scrlPane;
 	private static VBox feedBox;
-//	private int c = 5; 											// testing (shows username uniqueness)
 	
 	public FeedPane(BorderPane root, Stage stage) {
 		feedBox = new VBox();
 		scrlPane = new ScrollPane();
 		scrollPaneSettings();
 		
-		dummyBtn = new Button("Dummy Post");						// testing
+//		dummyBtn = new Button("Dummy Post");						// testing
 		
-		callBack();
+//		callBack();
 	
-		root.setTop(dummyBtn);
+//		root.setTop(dummyBtn);
 		root.setBottom(scrlPane);
 	}
 
@@ -40,13 +39,13 @@ public class FeedPane {
         scrlPane.setMaxHeight(400);
 	}
 
-	private void callBack() {
-		// testing	-  The dummy button will generate a new dummy post and add it to the feed.
-		dummyBtn.setOnAction(e -> {
-			Post dummyPost = Dummy.makeDummyPost();
-			addToFeed(dummyPost);
-		});
-	}
+//	private void callBack() {
+//		// testing	-  The dummy button will generate a new dummy post and add it to the feed.
+//		dummyBtn.setOnAction(e -> {
+//			Post dummyPost = Dummy.makeDummyPost();
+//			addToFeed(dummyPost);
+//		});
+//	}
 	
 	public static void addToFeed(Post post) {
 		PostView newPost = new PostView(post);
