@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
@@ -28,11 +29,17 @@ public class Client extends Application {
     BorderPane paneForTextField = new BorderPane();
     paneForTextField.setPadding(new Insets(5, 5, 5, 5)); 
     paneForTextField.setStyle("-fx-border-color: green");
-    paneForTextField.setLeft(new Label("Enter a radius: "));
+    paneForTextField.setLeft(new Label("Enter a Username: "));
     
     TextField tf = new TextField();
     tf.setAlignment(Pos.BOTTOM_RIGHT);
     paneForTextField.setCenter(tf);
+    
+    Button button = new Button("Send");
+    button.setOnAction(e ->{
+    	
+    });
+    paneForTextField.getChildren().add(button);
     
     BorderPane mainPane = new BorderPane();
     // Text area to display contents
@@ -48,19 +55,37 @@ public class Client extends Application {
     
     tf.setOnAction(e -> {
       try {
+<<<<<<< HEAD
         // Get the message from the text field
+=======
+        // Get the radius from the text field
+<<<<<<< HEAD
+       // double radius = Double.parseDouble(tf.getText().trim());
+    	  ta.appendText("Please Enter a Username");
+        // Send the radius to the server
+       // toServer.writeDouble(radius);
+       // toServer.flush();
+=======
+>>>>>>> 22bb0185db31acb594b278cc743e6665929596d5
         String message = tf.getText().trim();
   
         // Send the message to the server
         toServer.writeUTF(message + "\n");
         toServer.flush();
+>>>>>>> b1ef81883bc0a4121e723b5748f07e9116435c6a
   
         // Get area from the server
         ta.setEditable(false);
         // Display to the text area
+<<<<<<< HEAD
+     //   ta.appendText("Radius is " + radius + "\n");
+        ta.appendText("Area received from the server is "
+          + area + '\n');
+=======
         ta.appendText(message);
 //        ta.appendText("Area received from the server is "
 //          + area + '\n');
+>>>>>>> b1ef81883bc0a4121e723b5748f07e9116435c6a
       }
       catch (IOException ex) {
         System.err.println(ex);
