@@ -18,8 +18,8 @@ public class GroupChat
     public static void main(String[] args) 
     { 
     	String[] args1 = new String [2];
-    	args1[0] = "239.255.255.255";
-    	args1[1] = "5000";
+    	args1[0] = "225.100.1.1";
+    	args1[1] = "65535";
 //        if (args1.length != 2) 
 //            System.out.println("Two arguments required: <multicast-host> <port-number>"); 
 //        	
@@ -32,7 +32,7 @@ public class GroupChat
                 Scanner sc = new Scanner(System.in); 
                 System.out.print("Enter your name: "); 
                 name = sc.nextLine(); 
-                MulticastSocket socket = new MulticastSocket(5000); 
+                MulticastSocket socket = new MulticastSocket(65535); 
               
                 // Since we are deploying 
                 socket.setTimeToLive(0); 
@@ -88,7 +88,7 @@ class ReadThread implements Runnable
     { 
         this.socket = socket; 
         this.group = group; 
-        this.port = 5000; 
+        this.port = port; 
     } 
       
     @Override
