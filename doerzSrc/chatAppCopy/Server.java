@@ -1,8 +1,8 @@
-package chatApp;
+package chatAppCopy;
 
 import java.net.*;
 
-import chatApp.Server;
+import chatAppCopy.Server;
 
 import java.io.*; 
   
@@ -61,6 +61,6 @@ public class Server
   
     public static void main(String args[]) 
     { 
-        Server server = new Server(65535); 
+        Server server = new Server(5000); 
     } 
 } 
