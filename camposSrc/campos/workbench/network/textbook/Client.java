@@ -48,15 +48,14 @@ public class Client extends Application {
     
     tf.setOnAction(e -> {
       try {
-        // Get the radius from the text field
+        // Get the message from the text field
         String message = tf.getText().trim();
   
-        // Send the radius to the server
-        toServer.writeUTF(message);
+        // Send the message to the server
+        toServer.writeUTF(message + "\n");
         toServer.flush();
   
         // Get area from the server
-        double area = fromServer.readDouble();
         ta.setEditable(false);
         // Display to the text area
         ta.appendText(message);

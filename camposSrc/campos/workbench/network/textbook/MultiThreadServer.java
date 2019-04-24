@@ -88,17 +88,17 @@ public class MultiThreadServer extends Application {
         // Continuously serve the client
         while (true) {
           // Receive radius from the client
-          String message = inputFromClient.readLine();
+          String message = inputFromClient.readUTF();
 
 
           // Send area back to the client
-          outputToClient.writeUTF(message);
+          outputToClient.writeUTF(message + "\n");
           
-//          Platform.runLater(() -> {
-//            ta.appendText("radius received from client: " +
-//              radius + '\n');
-//            ta.appendText("Area found: " + area + '\n');
-//          });
+          Platform.runLater(() -> {
+            ta.appendText("Client says: " +
+              message + '\n');
+           
+          });
         }
       }
       catch(IOException e) {
