@@ -30,6 +30,7 @@ public class MultiThreadServer extends Application {
     primaryStage.setScene(scene); // Place the scene in the stage
     primaryStage.show(); // Display the stage
 
+    // Create a New Thread 
     new Thread( () -> {
       try {
         // Create a server socket

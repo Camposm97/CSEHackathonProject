@@ -18,8 +18,9 @@ import javafx.stage.Stage;
 
 public class Client extends Application {
   // IO streams
-  DataOutputStream toServer = null;
-  DataInputStream fromServer = null;
+	
+  private DataOutputStream toServer = null;
+  private DataInputStream fromServer = null;
 
   @Override // Override the start method in the Application class
   public void start(Stage primaryStage) {
