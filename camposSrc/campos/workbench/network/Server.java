@@ -18,7 +18,7 @@ public class Server {
 					Socket socket = server.accept();
 					System.out.println("Found a connection!");	
 					User client = new User("Client #" + (i++), socket);
-					new Thread(new HandleAClient(client)).start();
+					new Thread(new HandleAClient(client)).start();				
 					System.out.println("Command: ");
 					String command = input.next();
 					if (command.equals("exit")) {

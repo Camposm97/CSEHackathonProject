@@ -1,4 +1,4 @@
-package campos.workbench.network.textbook;
+package mitchell.copy;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -9,7 +9,6 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
@@ -29,17 +28,11 @@ public class Client extends Application {
     BorderPane paneForTextField = new BorderPane();
     paneForTextField.setPadding(new Insets(5, 5, 5, 5)); 
     paneForTextField.setStyle("-fx-border-color: green");
-    paneForTextField.setLeft(new Label("Enter a Username: "));
+    paneForTextField.setLeft(new Label("Enter a radius: "));
     
     TextField tf = new TextField();
     tf.setAlignment(Pos.BOTTOM_RIGHT);
     paneForTextField.setCenter(tf);
-    
-    Button button = new Button("Send");
-    button.setOnAction(e ->{
-    	
-    });
-    paneForTextField.getChildren().add(button);
     
     BorderPane mainPane = new BorderPane();
     // Text area to display contents
@@ -56,33 +49,19 @@ public class Client extends Application {
     tf.setOnAction(e -> {
       try {
         // Get the radius from the text field
-<<<<<<< HEAD
-       // double radius = Double.parseDouble(tf.getText().trim());
-    	  ta.appendText("Please Enter a Username");
-        // Send the radius to the server
-       // toServer.writeDouble(radius);
-       // toServer.flush();
-=======
-        String message = tf.getText().trim();
+        double radius = Double.parseDouble(tf.getText().trim());
   
         // Send the radius to the server
-        toServer.writeUTF(message);
+        toServer.writeDouble(radius);
         toServer.flush();
->>>>>>> b1ef81883bc0a4121e723b5748f07e9116435c6a
   
         // Get area from the server
         double area = fromServer.readDouble();
-        ta.setEditable(false);
+  
         // Display to the text area
-<<<<<<< HEAD
-     //   ta.appendText("Radius is " + radius + "\n");
+        ta.appendText("Radius is " + radius + "\n");
         ta.appendText("Area received from the server is "
           + area + '\n');
-=======
-        ta.appendText(message);
-//        ta.appendText("Area received from the server is "
-//          + area + '\n');
->>>>>>> b1ef81883bc0a4121e723b5748f07e9116435c6a
       }
       catch (IOException ex) {
         System.err.println(ex);

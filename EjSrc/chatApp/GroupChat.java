@@ -85,7 +85,11 @@ class ReadThread implements Runnable
     { 
         this.socket = socket; 
         this.group = group; 
+<<<<<<< HEAD
         this.port = 65535; 
+=======
+        this.port = port;
+>>>>>>> b1ef81883bc0a4121e723b5748f07e9116435c6a
     } 
       
     @Override
