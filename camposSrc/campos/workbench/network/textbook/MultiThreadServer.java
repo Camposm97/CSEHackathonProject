@@ -31,7 +31,7 @@ public class MultiThreadServer extends Application {
     primaryStage.show(); // Display the stage
 
     // Create a New Thread 
-    new Thread( () -> {
+    new Thread(() -> {
       try {
         // Create a server socket
         ServerSocket serverSocket = new ServerSocket(8000);
