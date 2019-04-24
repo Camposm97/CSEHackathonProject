@@ -17,7 +17,7 @@ public class Server {
 			
 			String message = dis.readUTF();
 			
-			System.out.println("User said: " + message);
+			System.out.println(message);
 			
 			System.out.println("Closed Server");
 			server.close();

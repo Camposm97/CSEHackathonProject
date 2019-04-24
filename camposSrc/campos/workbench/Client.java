@@ -1,31 +1,46 @@
 package campos.workbench;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Client {
-	private static final String host = "25.5.191.107";
+	private static final int DEFAULT_PORT = 8000;
+	private String username;
+	private Socket socket;
+	private DataInputStream dis;
+	private DataOutputStream dos;
 	
-	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
+	public Client(String username, String ip) throws IOException {
+		this.username = username;
+		this.socket = new Socket(ip, DEFAULT_PORT);
+		this.dis = new DataInputStream(socket.getInputStream());
+		this.dos = new DataOutputStream(socket.getOutputStream());
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public Socket getSocket() {
+		return socket;
+	}
+	
+	public void send(String str) {
 		try {
-			Socket socket = new Socket(host, 8000);
-			System.out.println("Succesfully connected to " + socket.getInetAddress().getHostAddress());
-			DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
-			while (true) {
-				System.out.println("Enter your message: (enter stop to stop server)");
-				String message = in.nextLine();
-				dos.writeUTF(message);
-				if (message.equals("stop")) {
-					break;
-				}
-			}
-			socket.close();
+			dos.writeUTF(str);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		in.close();
+	}
+	
+	public String read() {
+		try {
+			return dis.readUTF();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
