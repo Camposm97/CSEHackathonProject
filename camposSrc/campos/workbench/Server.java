@@ -12,17 +12,22 @@ public class Server {
 			
 			System.out.println("Awaiting connection...");
 			Socket socket = server.accept();
-			
-			DataInputStream dis = new DataInputStream(socket.getInputStream());
-			
-			String message = dis.readUTF();
-			
-			System.out.println("User said: " + message);
-			
-			System.out.println("Closed Server");
+			System.out.println("Found a connection!");
+			while (true) {
+				DataInputStream dis = new DataInputStream(socket.getInputStream());
+				
+				String message = dis.readUTF();
+				
+				if (message.equals("stop")) {
+					System.out.println("Closing Server...");
+					break;
+				}
+				
+				System.out.println("User said: " + message);				
+			}
 			server.close();
 		} catch (IOException e) {
-			
+			e.printStackTrace();
 		}
 		
 	}
