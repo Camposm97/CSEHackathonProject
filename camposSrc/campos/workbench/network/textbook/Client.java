@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
@@ -28,11 +29,17 @@ public class Client extends Application {
     BorderPane paneForTextField = new BorderPane();
     paneForTextField.setPadding(new Insets(5, 5, 5, 5)); 
     paneForTextField.setStyle("-fx-border-color: green");
-    paneForTextField.setLeft(new Label("Enter a radius: "));
+    paneForTextField.setLeft(new Label("Enter a Username: "));
     
     TextField tf = new TextField();
     tf.setAlignment(Pos.BOTTOM_RIGHT);
     paneForTextField.setCenter(tf);
+    
+    Button button = new Button("Send");
+    button.setOnAction(e ->{
+    	
+    });
+    paneForTextField.getChildren().add(button);
     
     BorderPane mainPane = new BorderPane();
     // Text area to display contents
@@ -49,17 +56,17 @@ public class Client extends Application {
     tf.setOnAction(e -> {
       try {
         // Get the radius from the text field
-        double radius = Double.parseDouble(tf.getText().trim());
-  
+       // double radius = Double.parseDouble(tf.getText().trim());
+    	  ta.appendText("Please Enter a Username");
         // Send the radius to the server
-        toServer.writeDouble(radius);
-        toServer.flush();
+       // toServer.writeDouble(radius);
+       // toServer.flush();
   
         // Get area from the server
         double area = fromServer.readDouble();
   
         // Display to the text area
-        ta.appendText("Radius is " + radius + "\n");
+     //   ta.appendText("Radius is " + radius + "\n");
         ta.appendText("Area received from the server is "
           + area + '\n');
       }
@@ -70,7 +77,7 @@ public class Client extends Application {
   
     try {
       // Create a socket to connect to the server
-      Socket socket = new Socket("localhost", 8000);
+      Socket socket = new Socket("25.5.191.107", 8000);
       // Socket socket = new Socket("130.254.204.36", 8000);
       // Socket socket = new Socket("drake.Armstrong.edu", 8000);
 
