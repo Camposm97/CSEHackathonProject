@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Demo {
-	private static final String host = "localhost"; // Camposm's Laptop IP
+	private static final String host = "25.5.191.107"; // Camposm's Laptop IP
 	
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);

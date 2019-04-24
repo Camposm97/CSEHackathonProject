@@ -1,4 +1,4 @@
-package campos.workbench.network.textbook;
+package mitchell.copy;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -88,17 +88,19 @@ public class MultiThreadServer extends Application {
         // Continuously serve the client
         while (true) {
           // Receive radius from the client
-          String message = inputFromClient.readLine();
+          double radius = inputFromClient.readDouble();
 
+          // Compute area
+          double area = radius * radius * Math.PI;
 
           // Send area back to the client
-          outputToClient.writeUTF(message);
+          outputToClient.writeDouble(area);
           
-//          Platform.runLater(() -> {
-//            ta.appendText("radius received from client: " +
-//              radius + '\n');
-//            ta.appendText("Area found: " + area + '\n');
-//          });
+          Platform.runLater(() -> {
+            ta.appendText("radius received from client: " +
+              radius + '\n');
+            ta.appendText("Area found: " + area + '\n');
+          });
         }
       }
       catch(IOException e) {
