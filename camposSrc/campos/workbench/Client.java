@@ -12,11 +12,22 @@ public class Client {
 	private DataInputStream dis;
 	private DataOutputStream dos;
 	
+	public Client (String username, Socket socket) throws IOException {
+		this.username = username;
+		this.socket = socket;
+		this.dis = new DataInputStream(socket.getInputStream());
+		this.dos = new DataOutputStream(socket.getOutputStream());
+	}
+	
 	public Client(String username, String ip) throws IOException {
 		this.username = username;
 		this.socket = new Socket(ip, DEFAULT_PORT);
 		this.dis = new DataInputStream(socket.getInputStream());
 		this.dos = new DataOutputStream(socket.getOutputStream());
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	public String getUsername() {
@@ -27,20 +38,11 @@ public class Client {
 		return socket;
 	}
 	
-	public void send(String str) {
-		try {
-			dos.writeUTF(str);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public DataOutputStream getDos() {
+		return dos;
 	}
 	
-	public String read() {
-		try {
-			return dis.readUTF();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
+	public DataInputStream getDis() {
+		return dis;
 	}
 }
