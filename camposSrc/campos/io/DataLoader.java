@@ -18,7 +18,7 @@ public class DataLoader {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
 			userBag = (UserAccountBag) ois.readObject();
 			ois.close();
-			System.out.println("Successfully read from " + file.getAbsolutePath()());
+			System.out.println("Successfully read from " + file.getAbsolutePath());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
