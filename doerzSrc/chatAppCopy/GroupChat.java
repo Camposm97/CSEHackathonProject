@@ -1,4 +1,4 @@
-package chatApp;
+package chatAppCopy;
 
 import java.net.*; 
 import java.io.*; 
@@ -10,8 +10,8 @@ import java.net.MulticastSocket;
 import java.net.SocketException;
 import java.util.Scanner;
 
-import chatApp.GroupChat;
-import chatApp.ReadThread; 
+import chatAppCopy.GroupChat;
+import chatAppCopy.ReadThread; 
 public class GroupChat 
 { 
     private static final String TERMINATE = "Exit"; 
@@ -21,8 +21,8 @@ public class GroupChat
     public static void main(String[] args) 
     { 
     	String[] args1 = new String [2];
-    	args1[0] = "2620:9b::1949:4f7d";
-    	args1[1] = "65535";
+    	args1[0] = "239.255.255.255";
+    	args1[1] = "5000";
 //        if (args1.length != 2) 
 //            System.out.println("Two arguments required: <multicast-host> <port-number>"); 
 //        	
@@ -35,7 +35,7 @@ public class GroupChat
                 Scanner sc = new Scanner(System.in); 
                 System.out.print("Enter your name: "); 
                 name = sc.nextLine(); 
-                MulticastSocket socket = new MulticastSocket(65535); 
+                MulticastSocket socket = new MulticastSocket(5000); 
               
                 // Since we are deploying 
                 socket.setTimeToLive(0); 
@@ -91,7 +91,7 @@ class ReadThread implements Runnable
     { 
         this.socket = socket; 
         this.group = group; 
-        this.port = 65535; 
+        this.port = 5000; 
     } 
       
     @Override

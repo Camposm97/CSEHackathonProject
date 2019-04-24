@@ -1,8 +1,8 @@
-package chatApp;
+package chatAppCopy;
 
 import java.net.*;
 
-import chatApp.Client;
+import chatAppCopy.Client;
 
 import java.io.*; 
   
