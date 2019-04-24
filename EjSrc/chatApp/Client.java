@@ -69,6 +69,10 @@ public class Client
   
     public static void main(String args[]) 
     { 
+<<<<<<< HEAD
+        Client client = new Client("25.73.146.130", 65535); 
+=======
         Client client = new Client("25.73.79.125", 65535); 
+>>>>>>> 2fa92308c73fa75508f94155ba3bb1764bbed4c8
     } 
 } 

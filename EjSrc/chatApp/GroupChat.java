@@ -21,7 +21,11 @@ public class GroupChat
     public static void main(String[] args) 
     { 
     	String[] args1 = new String [2];
+<<<<<<< HEAD
+    	args1[0] = "225.100.1.1";
+=======
     	args1[0] = "2620:9b::1949:4f7d";
+>>>>>>> 2fa92308c73fa75508f94155ba3bb1764bbed4c8
     	args1[1] = "65535";
 //        if (args1.length != 2) 
 //            System.out.println("Two arguments required: <multicast-host> <port-number>"); 
@@ -91,7 +95,11 @@ class ReadThread implements Runnable
     { 
         this.socket = socket; 
         this.group = group; 
+<<<<<<< HEAD
+        this.port = port; 
+=======
         this.port = 65535; 
+>>>>>>> 2fa92308c73fa75508f94155ba3bb1764bbed4c8
     } 
       
     @Override
