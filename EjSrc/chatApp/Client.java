@@ -1,9 +1,6 @@
 package chatApp;
 
-import java.net.*;
-
-import chatApp.Client;
-
+import java.net.*; 
 import java.io.*; 
   
 public class Client 
@@ -70,16 +67,5 @@ public class Client
     public static void main(String args[]) 
     { 
         Client client = new Client("25.73.79.125", 65535); 
-//=======
-//<<<<<<< HEAD
-//        Client client = new Client("25.73.79.125", 65535); 
-//=======
-//<<<<<<< HEAD
-//        Client client = new Client("25.73.146.130", 65535); 
-//=======
-//        Client client = new Client("25.73.79.125", 65535); 
-//>>>>>>> 2fa92308c73fa75508f94155ba3bb1764bbed4c8
-//>>>>>>> 9bdd1debc9b6063d277e5f62fec5abdb2352a1b4
-//>>>>>>> 1156bb704384857af50f90bd8b5b5e9e477d7d94
     } 
 } 

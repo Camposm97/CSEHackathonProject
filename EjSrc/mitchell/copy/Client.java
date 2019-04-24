@@ -1,4 +1,4 @@
-package campos.workbench.network.textbook;
+package mitchell.copy;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -49,19 +49,19 @@ public class Client extends Application {
     tf.setOnAction(e -> {
       try {
         // Get the radius from the text field
-        String message = tf.getText().trim();
+        double radius = Double.parseDouble(tf.getText().trim());
   
         // Send the radius to the server
-        toServer.writeUTF(message);
+        toServer.writeDouble(radius);
         toServer.flush();
   
         // Get area from the server
         double area = fromServer.readDouble();
-        ta.setEditable(false);
+  
         // Display to the text area
-        ta.appendText(message);
-//        ta.appendText("Area received from the server is "
-//          + area + '\n');
+        ta.appendText("Radius is " + radius + "\n");
+        ta.appendText("Area received from the server is "
+          + area + '\n');
       }
       catch (IOException ex) {
         System.err.println(ex);
