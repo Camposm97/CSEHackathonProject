@@ -9,7 +9,7 @@ import campos.util.UserAccountFactory;
 
 public class DataSaver {
 	public static void main(String[] args) {
-		UserAccountBag bag = UserAccountFactory.loadUserAccountBag(50);
+		UserAccountBag bag = UserAccountFactory.emitUserAccounts(10);
 		saveUsers(bag);
 	}
 	

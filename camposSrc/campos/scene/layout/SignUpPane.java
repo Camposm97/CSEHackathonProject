@@ -1,11 +1,11 @@
 package campos.scene.layout;
 
+import campos.event.EventLoader;
 import campos.models.Major;
 import campos.models.Name;
 import campos.models.Student;
 import campos.models.UserAccount;
 import campos.models.UserAccountBag;
-import campos.util.EventLoader;
 import campos.util.FXUtil;
 import campos.util.Gender;
 import campos.util.PasswordUtil;

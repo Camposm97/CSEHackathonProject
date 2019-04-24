@@ -1,9 +1,9 @@
 package campos.scene.layout;
 
+import campos.event.EventLoader;
 import campos.models.UserAccount;
 import campos.models.UserAccountBag;
 import campos.scene.control.MyLabel;
-import campos.util.EventLoader;
 import campos.util.FXUtil;
 import campos.util.ImgUtil;
 import javafx.geometry.Pos;
