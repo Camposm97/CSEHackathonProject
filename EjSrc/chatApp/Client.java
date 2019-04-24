@@ -1,9 +1,6 @@
 package chatApp;
 
-import java.net.*;
-
-import chatApp.Client;
-
+import java.net.*; 
 import java.io.*; 
   
 public class Client 
