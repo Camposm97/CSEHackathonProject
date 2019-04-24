@@ -17,7 +17,6 @@ public class UserAccountFactory {
 			userBag.add(new UserAccount(new Student(nameList.get(i), Random.emitMajor())));
 			userBag.sortByUsername();
 		}
-		userBag.display();
 		return userBag;
 	}
 }
