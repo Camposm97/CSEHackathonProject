@@ -1,4 +1,4 @@
-package campos.workbench;
+package campos.workbench.network;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -17,7 +17,7 @@ public class Server {
 					System.out.println("Waiting for a connection...");	
 					Socket socket = server.accept();
 					System.out.println("Found a connection!");	
-					Client client = new Client("Client #" + (i++), socket);
+					User client = new User("Client #" + (i++), socket);
 					new Thread(new HandleAClient(client)).start();
 					System.out.println("Command: ");
 					String command = input.next();

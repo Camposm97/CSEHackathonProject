@@ -1,4 +1,4 @@
-package campos.workbench;
+package campos.workbench.network;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -10,7 +10,7 @@ public class Demo {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Who are you? ");
 		try {
-			Client client = new Client(input.nextLine(), host);
+			User client = new User(input.nextLine(), host);
 			System.out.println(client.getDis().readUTF());
 			
 			while (true) {

@@ -1,11 +1,11 @@
-package campos.workbench;
+package campos.workbench.network;
 
 import java.io.IOException;
 
 public class HandleAClient implements Runnable {
-	private Client client;
+	private User client;
 	
-	public HandleAClient(Client client) {
+	public HandleAClient(User client) {
 		this.client = client;
 	}
 	

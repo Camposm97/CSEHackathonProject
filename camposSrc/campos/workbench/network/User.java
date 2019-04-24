@@ -1,25 +1,25 @@
-package campos.workbench;
+package campos.workbench.network;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class Client {
+public class User {
 	private static final int DEFAULT_PORT = 8000;
 	private String username;
 	private Socket socket;
 	private DataInputStream dis;
 	private DataOutputStream dos;
 	
-	public Client (String username, Socket socket) throws IOException {
+	public User (String username, Socket socket) throws IOException {
 		this.username = username;
 		this.socket = socket;
 		this.dis = new DataInputStream(socket.getInputStream());
 		this.dos = new DataOutputStream(socket.getOutputStream());
 	}
 	
-	public Client(String username, String ip) throws IOException {
+	public User(String username, String ip) throws IOException {
 		this.username = username;
 		this.socket = new Socket(ip, DEFAULT_PORT);
 		this.dis = new DataInputStream(socket.getInputStream());
