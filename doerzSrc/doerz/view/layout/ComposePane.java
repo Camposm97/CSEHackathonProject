@@ -1,6 +1,8 @@
 package doerz.view.layout;
 
+import campos.models.UserAccount;
 import doerz.model.Post;
+import doerz.view.UserWindow;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
@@ -18,8 +20,9 @@ import util.Dummy;
  */
 
 public class ComposePane {
-	private TextField composeField;
-	private Button postBtn;
+	private TextField composeField, userNameField;
+	private Button postBtn, userBtn;
+	private UserAccount user;
 	
 	public ComposePane(BorderPane root, Stage stage) {
 		GridPane grid = new GridPane();
@@ -28,17 +31,22 @@ public class ComposePane {
 		grid.setHgap(10);
 		grid.setVgap(10);
 		
+//		userNameField = new TextField("NewUser");
+//		userNameField.setPrefWidth(100);
+		userBtn = new Button("New Account");
+		
 		composeField = new TextField();
 		composeField.setPromptText("Write something!");
 		composeField.setMinWidth(300);						// Magic number
 		
 		postBtn = new Button("Post");
 		
-		grid.add(composeField, 0, 0);
-		grid.add(postBtn, 1, 0);
+		grid.add(userBtn, 1, 0);
+		grid.add(composeField, 0, 1);
+		grid.add(postBtn, 1, 1);
 		
 		Separator sep = new Separator();
-		grid.add(sep, 0, 1, 2, 1);
+		grid.add(sep, 0, 2, 2, 1);
 		
 		callBacks();
 		
@@ -47,9 +55,20 @@ public class ComposePane {
 	private void callBacks() {
 		postBtn.setOnAction(e -> {
 			String message = composeField.getText();
-			Post newPost = new Post(message, Dummy.getDummyAcc());
+			Post newPost = null;
+			
+			if(user == null) {
+				newPost = new Post(message, Dummy.getDummyAcc("defaultUser"));
+			} else {
+				newPost = new Post(message, user);
+			}
+			
 			FeedPane.addToFeed(newPost);
 			clearAll();
+		});
+		userBtn.setOnAction(e -> {
+			user = Dummy.getDummyAcc("def");
+			new UserWindow(user);
 		});
 	}
 	
