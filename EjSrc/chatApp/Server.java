@@ -8,7 +8,7 @@ public class Server
     //initialize socket and input stream 
     private Socket          socket   = null; 
     private ServerSocket    server   = null; 
-    private DataInputStream in       =  null; 
+    private DataInputStream in       = null; 
   
     // constructor with port 
     public Server(int port) 
@@ -58,6 +58,6 @@ public class Server
   
     public static void main(String args[]) 
     { 
-        Server server = new Server(5000); 
+        Server server = new Server(65535); 
     } 
 } 

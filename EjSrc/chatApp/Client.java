@@ -42,7 +42,7 @@ public class Client
         { 
             try
             { 
-                line = input.readLine(); 
+                line = input.readUTF(); 
                 out.writeUTF(line); 
             } 
             catch(IOException i) 
@@ -66,6 +66,6 @@ public class Client
   
     public static void main(String args[]) 
     { 
-        Client client = new Client("127.0.0.1", 5000); 
+        Client client = new Client("25.73.79.125", 65535); 
     } 
 } 
