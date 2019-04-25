@@ -6,26 +6,27 @@ import java.io.ObjectInputStream;
 import java.util.TreeSet;
 
 import campos.models.UserAccount;
+import campos.models.UserAccountBag;
 
 public class DataLoader implements DataConstants{
 	public static void main(String[] args) {
-		TreeSet<UserAccount> userTree = loadUsers();
-		for (UserAccount u : userTree)
-			System.out.println(u);
+		UserAccountBag bag = loadUsers();
+		bag.display();
+		UserAccount user = bag.findByUsername("CurtK2");
+		System.out.println(user);
 	}
 	
-	@SuppressWarnings("unchecked")
-	public static TreeSet<UserAccount> loadUsers() {
-		TreeSet<UserAccount> userTree = null;
+	public static UserAccountBag loadUsers() {
+		UserAccountBag bag = null;
 		File file = new File(USER_BAG_SRC);
 		try {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
-			userTree = (TreeSet<UserAccount>) ois.readObject();
+			bag = (UserAccountBag) ois.readObject();
 			ois.close();
 			System.out.println("Successfully read from " + file.getPath());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return userTree;
+		return bag;
 	}
 }

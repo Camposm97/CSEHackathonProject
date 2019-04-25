@@ -1,101 +1,29 @@
 package campos.models;
 
-import java.io.Serializable;
+import java.util.TreeSet;
+
+import campos.collections.UserNameComparator;
+import campos.util.BinarySearch;
 
 @SuppressWarnings("serial")
-public class UserAccountBag implements Serializable {
-	private UserAccount[] users;
-	private int nElems;
-
-	public UserAccountBag(int maxSize) {
-		users = new UserAccount[maxSize];
-		nElems = 0;
+public class UserAccountBag extends TreeSet<UserAccount> {
+	public UserAccountBag() {
+		super(new UserNameComparator());
 	}
-
-	public UserAccount get(int i) {
-		return users[i];
-	}
-
-	public void add(UserAccount user) {
-		users[nElems++] = user;
-		checkBounds();
-		sortByUsername();
-	}
-
+	
 	public UserAccount findByUsername(String username) {
-		int first = 0, last = nElems, middle, result;
-
-		while (first <= last) {
-			middle = (first + last) / 2;
-			result = username.compareTo(users[middle].getUsername());
-
-			if (result == 0)
-				return users[middle];
-
-			if (result > 0)
-				first = middle + 1;
-			else
-				last = middle - 1;
+		UserAccount[] arr = new UserAccount[this.size()];
+		arr = this.toArray(arr);
+		int index = BinarySearch.binarySearch(arr, username, 0, arr.length);
+		if (index != -1) {
+			return arr[index];
 		}
-		return null;	// User Not Found
-	}
-	
-	public UserAccount deleteByUsername(String username) {
-		UserAccount temp = findByUsername(username);
-		if (temp == null) { // Couldn't find user
-			
-		}
-	}
-	
-	public void sortByUsername() {
-		int in;
-		int out;
-		for (out = 1; out < nElems; out++) {
-			UserAccount temp = users[out];
-			in = out;
-
-			while (in > 0 && users[in - 1].getUsername().compareTo(temp.getUsername()) > 0) {
-				users[in] = users[in - 1];
-				in--;
-			}
-			users[in] = temp;
-		}
-	}
-
-	public void sortByPassword() {
-		int in;
-		int out;
-		for (out = 1; out < nElems; out++) {
-			UserAccount temp = users[out];
-			in = out;
-
-			while (in > 0 && users[in - 1].getPassword().compareTo(temp.getPassword()) > 0) {
-				users[in] = users[in - 1];
-				in--;
-			}
-			users[in] = temp;
-		}
+		return null;
 	}
 
 	public void display() {
-		for (int i = 0; i < nElems; i++) {
-			System.out.println(users[i].toString());
-		}
+		for (UserAccount u : this)
+			System.out.println(u);
+		System.out.println();
 	}
-
-	public String[] getUsers() {
-		String[] array = new String[nElems];
-		for (int i = 0; i < nElems; i++)
-			array[i] = users[i].getUsername();
-		return array;
-	}
-
-	private void checkBounds() {
-		if (nElems > users.length - 1) {
-			UserAccount[] temp = new UserAccount[users.length * 2];
-
-			for (int i = 0; i < users.length; i++)
-				temp[i] = users[i];
-			users = temp;
-		}
-	}
+}

@@ -7,15 +7,16 @@ import campos.collections.UserNameComparator;
 import campos.models.Name;
 import campos.models.Student;
 import campos.models.UserAccount;
+import campos.models.UserAccountBag;
 
 public class UserAccountFactory {
-	public static TreeSet<UserAccount> emitUserAccounts(int n) {
+	public static UserAccountBag emitUserAccounts(int n) {
 		NameFactory nameFactory = new NameFactory();
 		ArrayList<Name> nameList = nameFactory.emitNames(n);
-		TreeSet<UserAccount> userMap = new TreeSet<>(new UserNameComparator());
+		UserAccountBag bag = new UserAccountBag();
 		for (int i = 0; i < nameList.size(); i++) {
-			userMap.add(new UserAccount(new Student(nameList.get(i), Random.emitMajor())));
+			bag.add(new UserAccount(new Student(nameList.get(i), Random.emitMajor())));
 		}
-		return userMap;
+		return bag;
 	}
 }

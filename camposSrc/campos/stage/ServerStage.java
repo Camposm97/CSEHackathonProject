@@ -1,10 +1,9 @@
 package campos.stage;
 
 import java.io.IOException;
-import java.util.TreeSet;
 
 import campos.io.DataLoader;
-import campos.models.UserAccount;
+import campos.models.UserAccountBag;
 import campos.scene.layout.ServerPane;
 import campos.util.FXUtil;
 import campos.util.ImgUtil;
@@ -16,11 +15,11 @@ import javafx.stage.WindowEvent;
 public class ServerStage extends Stage {
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
-	private TreeSet<UserAccount> userSet;	// Change to Tree, go faster O(log(N))
+	private UserAccountBag userBag;	
 	private ServerPane root;
 	
 	public ServerStage(int port) throws IOException {
-		this.userSet = DataLoader.loadUsers();
+		this.userBag = DataLoader.loadUsers();
 		this.root = new ServerPane(port);
 		this.setScene(new Scene(root));
 		this.setOnCloseRequest(new CloserServerHandler());

@@ -8,7 +8,6 @@ import javafx.scene.layout.BorderPane;
 public class ServerPane extends BorderPane {
 	private ServerSocket server;
 	private ConsolePane consolePane;
-//	private TextArea ta;
 	
 	public ServerPane(int port) throws IOException {
 		this.server = new ServerSocket(port);
