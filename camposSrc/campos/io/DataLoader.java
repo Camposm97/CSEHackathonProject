@@ -3,25 +3,29 @@ package campos.io;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.util.TreeSet;
 
-import campos.models.UserAccountBag;
+import campos.models.UserAccount;
 
-public class DataLoader implements URLConstants{
+public class DataLoader implements DataConstants{
 	public static void main(String[] args) {
-		UserAccountBag bag = loadUsers();
+		TreeSet<UserAccount> userTree = loadUsers();
+		for (UserAccount u : userTree)
+			System.out.println(u);
 	}
 	
-	public static UserAccountBag loadUsers() {
-		UserAccountBag userBag = null;
+	@SuppressWarnings("unchecked")
+	public static TreeSet<UserAccount> loadUsers() {
+		TreeSet<UserAccount> userTree = null;
 		File file = new File(USER_BAG_SRC);
 		try {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
-			userBag = (UserAccountBag) ois.readObject();
+			userTree = (TreeSet<UserAccount>) ois.readObject();
 			ois.close();
-			System.out.println("Successfully read from " + file.getAbsolutePath());
+			System.out.println("Successfully read from " + file.getPath());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return userBag;
+		return userTree;
 	}
 }

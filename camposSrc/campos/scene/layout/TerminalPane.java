@@ -1,16 +1,19 @@
 package campos.scene.layout;
 
+import java.util.TreeSet;
+
+import campos.models.UserAccount;
 import campos.models.UserAccountBag;
 import javafx.scene.layout.BorderPane;
 
 public abstract class TerminalPane extends BorderPane {
-	protected UserAccountBag userBag;
+	protected TreeSet<UserAccount> userBag;
 	
-	public TerminalPane(UserAccountBag userBag) {
+	public TerminalPane(TreeSet<UserAccount> userBag) {
 		this.userBag = userBag;
 	}
 	
-	public UserAccountBag getUserBag() {
+	public TreeSet<UserAccount> getUserTree() {
 		return userBag;
 	}
 }

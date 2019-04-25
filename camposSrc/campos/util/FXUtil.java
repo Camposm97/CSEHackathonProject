@@ -69,18 +69,14 @@ public class FXUtil {
 	public static void toSignUpPane(LoginPane loginPane) {
 		Stage stage = (Stage) loginPane.getScene().getWindow();
 		stage.setTitle("Sign Up");
-//		stage.setWidth(LOG_WIDTH);
-//		stage.setHeight(LOG_HEIGHT);
 		BorderPane root = (BorderPane) loginPane.getScene().getRoot();
-		root.setCenter(new SignUpPane(loginPane.getUserBag()));
+		root.setCenter(new SignUpPane(loginPane.getUserTree()));
 	}
 	
 	public static void toLoginPane(SignUpPane signUpPane) {
 		Stage stage = (Stage) signUpPane.getScene().getWindow();
 		stage.setTitle("Login");
-//		stage.setWidth(LOG_WIDTH);
-//		stage.setHeight(LOG_HEIGHT);
 		BorderPane root = (BorderPane) signUpPane.getScene().getRoot();
-		root.setCenter(new LoginPane(signUpPane.getUserBag()));
+		root.setCenter(new LoginPane(signUpPane.getUserTree()));
 	}
 }

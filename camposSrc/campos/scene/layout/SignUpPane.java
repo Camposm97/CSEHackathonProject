@@ -171,10 +171,10 @@ public class SignUpPane extends TerminalPane {
 			String password = signUpPane.tfPass.getText();
 			
 			Student student = new Student(new Name(lastName, firstName, cbGender.getValue()), cbMajor.getValue());
-			signUpPane.getUserBag().add(new UserAccount(student, username, password));
-			signUpPane.getUserBag().sortByUsername();
+			signUpPane.getUserTree().add(new UserAccount(student, username, password));
+			signUpPane.getUserTree().sortByUsername();
 			System.out.println();
-			signUpPane.getUserBag().display();
+			signUpPane.getUserTree().display();
 			FXUtil.toLoginPane(signUpPane);
 		}
 	}

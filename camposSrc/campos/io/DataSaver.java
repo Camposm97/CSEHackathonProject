@@ -2,25 +2,32 @@ package campos.io;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.Random;
+import java.util.TreeSet;
 
-import campos.models.UserAccountBag;
+import campos.models.UserAccount;
 import campos.util.UserAccountFactory;
 
-public class DataSaver implements URLConstants {
+public class DataSaver implements DataConstants {
 	public static void main(String[] args) {
-		UserAccountBag bag = UserAccountFactory.emitUserAccounts(10);
-		saveUsers(bag);
+		TreeSet<UserAccount> userTree = UserAccountFactory.emitUserAccounts(10);
+		saveObject(userTree, USER_BAG_SRC);
+		Random rand = new Random();
+		while (true) {
+			System.out.println(rand.nextInt(11));
+		}
 	}
 	
-	public static void saveUsers(UserAccountBag userBag) {
-		File file = new File(USER_BAG_SRC);
+	public static void saveObject(Object o, String trgt) {
+		File file = new File(trgt);
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-			oos.writeObject(userBag);
+			oos.writeObject(o);
+			System.out.println("Successfully saved to " + file.getPath());
 			oos.close();
-			System.out.println("Successfully saved to " + file.getAbsolutePath());
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

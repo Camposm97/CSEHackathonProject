@@ -1,10 +1,12 @@
 package campos.collections;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 import campos.models.UserAccount;
 
-public class UserAccountComparator implements Comparator<UserAccount> {
+@SuppressWarnings("serial")
+public class UserAccountComparator implements Comparator<UserAccount>, Serializable {
 
 	@Override
 	public int compare(UserAccount u1, UserAccount u2) {

@@ -1,8 +1,9 @@
 package campos.scene.layout;
 
+import java.util.TreeSet;
+
 import campos.event.EventLoader;
 import campos.models.UserAccount;
-import campos.models.UserAccountBag;
 import campos.scene.control.MyLabel;
 import campos.util.FXUtil;
 import campos.util.ImgUtil;
@@ -24,8 +25,8 @@ public class LoginPane extends TerminalPane {
 	private Button btLogin;
 	private Hyperlink linkSignUp;
 	
-	public LoginPane(UserAccountBag userBag) {
-		super(userBag);
+	public LoginPane(TreeSet<UserAccount> userTree) {
+		super(userTree);
 		new LoginPaneUtil(this);
 		EventLoader.loadEnterKey(this, btLogin);
 	}
@@ -100,7 +101,7 @@ public class LoginPane extends TerminalPane {
 			UserAccount user = null;
 			
 			if (!username.isEmpty() || username.contains("\\")) {
-				user = loginPane.getUserBag().findByUsername(username);
+				user = loginPane.getUserTree().findByUsername(username);
 			} 
 			
 			if (user != null && password.equals(user.getPassword())) {
