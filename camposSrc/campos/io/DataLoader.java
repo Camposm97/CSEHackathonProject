@@ -6,14 +6,14 @@ import java.io.ObjectInputStream;
 
 import campos.models.UserAccountBag;
 
-public class DataLoader {
+public class DataLoader implements URLConstants{
 	public static void main(String[] args) {
 		UserAccountBag bag = loadUsers();
 	}
 	
 	public static UserAccountBag loadUsers() {
 		UserAccountBag userBag = null;
-		File file = new File(DataUtil.USER_BAG_SRC);
+		File file = new File(USER_BAG_SRC);
 		try {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
 			userBag = (UserAccountBag) ois.readObject();

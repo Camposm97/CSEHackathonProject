@@ -10,7 +10,7 @@ public class Demo extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		stage = new ServerStage(PORT);
-		stage.showAndWait();
+		stage.show();
 	}
 	
 	public static void main(String[] args) {
