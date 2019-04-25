@@ -1,10 +1,12 @@
 package doerz.view.layout;
 
 import doerz.model.Post;
+import doerz.model.PostQueue;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import util.Dummy;
@@ -15,20 +17,25 @@ import util.Dummy;
  */
 
 public class FeedPane {
-//	private Button dummyBtn;									// testing
+	private Button clrBtn, clrDataBtn;									// testing
 	private ScrollPane scrlPane;
 	private static VBox feedBox;
+	private static PostQueue feed;
 	
-	public FeedPane(BorderPane root, Stage stage) {
+	public FeedPane(BorderPane root, Stage stage, PostQueue feed) {
+		this.feed = feed;
 		feedBox = new VBox();
 		scrlPane = new ScrollPane();
 		scrollPaneSettings();
 		
-//		dummyBtn = new Button("Dummy Post");						// testing
+		HBox box = new HBox();
+		clrBtn = new Button("Clear Feed View");						// testing
+		clrDataBtn = new Button("Remove All Posts");		
+		box.getChildren().addAll(clrBtn, clrDataBtn);
 		
-//		callBack();
+		callBack();
 	
-//		root.setTop(dummyBtn);
+		root.setTop(box);
 		root.setBottom(scrlPane);
 	}
 
@@ -36,20 +43,34 @@ public class FeedPane {
 		scrlPane.setContent(feedBox);
 		scrlPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 		scrlPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-        scrlPane.setMaxHeight(400);
+        scrlPane.setMaxHeight(500);
 	}
 
-//	private void callBack() {
-//		// testing	-  The dummy button will generate a new dummy post and add it to the feed.
-//		dummyBtn.setOnAction(e -> {
+	private void callBack() {
+		// testing	-  The dummy button will generate a new dummy post and add it to the feed.
+		clrBtn.setOnAction(e -> {
 //			Post dummyPost = Dummy.makeDummyPost();
 //			addToFeed(dummyPost);
-//		});
-//	}
+			feedBox.getChildren().clear();
+		});
+		clrDataBtn.setOnAction(e -> {
+			feed.reset();
+		});
+	}
 	
 	public static void addToFeed(Post post) {
-		PostView newPost = new PostView(post);
-		feedBox.getChildren().add(0, newPost.getPost());
+		feed.add(post);
+//		PostView newPost = new PostView(post);
+//		feedBox.getChildren().add(0, newPost.getPost());
+		refresh();
+	}
+	
+	public static void refresh() {
+		feedBox.getChildren().clear();
+		for(Post p : feed.toArray()) {
+			PostView newPost = new PostView(p);
+			feedBox.getChildren().add(0, newPost.getPost());
+		}
 	}
 
 }

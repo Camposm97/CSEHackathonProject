@@ -56,7 +56,7 @@ public class PostView {
 	private void drawBody(GridPane body, Post post) {
 		msgBdy = new TextArea();
 		msgBdy.setText(post.getMessage());
-		msgBdy.setPrefHeight(50);
+		msgBdy.setPrefHeight(30);
 		body.add(msgBdy, 0, 0);
 	}
 	
