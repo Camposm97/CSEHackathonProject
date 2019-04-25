@@ -1,11 +1,11 @@
-package campos.app.server;
+package campos.app;
 
 import campos.net.INet;
 import campos.stage.ServerStage;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class Demo extends Application {	
+public class ServerApp extends Application {	
 	@Override
 	public void start(Stage stage) throws Exception {
 		stage = new ServerStage(INet.PORT);
