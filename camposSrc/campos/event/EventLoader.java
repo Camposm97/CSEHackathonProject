@@ -1,10 +1,11 @@
-package campos.util;
+package campos.event;
 
 import javafx.application.Platform;
 import javafx.scene.control.ButtonBase;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class EventLoader {
 	public static void loadEscKey(Pane pane) {

@@ -8,10 +8,7 @@ import java.io.ObjectOutputStream;
 
 import campos.models.UserAccountBag;
 
-public class DataUtil {
+public interface URLConstants {
 	public static final String USER_BAG_SRC = "resources/data/userBag.dat";
-	
-	
-	
 	
 }

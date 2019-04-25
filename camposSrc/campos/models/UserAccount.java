@@ -5,7 +5,8 @@ import java.io.Serializable;
 import campos.util.Random;
 import campos.util.UserAccountUtil;
 
-public class UserAccount implements Serializable {
+@SuppressWarnings("serial")
+public class UserAccount implements Serializable, Comparable<UserAccount> {
 	private static int idNumber = 0;
 	private String id;
 	private Student student;
@@ -58,5 +59,10 @@ public class UserAccount implements Serializable {
 	public String toString() {
 		return "UserAccount [id=" + id + ", student=" + student + ", username=" + username + ", password=" + password
 				+ "]";
+	}
+
+	@Override
+	public int compareTo(UserAccount o) {
+		return username.compareTo(o.username);
 	}
 }

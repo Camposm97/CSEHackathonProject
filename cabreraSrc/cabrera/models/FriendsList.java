@@ -11,7 +11,7 @@ public class FriendsList {
 	
 	public FriendsList() {
 		friendList = FXCollections.observableArrayList();
-		UserAccountBag bag = UserAccountFactory.loadUserAccountBag(amount);
+		UserAccountBag bag = UserAccountFactory.emitUserAccounts(amount);
 		for(int i = 0; i < amount; i++) {
 			friendList.add(bag.get(i).getUsername());
 		}

@@ -7,14 +7,14 @@ import java.io.ObjectOutputStream;
 import campos.models.UserAccountBag;
 import campos.util.UserAccountFactory;
 
-public class DataSaver {
+public class DataSaver implements URLConstants {
 	public static void main(String[] args) {
-		UserAccountBag bag = UserAccountFactory.loadUserAccountBag(50);
+		UserAccountBag bag = UserAccountFactory.emitUserAccounts(10);
 		saveUsers(bag);
 	}
 	
 	public static void saveUsers(UserAccountBag userBag) {
-		File file = new File(DataUtil.USER_BAG_SRC);
+		File file = new File(USER_BAG_SRC);
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
 			oos.writeObject(userBag);
