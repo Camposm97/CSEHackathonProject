@@ -16,12 +16,12 @@ public class LoginWindow extends Stage {
 	private MyBorderPane root;
 	
 	public LoginWindow() {
-		this.root = new MyBorderPane(new LoginPane());
-		this.setScene(new Scene(root));
-		this.setWidth(WIDTH);
-		this.setHeight(HEIGHT);
-		this.setTitle("Login");
-		this.setResizable(false);
+		root = new MyBorderPane(new LoginPane());
+		setScene(new Scene(root));
+		setWidth(WIDTH);
+		setHeight(HEIGHT);
+		setTitle("Login");
+		setResizable(false);
 		ImgUtil.loadStageIcon(this);
 	}
 }

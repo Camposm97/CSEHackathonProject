@@ -3,7 +3,7 @@ package campos.util;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-import campos.collections.UserNameComparator;
+import campos.collections.UserAccountNameComparator;
 import campos.models.Name;
 import campos.models.Student;
 import campos.models.UserAccount;

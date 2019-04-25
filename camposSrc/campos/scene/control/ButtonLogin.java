@@ -1,6 +1,7 @@
 package campos.scene.control;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
@@ -31,8 +32,12 @@ public class ButtonLogin extends Button {
 				String password = loginPane.getTfPassword().getText();
 				UserAccount temp = new UserAccount(null, username, password);
 				ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-				oos.writeObject(oos);
+				ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+				oos.writeObject(temp);
+				boolean flag = ois.readBoolean();
+				System.out.println(flag);
 				oos.close();
+				ois.close();
 				socket.close();
 			} catch (IOException ex) {
 				ex.printStackTrace();

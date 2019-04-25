@@ -2,13 +2,13 @@ package campos.models;
 
 import java.util.TreeSet;
 
-import campos.collections.UserNameComparator;
+import campos.collections.UserAccountNameComparator;
 import campos.util.BinarySearch;
 
 @SuppressWarnings("serial")
 public class UserAccountBag extends TreeSet<UserAccount> {
 	public UserAccountBag() {
-		super(new UserNameComparator());
+		super(new UserAccountNameComparator());
 	}
 	
 	public UserAccount findByUsername(String username) {
