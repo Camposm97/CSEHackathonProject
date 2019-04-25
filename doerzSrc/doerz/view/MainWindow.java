@@ -1,5 +1,6 @@
 package doerz.view;
 
+import doerz.model.PostQueue;
 import doerz.view.layout.ComposePane;
 import doerz.view.layout.FeedPane;
 import javafx.scene.Scene;
@@ -12,8 +13,10 @@ public class MainWindow {
 		BorderPane root = new BorderPane();
 		Scene scene = new Scene(root, 600, 600);
 		
-		ComposePane compose = new ComposePane(root, stage);
-		FeedPane feed = new FeedPane(root, stage);
+		int feedLength = 10;
+		PostQueue feed = new PostQueue(feedLength);
+		new ComposePane(root, stage);
+		new FeedPane(root, stage, feed);
 		
 		stage.setScene(scene);
 		stage.show();

@@ -1,6 +1,7 @@
 package doerz.view.layout;
 
 import doerz.model.Post;
+import doerz.model.PostQueue;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
@@ -18,8 +19,10 @@ public class FeedPane {
 //	private Button dummyBtn;									// testing
 	private ScrollPane scrlPane;
 	private static VBox feedBox;
+	private static PostQueue feed;
 	
-	public FeedPane(BorderPane root, Stage stage) {
+	public FeedPane(BorderPane root, Stage stage, PostQueue feed) {
+		this.feed = feed;
 		feedBox = new VBox();
 		scrlPane = new ScrollPane();
 		scrollPaneSettings();
@@ -48,8 +51,16 @@ public class FeedPane {
 //	}
 	
 	public static void addToFeed(Post post) {
+		feed.add(post);
 		PostView newPost = new PostView(post);
 		feedBox.getChildren().add(0, newPost.getPost());
+	}
+	
+	public static void refresh() {
+		feedBox.getChildren().clear();
+		for(Post p : feed) {
+			
+		}
 	}
 
 }

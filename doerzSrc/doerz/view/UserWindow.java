@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import util.Dummy;
 
 /*
- * Temporary way to create a user account to post with.
+ * Temporary way to create a user account to post with. This is used for development purposes only.
  */
 
 public class UserWindow {
