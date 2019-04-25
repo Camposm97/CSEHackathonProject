@@ -28,18 +28,11 @@ public class ButtonLogin extends Button {
 	private class LoginHandler implements EventHandler<ActionEvent> {
 		@Override
 		public void handle(ActionEvent e) {
+			UserAccount temp = new UserAccount(null, loginPane.getTfUser().getText(), loginPane.getTfPassword().getText());
 			try {
-				Socket socket = new Socket(IPv4.CAMPOS_HOST, IPv4.PORT);
+				Socket socket = new Socket(IPv4.LOCAL_HOST, IPv4.PORT);
 				ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-				ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-				String username = loginPane.getTfUser().getText();
-				String password = loginPane.getTfPassword().getText();
-				UserAccount temp = new UserAccount(null, username, password);
 				oos.writeObject(temp);
-				boolean flag = ois.readBoolean();
-				System.out.println("Valid credentials? " + flag);
-				oos.close();
-				ois.close();
 				socket.close();
 			} catch (IOException ex) {
 				ex.printStackTrace();

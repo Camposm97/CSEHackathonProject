@@ -20,6 +20,13 @@ public class UserAccountBag extends TreeSet<UserAccount> {
 		}
 		return null;
 	}
+	
+	
+	public boolean contains(String username) {
+		if (findByUsername(username) != null)
+			return true;
+		return false;
+	}
 
 	public void display() {
 		for (UserAccount u : this)

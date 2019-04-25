@@ -11,8 +11,8 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 public class ServerWindow extends Stage {
-	private static final int WIDTH = 800;
-	private static final int HEIGHT = 600;
+	private static final int WIDTH = 960;
+	private static final int HEIGHT = 720;
 	private ServerPane root;
 	
 	public ServerWindow(int port) throws IOException {

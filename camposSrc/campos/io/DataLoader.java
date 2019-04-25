@@ -12,9 +12,9 @@ public class DataLoader implements DataConstants {
 	public static void main(String[] args) {
 		UserAccountBag bag = loadUserBag();
 		bag.display();
-		UserAccount user = new UserAccount(null, "CurtK2", null);
+//		UserAccount user = new UserAccount(null, "CurtK2", null);
 //		UserAccount user = bag.findByUsername("CurtK2");
-		System.out.println(bag.contains(user));
+		System.out.println(bag.contains("GuthK3"));
 	}
 	
 	public static UserAccountBag loadUserBag() {
