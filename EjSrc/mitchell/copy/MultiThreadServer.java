@@ -88,18 +88,11 @@ public class MultiThreadServer extends Application {
         // Continuously serve the client
         while (true) {
           // Receive radius from the client
-          double radius = inputFromClient.readDouble();
+          String message = inputFromClient.readUTF();
 
-          // Compute area
-          double area = radius * radius * Math.PI;
-
-          // Send area back to the client
-          outputToClient.writeDouble(area);
-          
           Platform.runLater(() -> {
-            ta.appendText("radius received from client: " +
-              radius + '\n');
-            ta.appendText("Area found: " + area + '\n');
+            ta.appendText(message + '\n');
+//            ta.appendText("Area found: " + area + '\n');
           });
         }
       }
