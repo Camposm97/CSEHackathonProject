@@ -6,7 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import campos.models.UserAccount;
-import campos.net.INet;
+import campos.net.Network;
 import campos.scene.layout.LoginPane;
 import campos.util.FXUtil;
 import javafx.event.ActionEvent;
@@ -27,7 +27,7 @@ public class ButtonLogin extends Button {
 		@Override
 		public void handle(ActionEvent e) {
 			try {
-				Socket socket = new Socket(INet.HOST, INet.PORT);
+				Socket socket = new Socket(Network.HOST, Network.PORT);
 				String username = loginPane.getTfUser().getText();
 				String password = loginPane.getTfPassword().getText();
 				UserAccount temp = new UserAccount(null, username, password);
