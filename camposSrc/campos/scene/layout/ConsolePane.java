@@ -12,25 +12,18 @@ import javafx.application.Platform;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.StackPane;
 
-public class ConsolePane extends StackPane {
+public class ConsolePane extends TextArea {
 	private ServerSocket server;
 	private UserAccountBag userBag;
-	private TextArea ta;
 
 	public ConsolePane(ServerSocket server, UserAccountBag userBag) {
+		super("Server created on [" + new Date() + "]\nLoaded " + userBag.size() + "users\n");
+		setWrapText(true);
+		setEditable(false);
 		this.server = server;
 		this.userBag = userBag;
-		this.ta = loadTa();
 		this.setPadding(FXUtil.DEFAULT_INSETS);
-		this.getChildren().add(ta);
 		new Thread(new RunServer()).start();
-	}
-
-	private TextArea loadTa() {
-		TextArea ta = new TextArea("Server created on [" + new Date() + "]\nLoaded " + userBag.size() + " users\n");
-		ta.setWrapText(true);
-		ta.setEditable(false);
-		return ta;
 	}
 
 	private class RunServer implements Runnable {
