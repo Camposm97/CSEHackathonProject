@@ -1,6 +1,7 @@
 package campos.util;
 
 
+import campos.models.Gender;
 import campos.models.Major;
 import campos.scene.control.MyLabel;
 import campos.scene.layout.LoginPane;
@@ -70,13 +71,13 @@ public class FXUtil {
 		Stage stage = (Stage) loginPane.getScene().getWindow();
 		stage.setTitle("Sign Up");
 		BorderPane root = (BorderPane) loginPane.getScene().getRoot();
-		root.setCenter(new SignUpPane(loginPane.getUserTree()));
+		root.setCenter(new SignUpPane(null));	
 	}
 	
 	public static void toLoginPane(SignUpPane signUpPane) {
 		Stage stage = (Stage) signUpPane.getScene().getWindow();
 		stage.setTitle("Login");
 		BorderPane root = (BorderPane) signUpPane.getScene().getRoot();
-		root.setCenter(new LoginPane(signUpPane.getUserTree()));
+		root.setCenter(new LoginPane());
 	}
 }

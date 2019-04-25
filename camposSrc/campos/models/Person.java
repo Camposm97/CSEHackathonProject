@@ -2,18 +2,12 @@ package campos.models;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Person implements Serializable {
-	private static int idNumber = 0;
-	private String id;
 	protected Name name;
 	
 	public Person(Name name) {
-		this.id = String.valueOf(idNumber++);
 		this.name = name;
-	}
-	
-	protected String getId() {
-		return id;
 	}
 	
 	protected void setName(Name name) {
@@ -26,6 +20,6 @@ public class Person implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", name=" + name + "]";
+		return "Person [name=" + name + "]";
 	}
 }

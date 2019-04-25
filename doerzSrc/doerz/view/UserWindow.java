@@ -1,10 +1,10 @@
 package doerz.view;
 
+import campos.models.Gender;
 import campos.models.Major;
 import campos.models.Name;
 import campos.models.Student;
 import campos.models.UserAccount;
-import campos.util.Gender;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

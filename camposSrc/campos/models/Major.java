@@ -1,5 +1,5 @@
 package campos.models;
 
 public enum Major {
-	CSE
+	CSE, BUS, ENG, MAT, PHY, ART
 }

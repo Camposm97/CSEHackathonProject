@@ -1,5 +1,6 @@
 package campos.models;
 
+@SuppressWarnings("serial")
 public class Student extends Person {	
 	private Major major;
 	

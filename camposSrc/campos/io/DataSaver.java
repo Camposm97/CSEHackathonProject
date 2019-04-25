@@ -14,10 +14,6 @@ public class DataSaver implements DataConstants {
 	public static void main(String[] args) {
 		TreeSet<UserAccount> userTree = UserAccountFactory.emitUserAccounts(10);
 		saveObject(userTree, USER_BAG_SRC);
-		Random rand = new Random();
-		while (true) {
-			System.out.println(rand.nextInt(11));
-		}
 	}
 	
 	public static void saveObject(Object o, String trgt) {

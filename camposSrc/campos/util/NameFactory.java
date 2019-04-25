@@ -2,7 +2,8 @@ package campos.util;
 
 import java.util.ArrayList;
 
-import campos.models.FileBuilt;
+import campos.io.FileBuilt;
+import campos.models.Gender;
 import campos.models.Name;
 
 public class NameFactory {

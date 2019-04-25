@@ -6,6 +6,8 @@ import java.util.TreeSet;
 import campos.io.DataLoader;
 import campos.models.UserAccount;
 import campos.scene.layout.ServerPane;
+import campos.util.FXUtil;
+import campos.util.ImgUtil;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -21,6 +23,8 @@ public class ServerStage extends Stage {
 		this.setScene(new Scene(root));
 		this.setOnCloseRequest(new CloserServerHandler());
 		this.setWidth(512);
+		this.setTitle(FXUtil.TITLE);
+		ImgUtil.loadStageIcon(this);
 	}
 	
 	private class CloserServerHandler implements EventHandler<WindowEvent> {

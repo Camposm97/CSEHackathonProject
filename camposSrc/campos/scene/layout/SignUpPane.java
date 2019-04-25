@@ -1,13 +1,13 @@
 package campos.scene.layout;
 
 import campos.event.EventLoader;
+import campos.models.Gender;
 import campos.models.Major;
 import campos.models.Name;
 import campos.models.Student;
 import campos.models.UserAccount;
 import campos.models.UserAccountBag;
 import campos.util.FXUtil;
-import campos.util.Gender;
 import campos.util.PasswordUtil;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -16,17 +16,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
-public class SignUpPane extends TerminalPane {
+public class SignUpPane extends BorderPane {
 	private TextField tfFirstName, tfLastName, tfUsername;
 	private ComboBox<Gender> cbGender;
 	private ComboBox<Major> cbMajor;
 	private PasswordField tfPass, tfPassReType;
 	private Button btSignUp, btCancel;
 
-	public SignUpPane(UserAccountBag userBag) {
-		super(userBag);
+	public SignUpPane() {
 		new SignUpPaneUtil(this);
 		EventLoader.loadEnterKey(this, btSignUp);
 	}
@@ -81,20 +81,20 @@ public class SignUpPane extends TerminalPane {
 			tip.setStyle("-fx-hide-delay: 10ms");
 			tf.setTooltip(tip);
 			
-			tf.textProperty().addListener((observable, oldValue, newValue) -> {
-				if (newValue.contains("\\"))
-					return;
-				UserAccount user = userBag.findByUsername(newValue);
-				if (user != null) {
-					tfUsername.setStyle("-fx-border-color: red; -fx-background-color: #FFF0F0;");
-					tip.setText("Sorry, that username is already taken :(");
-					btSignUp.setDisable(true);
-				} else {
-					tfUsername.setStyle("");
-					tip.setText("Valid username!");
-					btSignUp.setDisable(false);
-				}
-			});
+//			tf.textProperty().addListener((observable, oldValue, newValue) -> {
+//				if (newValue.contains("\\"))
+//					return;
+//				UserAccount user = userBag.findByUsername(newValue);
+//				if (user != null) {
+//					tfUsername.setStyle("-fx-border-color: red; -fx-background-color: #FFF0F0;");
+//					tip.setText("Sorry, that username is already taken :(");
+//					btSignUp.setDisable(true);
+//				} else {
+//					tfUsername.setStyle("");
+//					tip.setText("Valid username!");
+//					btSignUp.setDisable(false);
+//				}
+//			});
 			return tf;
 		}
 		
@@ -171,10 +171,10 @@ public class SignUpPane extends TerminalPane {
 			String password = signUpPane.tfPass.getText();
 			
 			Student student = new Student(new Name(lastName, firstName, cbGender.getValue()), cbMajor.getValue());
-			signUpPane.getUserTree().add(new UserAccount(student, username, password));
-			signUpPane.getUserTree().sortByUsername();
-			System.out.println();
-			signUpPane.getUserTree().display();
+//			signUpPane.getUserTree().add(new UserAccount(student, username, password));
+//			signUpPane.getUserTree().sortByUsername();
+//			System.out.println();
+//			signUpPane.getUserTree().display();
 			FXUtil.toLoginPane(signUpPane);
 		}
 	}

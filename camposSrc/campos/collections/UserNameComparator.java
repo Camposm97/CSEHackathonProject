@@ -6,7 +6,7 @@ import java.util.Comparator;
 import campos.models.UserAccount;
 
 @SuppressWarnings("serial")
-public class UserAccountComparator implements Comparator<UserAccount>, Serializable {
+public class UserNameComparator implements Comparator<UserAccount>, Serializable {
 
 	@Override
 	public int compare(UserAccount u1, UserAccount u2) {

@@ -9,20 +9,20 @@ import campos.util.UserAccountUtil;
 public class UserAccount implements Serializable, Comparable<UserAccount> {
 	private static int idNumber = 0;
 	private String id;
-	private Student student;
+	private Student s;
 	private String username;
 	private String password;
 	
-	public UserAccount(Student student) {
+	public UserAccount(Student s) {
 		id = String.valueOf(idNumber++);
-		this.student = student;
-		username = UserAccountUtil.createUsername(student.getName(), id);
+		this.s = s;
+		username = UserAccountUtil.createUsername(s.getName(), id);
 		password = Random.getPassword();
 	}
 	
 	public UserAccount(Student student, String username, String password) {
 		id = String.valueOf(idNumber++);
-		this.student = student;
+		this.s = student;
 		this.username = username;
 		this.password = password;
 	}
@@ -32,11 +32,11 @@ public class UserAccount implements Serializable, Comparable<UserAccount> {
 	}
 
 	public Student getStudent() {
-		return student;
+		return s;
 	}
 
 	public void setStudent(Student student) {
-		this.student = student;
+		this.s = student;
 	}
 
 	public String getUsername() {
@@ -57,7 +57,7 @@ public class UserAccount implements Serializable, Comparable<UserAccount> {
 
 	@Override
 	public String toString() {
-		return "UserAccount [id=" + id + ", student=" + student + ", username=" + username + ", password=" + password
+		return "UserAccount [id=" + id + ", s=" + s + ", username=" + username + ", password=" + password
 				+ "]";
 	}
 

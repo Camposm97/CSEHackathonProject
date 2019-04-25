@@ -1,10 +1,10 @@
 package util;
 
+import campos.models.Gender;
 import campos.models.Major;
 import campos.models.Name;
 import campos.models.Student;
 import campos.models.UserAccount;
-import campos.util.Gender;
 import campos.util.Random;
 import doerz.model.Post;
 
