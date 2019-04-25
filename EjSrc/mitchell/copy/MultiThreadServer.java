@@ -95,7 +95,7 @@ public class MultiThreadServer extends Application {
 //            ta.appendText("Area found: " + area + '\n');
           });
           
-          outputToClient.writeUTF(inputFromClient.readUTF());
+          outputToClient.writeUTF(message);
         }
       }
       catch(IOException e) {
