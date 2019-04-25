@@ -22,7 +22,6 @@ public class ServerWindow extends Stage {
 		setWidth(WIDTH);
 		setHeight(HEIGHT);
 		setTitle(FXUtil.TITLE);
-		ImgUtil.loadStageIcon(this);
 	}
 	
 	private class CloserServerHandler implements EventHandler<WindowEvent> {

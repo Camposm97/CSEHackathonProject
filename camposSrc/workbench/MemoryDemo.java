@@ -1,4 +1,4 @@
-package campos.workbench.network;
+package workbench;
 
 public class MemoryDemo {
 	public static void main(String[] args) {
