@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 public class ServerStage extends Stage {
+	private static final int WIDTH = 800;
+	private static final int HEIGHT = 600;
 	private TreeSet<UserAccount> userSet;	// Change to Tree, go faster O(log(N))
 	private ServerPane root;
 	
@@ -22,13 +24,13 @@ public class ServerStage extends Stage {
 		this.root = new ServerPane(port);
 		this.setScene(new Scene(root));
 		this.setOnCloseRequest(new CloserServerHandler());
-		this.setWidth(512);
+		this.setWidth(WIDTH);
+		this.setHeight(HEIGHT);
 		this.setTitle(FXUtil.TITLE);
 		ImgUtil.loadStageIcon(this);
 	}
 	
 	private class CloserServerHandler implements EventHandler<WindowEvent> {
-
 		@Override
 		public void handle(WindowEvent event) {
 			try {

@@ -1,9 +1,10 @@
 package campos.scene.control;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import campos.models.UserAccount;
 import campos.net.INet;
 import campos.scene.layout.LoginPane;
 import campos.util.FXUtil;
@@ -28,12 +29,10 @@ public class ButtonLogin extends Button {
 				Socket socket = new Socket(INet.HOST, INet.PORT);
 				String username = loginPane.getTfUser().getText();
 				String password = loginPane.getTfPassword().getText();
-				DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
-				dos.writeUTF(username);
-				dos.writeUTF(password);
-				
-				dos.close();
-				socket.close();
+				UserAccount temp = new UserAccount(null, username, password);
+				ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+				oos.writeObject(oos);
+				oos.close();
 				socket.close();
 			} catch (IOException ex) {
 				ex.printStackTrace();

@@ -46,7 +46,7 @@ public class LoginPane extends BorderPane {
 			tfUser.setPromptText("Username");
 			tfPassword = new PasswordField();
 			tfPassword.setPromptText("Password");
-			btLogin = new ButtonLogin();
+			btLogin = new ButtonLogin(loginPane);
 			linkSignUp = loadHyperlinkSignUp();
 			displayControls();
 		}

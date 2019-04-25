@@ -71,7 +71,7 @@ public class FXUtil {
 		Stage stage = (Stage) loginPane.getScene().getWindow();
 		stage.setTitle("Sign Up");
 		BorderPane root = (BorderPane) loginPane.getScene().getRoot();
-		root.setCenter(new SignUpPane(null));	
+		root.setCenter(new SignUpPane());	
 	}
 	
 	public static void toLoginPane(SignUpPane signUpPane) {
