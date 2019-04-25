@@ -6,6 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
 
+import campos.models.UserAccountBag;
 import campos.util.FXUtil;
 import javafx.application.Platform;
 import javafx.scene.control.TextArea;
@@ -13,10 +14,12 @@ import javafx.scene.layout.StackPane;
 
 public class ConsolePane extends StackPane {
 	private ServerSocket server;
+	private UserAccountBag userBag;
 	private TextArea ta;
 	
-	public ConsolePane(ServerSocket server) {
+	public ConsolePane(ServerSocket server, UserAccountBag userBag) {
 		this.server = server;
+		this.userBag = userBag;
 		this.ta = loadTa();
 		this.setPadding(FXUtil.DEFAULT_INSETS);
 		this.getChildren().add(ta);
@@ -24,7 +27,7 @@ public class ConsolePane extends StackPane {
 	}
 	
 	private TextArea loadTa() {
-		TextArea ta = new TextArea("Server created on [" + new Date() + "]\n");
+		TextArea ta = new TextArea("Server created on [" + new Date() + "]\nLoaded " + userBag.size() + " users\n");
 		ta.setWrapText(true);
 		ta.setEditable(false);
 		return ta;

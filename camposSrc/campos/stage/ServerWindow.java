@@ -2,8 +2,6 @@ package campos.stage;
 
 import java.io.IOException;
 
-import campos.io.DataLoader;
-import campos.models.UserAccountBag;
 import campos.scene.layout.ServerPane;
 import campos.util.FXUtil;
 import campos.util.ImgUtil;
@@ -12,20 +10,18 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class ServerStage extends Stage {
+public class ServerWindow extends Stage {
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
-	private UserAccountBag userBag;	
 	private ServerPane root;
 	
-	public ServerStage(int port) throws IOException {
-		this.userBag = DataLoader.loadUsers();
-		this.root = new ServerPane(port);
-		this.setScene(new Scene(root));
-		this.setOnCloseRequest(new CloserServerHandler());
-		this.setWidth(WIDTH);
-		this.setHeight(HEIGHT);
-		this.setTitle(FXUtil.TITLE);
+	public ServerWindow(int port) throws IOException {
+		root = new ServerPane(port);
+		setScene(new Scene(root));
+		setOnCloseRequest(new CloserServerHandler());
+		setWidth(WIDTH);
+		setHeight(HEIGHT);
+		setTitle(FXUtil.TITLE);
 		ImgUtil.loadStageIcon(this);
 	}
 	

@@ -8,15 +8,15 @@ import java.util.TreeSet;
 import campos.models.UserAccount;
 import campos.models.UserAccountBag;
 
-public class DataLoader implements DataConstants{
+public class DataLoader implements DataConstants {
 	public static void main(String[] args) {
-		UserAccountBag bag = loadUsers();
+		UserAccountBag bag = loadUserBag();
 		bag.display();
 		UserAccount user = bag.findByUsername("CurtK2");
 		System.out.println(user);
 	}
 	
-	public static UserAccountBag loadUsers() {
+	public static UserAccountBag loadUserBag() {
 		UserAccountBag bag = null;
 		File file = new File(USER_BAG_SRC);
 		try {
