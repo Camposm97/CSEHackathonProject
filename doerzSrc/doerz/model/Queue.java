@@ -65,7 +65,7 @@ public class Queue {
 	
 	public Post[] toArray() {
 		Post[] arr = new Post[nElems];
-		int start = tail+1;
+		int start = tail;
 		
 		for(int i = 0; i < arr.length; i++) {
 			arr[i] = queArray[start++];
