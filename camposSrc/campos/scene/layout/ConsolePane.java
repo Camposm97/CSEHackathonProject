@@ -18,11 +18,11 @@ public class ConsolePane extends TextArea {
 
 	public ConsolePane(ServerSocket server, UserAccountBag userBag) {
 		super("Server created on [" + new Date() + "]\nLoaded " + userBag.size() + "users\n");
-		setWrapText(true);
-		setEditable(false);
 		this.server = server;
 		this.userBag = userBag;
-		this.setPadding(FXUtil.DEFAULT_INSETS);
+		setWrapText(true);
+		setEditable(false);
+		setPadding(FXUtil.DEFAULT_INSETS);
 		new Thread(new RunServer()).start();
 	}
 
@@ -30,28 +30,15 @@ public class ConsolePane extends TextArea {
 		@Override
 		public void run() {
 			try {
-				Platform.runLater(new AppendTa("Waiting for a connection...\n"));
+				appendText("Waiting for a connection...\n");
 				while (true) {
 					Socket socket = server.accept();
-					Platform.runLater(new AppendTa("Someone connected!\n"));
+					appendText("Someone connected! " + socket.getLocalAddress());
 					new Thread(new VerifyLogin(socket, userBag)).start();
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
-	}
-
-	private class AppendTa implements Runnable {
-		private String string;
-
-		public AppendTa(String string) {
-			this.string = string;
-		}
-
-		@Override
-		public void run() {
-			ta.appendText(string);
 		}
 	}
 }
