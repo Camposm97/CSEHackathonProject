@@ -55,12 +55,12 @@ public class Client extends Application {
         toServer.writeUTF(message);
         toServer.flush();
   
-        // Get area from the server
-        double area = fromServer.readDouble();
+        // Get message from the server
+        String message1 = fromServer.readUTF();
   
         ta.setEditable(false);
         // Display to the text area
-        ta.appendText(message + "\n");
+        ta.appendText(message1 + "\n");
 //        ta.appendText("Area received from the server is "
 //          + area + '\n');
       }
@@ -71,7 +71,7 @@ public class Client extends Application {
   
     try {
       // Create a socket to connect to the server
-      Socket socket = new Socket("25.4.225.164", 8000);
+      Socket socket = new Socket("25.73.79.125", 8000);
       // Socket socket = new Socket("130.254.204.36", 8000);
       // Socket socket = new Socket("drake.Armstrong.edu", 8000);
 
