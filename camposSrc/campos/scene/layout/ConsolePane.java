@@ -8,9 +8,7 @@ import java.util.Date;
 import campos.lang.VerifyLogin;
 import campos.models.UserAccountBag;
 import campos.util.FXUtil;
-import javafx.application.Platform;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.StackPane;
 
 public class ConsolePane extends TextArea {
 	private ServerSocket server;
@@ -24,6 +22,14 @@ public class ConsolePane extends TextArea {
 		setEditable(false);
 		setPadding(FXUtil.DEFAULT_INSETS);
 		new Thread(new RunServer()).start();
+	}
+	
+	public ServerSocket getServer() {
+		return server;
+	}
+	
+	public UserAccountBag getUserBag() {
+		return userBag;
 	}
 
 	private class RunServer implements Runnable {
