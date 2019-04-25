@@ -62,4 +62,25 @@ public class Queue {
 	public Post display(int index) {
 		return queArray[index];
 	}
+	
+	public Post[] toArray() {
+		Post[] arr = new Post[nElems];
+		int start = tail+1;
+		
+		for(int i = 0; i < arr.length; i++) {
+			arr[i] = queArray[start++];
+			if (start == arr.length) {
+				start = 0;
+			}
+		}
+		return arr;
+	}
+	
+	public void reset() {
+		int size = queArray.length;
+		queArray = new Post[size];
+		head = 0;
+		tail = -1;
+		nElems = 0;
+	}
 }

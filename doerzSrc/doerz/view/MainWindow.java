@@ -11,7 +11,7 @@ public class MainWindow {
 
 	public MainWindow(Stage stage) {
 		BorderPane root = new BorderPane();
-		Scene scene = new Scene(root, 600, 600);
+		Scene scene = new Scene(root, 600, 650);
 		
 		int feedLength = 10;
 		PostQueue feed = new PostQueue(feedLength);

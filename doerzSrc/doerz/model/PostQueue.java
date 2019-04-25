@@ -25,4 +25,11 @@ public class PostQueue {
 		return postQ.display(index);
 	}
 	
+	public Post[] toArray() {
+		return postQ.toArray();
+	}
+	
+	public void reset() {
+		postQ.reset();
+	}
 }
