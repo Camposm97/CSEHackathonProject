@@ -41,10 +41,6 @@ public class ConsolePane extends TextArea {
 				try {
 					while (true) {
 						Socket socket = server.accept();
-						InetAddress inet = socket.getInetAddress();
-						appendText("Connected [");
-						appendText("Host Name: " + inet.getHostName() + " | ");
-						appendText("IP: " + inet.getHostAddress() + "]\n");
 						new Thread(new HandleClient(socket, ta)).start();
 					}
 				} catch (IOException e) {

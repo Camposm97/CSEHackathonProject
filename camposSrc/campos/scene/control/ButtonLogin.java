@@ -1,7 +1,10 @@
 package campos.scene.control;
 
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+
 import campos.models.UserAccount;
-import campos.net.MySocket;
+import campos.net.IPv4;
 import campos.scene.layout.LoginPane;
 import campos.util.FXUtil;
 import javafx.event.ActionEvent;
@@ -22,11 +25,14 @@ public class ButtonLogin extends Button {
 		@Override
 		public void handle(ActionEvent e) {
 			try {
-				MySocket socket = new MySocket();
-				socket.getOos().writeObject(
-						new UserAccount(null, loginPane.getTfUser().getText(), loginPane.getTfPassword().getText()));
+				Socket socket = new Socket(IPv4.HOST, IPv4.PORT);
+//				socket.getOos().writeObject(
+				ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+						oos.writeObject(new UserAccount(null, loginPane.getTfUser().getText(), loginPane.getTfPassword().getText()));
+						oos.flush();
 //				UserAccount user = (UserAccount) socket.getOis().readObject();
-				socket.close();
+//				oos.close();
+//				socket.close();
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}

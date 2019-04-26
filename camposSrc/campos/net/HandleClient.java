@@ -3,6 +3,7 @@ package campos.net;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.InetAddress;
 import java.net.Socket;
 
 import campos.models.UserAccount;
@@ -23,15 +24,24 @@ public class HandleClient implements Runnable {
 	@Override
 	public void run() {
 		try {
+			displayId();
 			verifyLogin();
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	public void displayId() {
+		InetAddress inet = socket.getInetAddress();
+		ta.appendText("Connected [");
+		ta.appendText("Host Name: " + inet.getHostName() + " | ");
+		ta.appendText("IP: " + inet.getHostAddress() + "]\n");
+	}
 
 	public void verifyLogin() throws IOException, ClassNotFoundException {
 		this.ois = new ObjectInputStream(socket.getInputStream());
 		this.oos = new ObjectOutputStream(socket.getOutputStream());
+		System.out.println("Reading sent object from client...");
 		UserAccount temp = (UserAccount) ois.readObject();
 		boolean exists = ta.getServer().getUserBag().contains(temp);
 		
@@ -40,12 +50,12 @@ public class HandleClient implements Runnable {
 			ta.appendText("\n");
 		});
 
-//		if (exists)
-//			oos.writeObject(ta.getServer().getUserBag().findByUsername(temp.getUsername()));
-//		else
-//			oos.writeObject(null);
-		ois.close();
-		oos.close();
+		if (exists)
+			oos.writeObject(ta.getServer().getUserBag().findByUsername(temp.getUsername()));
+		else
+			oos.writeObject(null);
+//		ois.close();
+//		oos.close();
 //		socket.close();
 	}
 
