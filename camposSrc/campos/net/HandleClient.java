@@ -15,7 +15,14 @@ public class HandleClient implements Runnable {
 	private ConsolePane ta;
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
-
+	
+	/**
+	 * We can have it where the client sends a number and that number means something.  For instance, 0 can be for logging in,
+	 * case 1: can be for signing up (add user to the bag) and case 2: can be for chatting with another user.  
+	 * @param socket
+	 * @param ta
+	 * @throws IOException
+	 */
 	public HandleClient(Socket socket, ConsolePane ta) throws IOException { // Constructor
 		this.socket = socket;
 		this.ta = ta;
@@ -26,7 +33,7 @@ public class HandleClient implements Runnable {
 		try {
 			displayClient();
 			verifyLogin();
-		} catch (IOException | ClassNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

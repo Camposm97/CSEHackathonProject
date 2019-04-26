@@ -14,8 +14,8 @@ public class ConsolePane extends TextArea {
 	private MyServerSocket server;
 
 	public ConsolePane(MyServerSocket server) {
-		super("Server created on [" + new Date() + "]\nDetails [IP: " + server.getInetAddress().getHostAddress() + " | Port: "
-				+ server.getLocalPort() + "]\n");
+		super("Server created on [" + new Date() + "] - [Host: " + server.getInetAddress().getHostAddress()
+				+ " | Port: " + server.getLocalPort() + "]\n");
 		this.server = server;
 		setWrapText(true);
 		setEditable(false);

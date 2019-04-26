@@ -1,5 +1,6 @@
 package campos.scene.control;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -21,27 +22,45 @@ public class ButtonLogin extends Button {
 		this.setPrefWidth(FXUtil.BT_WIDTH);
 		this.setOnAction(new LoginHandler());
 	}
-	
-	public UserAccount getUser() {
-		return new UserAccount(null, loginPane.getTfUser().getText(), loginPane.getTfPassword().getText());
-	}
 
 	private class LoginHandler implements EventHandler<ActionEvent> {
 		@Override
 		public void handle(ActionEvent e) {
 			try {
 				Socket socket = new Socket(IPv4.HOST, IPv4.PORT);
-				ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-						oos.writeObject(getUser());
-				ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-				UserAccount user = (UserAccount) ois.readObject();
-				System.out.println(user);
-//						oos.flush();
-//				UserAccount user = (UserAccount) socket.getOis().readObject();
-//				oos.close();
-//				socket.close();
+				new Thread(new SocketHandler(socket)).start();
 			} catch (Exception ex) {
 				ex.printStackTrace();
+			}
+		}
+	}
+
+	private class SocketHandler implements Runnable {
+		private Socket socket;
+
+		public SocketHandler(Socket socket) { // Constructor
+			this.socket = socket;
+		}
+
+		@Override
+		public void run() {
+			try {
+				ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+				oos.writeObject(loginPane.getUserAccount());
+				ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+				UserAccount user = (UserAccount) ois.readObject();
+				if (user != null) {
+					if (user.getPassword().equals(loginPane.getUserAccount().getPassword())) {
+						System.out.println("Valid!");
+					} else {
+						System.out.println("Invalid!");
+					}
+				}
+				oos.close();
+				ois.close();
+				socket.close();
+			} catch (IOException | ClassNotFoundException e) {
+				e.printStackTrace();
 			}
 		}
 	}
