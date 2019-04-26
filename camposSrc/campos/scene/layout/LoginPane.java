@@ -90,25 +90,5 @@ public class LoginPane extends BorderPane {
 			});
 			return hyperLink;
 		}
-		
-		// Save for later when talking to server 
-//		public void findValidUser() {
-//			String username = loginPane.getTfUser().getText();
-//			String password = loginPane.getTfPassword().getText();
-//			
-//			UserAccount user = null;
-//			
-//			if (!username.isEmpty() || username.contains("\\")) {
-//				user = loginPane.getUserTree().findByUsername(username);
-//			} 
-//			
-//			if (user != null && password.equals(user.getPassword())) {
-//				loginPane.lblStatus.setText("Success! :D");
-//				loginPane.lblStatus.setTextFill(Color.GREEN);
-//			} else {
-//				loginPane.lblStatus.setText("Failure :(");
-//				loginPane.lblStatus.setTextFill(Color.RED);
-//			}
-//		}
 	}
 }

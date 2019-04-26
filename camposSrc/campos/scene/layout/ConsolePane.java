@@ -5,7 +5,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Date;
 
-import campos.net.HandleClient;
+import campos.net.ServerHandler;
 import campos.net.MyServerSocket;
 import campos.util.FXUtil;
 import javafx.scene.control.TextArea;
@@ -41,7 +41,7 @@ public class ConsolePane extends TextArea {
 				try {
 					while (true) {
 						Socket socket = server.accept();
-						new Thread(new HandleClient(socket, ta)).start();
+						new Thread(new ServerHandler(socket, ta)).start();
 					}
 				} catch (IOException e) {
 					e.printStackTrace();

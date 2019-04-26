@@ -10,7 +10,7 @@ import campos.models.UserAccount;
 import campos.scene.layout.ConsolePane;
 import javafx.application.Platform;
 
-public class HandleClient implements Runnable {
+public class ServerHandler implements Runnable {
 	private Socket socket;
 	private ConsolePane ta;
 	private ObjectInputStream ois;
@@ -24,11 +24,11 @@ public class HandleClient implements Runnable {
 	 * @param ta
 	 * @throws IOException
 	 */
-	public HandleClient(Socket socket, ConsolePane ta) throws IOException { // Constructor
+	public ServerHandler(Socket socket, ConsolePane ta) throws IOException { // Constructor
 		this.socket = socket;
 		this.ta = ta;
 	}
-
+	
 	@Override
 	public void run() {
 		try {
@@ -71,5 +71,4 @@ public class HandleClient implements Runnable {
 		oos.close();
 		socket.close();
 	}
-
 }

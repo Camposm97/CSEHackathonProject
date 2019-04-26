@@ -79,20 +79,20 @@ public class SignUpPane extends BorderPane {
 			tip.setStyle("-fx-hide-delay: 10ms");
 			tf.setTooltip(tip);
 			
-//			tf.textProperty().addListener((observable, oldValue, newValue) -> {
-//				if (newValue.contains("\\"))
-//					return;
+			tf.textProperty().addListener((observable, oldValue, newValue) -> {
+				if (newValue.contains("\\"))
+					return;
 //				UserAccount user = userBag.findByUsername(newValue);
 //				if (user != null) {
-//					tfUsername.setStyle("-fx-border-color: red; -fx-background-color: #FFF0F0;");
-//					tip.setText("Sorry, that username is already taken :(");
-//					btSignUp.setDisable(true);
+					tfUsername.setStyle("-fx-border-color: red; -fx-background-color: #FFF0F0;");
+					tip.setText("Sorry, that username is already taken :(");
+					btSignUp.setDisable(true);
 //				} else {
-//					tfUsername.setStyle("");
-//					tip.setText("Valid username!");
-//					btSignUp.setDisable(false);
+					tfUsername.setStyle("");
+					tip.setText("Valid Username!");
+					btSignUp.setDisable(false);
 //				}
-//			});
+			});
 			return tf;
 		}
 		
@@ -136,15 +136,16 @@ public class SignUpPane extends BorderPane {
 			return tf;
 		}
 
-//		private Button loadBtSignUp() {
-//			Button bt = new Button("Sign Up");
-//			bt.setPrefWidth(FXUtil.BT_WIDTH);
-//			bt.setOnAction(e -> {
-//				if (fieldsAreValid())
+		private Button loadBtSignUp() {
+			Button bt = new Button("Sign Up");
+			bt.setPrefWidth(FXUtil.BT_WIDTH);
+			bt.setOnAction(e -> {
+				if (fieldsAreValid()) {
 //					addUserToBag();
-//			});
-//			return bt;
-//		}
+				}
+			});
+			return bt;
+		}
 
 		private Button loadBtCancel() {
 			Button bt = new Button("Cancel");

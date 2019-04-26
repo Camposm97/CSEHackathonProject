@@ -2,6 +2,7 @@ package campos.stage;
 
 import java.io.IOException;
 
+import campos.io.DataSaver;
 import campos.scene.layout.ServerPane;
 import campos.util.FXUtil;
 import javafx.event.EventHandler;
@@ -27,6 +28,7 @@ public class ServerWindow extends Stage {
 		@Override
 		public void handle(WindowEvent event) {
 			try {
+				DataSaver.saveUserBag(root.getServer().getUserBag());
 				root.getServer().close();
 				System.out.println("Closing server...");
 			} catch (IOException e) {

@@ -14,7 +14,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 public class ButtonLogin extends Button {
 	private LoginPane loginPane;
@@ -34,6 +33,10 @@ public class ButtonLogin extends Button {
 				new Thread(new SocketHandler(socket)).start();
 			} catch (Exception ex) {
 				ex.printStackTrace();
+				Platform.runLater(() -> {
+					loginPane.getLblStatus().setText("Can't Connect to Server");
+					loginPane.getLblStatus().setTextFill(Color.RED);
+				});
 			}
 		}
 	}
