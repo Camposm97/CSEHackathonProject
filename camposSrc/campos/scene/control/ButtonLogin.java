@@ -50,11 +50,11 @@ public class ButtonLogin extends Button {
 				ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 				UserAccount user = (UserAccount) ois.readObject();
 				if (user != null) {
-					if (user.getPassword().equals(loginPane.getUserAccount().getPassword())) {
-						System.out.println("Valid!");
-					} else {
-						System.out.println("Invalid!");
-					}
+					System.out.println("Valid!");
+					System.out.println(user);
+				} else {
+					System.out.println("Invalid!");
+					System.out.println(user);
 				}
 				oos.close();
 				ois.close();

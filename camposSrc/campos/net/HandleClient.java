@@ -15,10 +15,11 @@ public class HandleClient implements Runnable {
 	private ConsolePane ta;
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
-	
+
 	/**
-	 * We can have it where the client sends a number and that number means something.  For instance, 0 can be for logging in,
-	 * case 1: can be for signing up (add user to the bag) and case 2: can be for chatting with another user.  
+	 * We can have it where the client sends a number and that number means
+	 * something. For instance, 0 can be for logging in, case 1: can be for signing
+	 * up (add user to the bag) and case 2: can be for chat with another user.
 	 * @param socket
 	 * @param ta
 	 * @throws IOException
@@ -37,7 +38,7 @@ public class HandleClient implements Runnable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void displayClient() {
 		InetAddress inet = socket.getInetAddress();
 		ta.appendText("Connected [");
@@ -49,17 +50,23 @@ public class HandleClient implements Runnable {
 		this.ois = new ObjectInputStream(socket.getInputStream());
 		this.oos = new ObjectOutputStream(socket.getOutputStream());
 		UserAccount temp = (UserAccount) ois.readObject();
-		boolean exists = ta.getServer().getUserBag().contains(temp);
-		
+		boolean userExists = ta.getServer().getUserBag().contains(temp);
+
 		Platform.runLater(() -> {
-			ta.appendText("Does " + temp.getUsername() + " exist? " + exists + "\n");
+			ta.appendText("Does " + temp.getUsername() + " exist? " + userExists + "\n");
 			ta.appendText("\n");
 		});
 
-		if (exists)
-			oos.writeObject(ta.getServer().getUserBag().findByUsername(temp.getUsername()));
-		else
+		if (userExists) {
+			UserAccount user = ta.getServer().getUserBag().findByUsername(temp.getUsername());
+			if (user.getPassword().equals(temp.getPassword())) {
+				oos.writeObject(user);
+			} else {
+				oos.writeObject(null);
+			}
+		} else {
 			oos.writeObject(null);
+		}
 		ois.close();
 		oos.close();
 		socket.close();
