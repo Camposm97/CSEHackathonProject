@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import campos.scene.layout.ServerPane;
 import campos.util.FXUtil;
-import campos.util.ImgUtil;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

@@ -1,14 +1,7 @@
 package campos.scene.control;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-
-import org.omg.CORBA.DataInputStream;
-
 import campos.models.UserAccount;
-import campos.net.IPv4;
+import campos.net.MySocket;
 import campos.scene.layout.LoginPane;
 import campos.util.FXUtil;
 import javafx.event.ActionEvent;
@@ -28,13 +21,13 @@ public class ButtonLogin extends Button {
 	private class LoginHandler implements EventHandler<ActionEvent> {
 		@Override
 		public void handle(ActionEvent e) {
-			UserAccount temp = new UserAccount(null, loginPane.getTfUser().getText(), loginPane.getTfPassword().getText());
 			try {
-				Socket socket = new Socket(IPv4.LOCAL_HOST, IPv4.PORT);
-				ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-				oos.writeObject(temp);
+				MySocket socket = new MySocket();
+				socket.getOos().writeObject(
+						new UserAccount(null, loginPane.getTfUser().getText(), loginPane.getTfPassword().getText()));
+//				UserAccount user = (UserAccount) socket.getOis().readObject();
 				socket.close();
-			} catch (IOException ex) {
+			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		}
