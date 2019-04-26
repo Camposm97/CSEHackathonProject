@@ -9,9 +9,12 @@ import campos.models.UserAccount;
 import campos.net.IPv4;
 import campos.scene.layout.LoginPane;
 import campos.util.FXUtil;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class ButtonLogin extends Button {
 	private LoginPane loginPane;
@@ -49,13 +52,18 @@ public class ButtonLogin extends Button {
 				oos.writeObject(loginPane.getUserAccount());
 				ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 				UserAccount user = (UserAccount) ois.readObject();
-				if (user != null) {
-					System.out.println("Valid!");
-					System.out.println(user);
-				} else {
-					System.out.println("Invalid!");
-					System.out.println(user);
-				}
+				
+				Platform.runLater(() -> { 
+					if (user != null) {
+						// If !null, then login was a success, move to post feed and pass the UserAccount
+						loginPane.getLblStatus().setText("Success! :D");
+						loginPane.getLblStatus().setTextFill(Color.GREEN);
+					} else { // Invalid Credentials
+						loginPane.getLblStatus().setText("Failure :(");
+						loginPane.getLblStatus().setTextFill(Color.RED);
+					}
+				});
+				
 				oos.close();
 				ois.close();
 				socket.close();

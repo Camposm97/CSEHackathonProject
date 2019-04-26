@@ -13,6 +13,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -37,6 +38,12 @@ public class FXUtil {
 		for (Node e : nodes)
 			hBox.getChildren().add(e);
 		return hBox;
+	}
+	
+	public static StackPane asStackPane(Node node) {
+		StackPane stackPane = new StackPane(node);
+		stackPane.setPadding(DEFAULT_INSETS);
+		return stackPane;
 	}
 	
 	public static ComboBox<Gender> loadCbGender() {

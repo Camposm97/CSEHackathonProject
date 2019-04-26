@@ -29,6 +29,10 @@ public class LoginPane extends BorderPane {
 		EventLoader.loadEnterKey(this, btLogin);
 	}
 	
+	public MyLabel getLblStatus() {
+		return lblStatus;
+	}
+	
 	public TextField getTfUser() {
 		return tfUser;
 	}
