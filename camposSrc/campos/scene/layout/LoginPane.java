@@ -1,6 +1,7 @@
 package campos.scene.layout;
 
 import campos.event.EventLoader;
+import campos.models.UserAccount;
 import campos.scene.control.ButtonLogin;
 import campos.scene.control.MyLabel;
 import campos.util.FXUtil;
@@ -34,6 +35,10 @@ public class LoginPane extends BorderPane {
 	
 	public PasswordField getTfPassword() {
 		return tfPassword;
+	}
+	
+	public UserAccount getUserAccount() {
+		return new UserAccount(null, tfUser.getText(), tfPassword.getText());
 	}
 	
 	private class LoginPaneUtil {

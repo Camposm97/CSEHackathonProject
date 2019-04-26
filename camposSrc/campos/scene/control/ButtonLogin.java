@@ -1,5 +1,6 @@
 package campos.scene.control;
 
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
@@ -20,16 +21,22 @@ public class ButtonLogin extends Button {
 		this.setPrefWidth(FXUtil.BT_WIDTH);
 		this.setOnAction(new LoginHandler());
 	}
+	
+	public UserAccount getUser() {
+		return new UserAccount(null, loginPane.getTfUser().getText(), loginPane.getTfPassword().getText());
+	}
 
 	private class LoginHandler implements EventHandler<ActionEvent> {
 		@Override
 		public void handle(ActionEvent e) {
 			try {
 				Socket socket = new Socket(IPv4.HOST, IPv4.PORT);
-//				socket.getOos().writeObject(
 				ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-						oos.writeObject(new UserAccount(null, loginPane.getTfUser().getText(), loginPane.getTfPassword().getText()));
-						oos.flush();
+						oos.writeObject(getUser());
+				ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+				UserAccount user = (UserAccount) ois.readObject();
+				System.out.println(user);
+//						oos.flush();
 //				UserAccount user = (UserAccount) socket.getOis().readObject();
 //				oos.close();
 //				socket.close();
