@@ -32,6 +32,6 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [id=" + id + ", message=" + message + "]";
+		return "Post [id:" + id + ", msg:" + message + "]";
 	}
 }

@@ -47,6 +47,7 @@ public class PostView {
 	private void drawHeader(GridPane header, Post post) {
 		authorLbl = new Label(post.getAuthor().getUsername());
 		idLbl = new Label(post.getId());
+		
 		header.add(authorLbl, 0, 0);
 		header.add(idLbl, 2, 0);
 		header.add(gridColumn(400), 1, 0);
