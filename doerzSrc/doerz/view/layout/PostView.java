@@ -24,11 +24,8 @@ public class PostView {
 	private Label authorLbl, idLbl;
 	private TextArea msgBdy;
 	private GridPane grid, header, body;
-	private double msgHeight;
 	
-	public PostView(Post post, double height){
-		msgHeight = height; // Used to give the message text area the proper height (to avoid scroll bars)
-		
+	public PostView(Post post){
 		drawGrid();
 		drawHeader(post);
 		drawBody(post);
@@ -62,7 +59,8 @@ public class PostView {
 	private void drawBody(Post post) {
 		body = new GridPane();
 		msgBdy = new TextArea();
-		msgBdy.setPrefHeight(msgHeight);
+		msgBdy.setPrefHeight(post.getHeight());
+		msgBdy.setPrefWidth(590);
 		msgBdy.setText(post.getMessage());
 		msgBdy.setWrapText(true);
 		msgBdy.setEditable(false);

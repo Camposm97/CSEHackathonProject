@@ -6,9 +6,15 @@ import doerz.model.Post;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /*
@@ -42,8 +48,10 @@ public class FeedPane {
 	
 	private void devOperations(BorderPane root) {
 		HBox box = new HBox();
+		box.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, 
+				CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		clrBtn = new Button("Clear Feed View");						
-		clrDataBtn = new Button("Remove All Posts");				
+		clrDataBtn = new Button("Delete All Posts");				
 		box.getChildren().addAll(clrBtn, clrDataBtn);
 		root.setTop(box);
 	}
@@ -69,12 +77,17 @@ public class FeedPane {
 		});
 	}
 	
-	public static void addToFeed(Post post, double height) {
-		feed.add(post);
-		refresh(height);
+	public static void addToFeed(Post post) {
+		/*
+		 * Server Interaction should be written here, replacing the next line of code. 
+		 * Send the post to the server, where it is appended into the LinkedList, then sent
+		 * back to the client to be read and displayed on their screen.
+		 */
+		feed.add(post);	// Line to be replaced
+		refresh();
 	}
 	
-	public static void refresh(double height) {
+	public static void refresh() {
 		feedBox.getChildren().clear();	// Clear messages from viewport
 		
 		/*
@@ -97,7 +110,7 @@ public class FeedPane {
 		 *  		where 10 is MESSAGE_VIEW_CAP.
 		 */
 		for(Post p : feed.subList(lowerBound, upperBound)) {
-			PostView newPost = new PostView(p, height);
+			PostView newPost = new PostView(p);
 			feedBox.getChildren().add(0, newPost.getPost());
 		}
 	}

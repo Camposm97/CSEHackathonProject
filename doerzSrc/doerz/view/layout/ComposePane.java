@@ -1,6 +1,7 @@
 package doerz.view.layout;
 
 import campos.models.UserAccount;
+import doerz.model.Message;
 import doerz.model.Post;
 import doerz.view.UserWindow;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -8,7 +9,6 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -23,7 +23,6 @@ import util.Dummy;
  */
 
 public class ComposePane {
-//	private TextField composeField; 
 	private TextArea composeArea;
 	private Button postBtn, userBtn;
 	private UserAccount user;
@@ -78,7 +77,7 @@ public class ComposePane {
 
 	private void callBacks() {
 		postBtn.setOnAction(e -> {
-			String message = composeArea.getText();
+			Message message = new Message(composeArea.getText(), composeArea.getHeight());
 			Post newPost = null;
 			
 			if(user == null) { 
@@ -88,9 +87,7 @@ public class ComposePane {
 				// Use user provided account.
 				newPost = new Post(message, user);
 			}
-			System.out.println(composeArea.getHeight());
-			
-			FeedPane.addToFeed(newPost, composeArea.getHeight());
+			FeedPane.addToFeed(newPost);
 			composeArea.setPrefHeight(60);
 			clearAll();
 		});
@@ -101,7 +98,6 @@ public class ComposePane {
 	}
 	
 	private void clearAll() {
-//		composeField.clear();
 		composeArea.clear();
 	}
 }
