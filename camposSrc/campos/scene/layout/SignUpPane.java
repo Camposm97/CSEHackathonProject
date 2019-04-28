@@ -1,7 +1,5 @@
 package campos.scene.layout;
 
-import java.io.Serializable;
-
 import campos.event.EventLoader;
 import campos.models.Gender;
 import campos.models.Major;
@@ -18,8 +16,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
-@SuppressWarnings("serial")
-public class SignUpPane extends BorderPane implements Serializable {
+public class SignUpPane extends BorderPane {
 	private TextField tfFirstName, tfLastName, tfUsername;
 	private ComboBox<Gender> cbGender;
 	private ComboBox<Major> cbMajor;
@@ -30,6 +27,12 @@ public class SignUpPane extends BorderPane implements Serializable {
 	public SignUpPane() {
 		new SignUpPaneUtil(this);
 		EventLoader.loadEnterKey(this, btSignUp);
+	}
+	
+	public boolean fieldsAreValid() {
+		return !tfFirstName.getText().isEmpty() && 
+				!tfLastName.getText().isEmpty() && 
+				!tfUsername.getText().isEmpty();
 	}
 	
 	private class SignUpPaneUtil {
@@ -79,23 +82,22 @@ public class SignUpPane extends BorderPane implements Serializable {
 		private TextField loadTfUsername() {
 			TextField tf = new TextField();
 			Tooltip tip = new Tooltip("Valid username!");
-			tip.setStyle("-fx-hide-delay: 10ms");
 			tf.setTooltip(tip);
 			
-			tf.textProperty().addListener((observable, oldValue, newValue) -> {
-				if (newValue.contains("\\"))
-					return;
+//			tf.textProperty().addListener((observable, oldValue, newValue) -> {
+//				if (newValue.contains("\\"))
+//					return;
 //				UserAccount user = userBag.findByUsername(newValue);
 //				if (user != null) {
-					tfUsername.setStyle("-fx-border-color: red; -fx-background-color: #FFF0F0;");
-					tip.setText("Sorry, that username is already taken :(");
-					btSignUp.setDisable(true);
+//					tfUsername.setStyle("-fx-border-color: red; -fx-background-color: #FFF0F0;");
+//					tip.setText("Sorry, that username is already taken :(");
+//					btSignUp.setDisable(true);
 //				} else {
-					tfUsername.setStyle("");
-					tip.setText("Valid Username!");
-					btSignUp.setDisable(false);
+//					tfUsername.setStyle("");
+//					tip.setText("Valid Username!");
+//					btSignUp.setDisable(false);
 //				}
-			});
+//			});
 			return tf;
 		}
 		
@@ -139,16 +141,16 @@ public class SignUpPane extends BorderPane implements Serializable {
 			return tf;
 		}
 
-		private Button loadBtSignUp() {
-			Button bt = new Button("Sign Up");
-			bt.setPrefWidth(FXUtil.BT_WIDTH);
-			bt.setOnAction(e -> {
-				if (fieldsAreValid()) {
+//		private Button loadBtSignUp() {
+//			Button bt = new Button("Sign Up");
+//			bt.setPrefWidth(FXUtil.BT_WIDTH);
+//			bt.setOnAction(e -> {
+//				if (fieldsAreValid()) {
 //					addUserToBag();
-				}
-			});
-			return bt;
-		}
+//				}
+//			});
+//			return bt;
+//		}
 
 		private Button loadBtCancel() {
 			Button bt = new Button("Cancel");
@@ -159,7 +161,7 @@ public class SignUpPane extends BorderPane implements Serializable {
 			return bt;
 		}
 		
-		public boolean fieldsAreValid() {
+		private boolean fieldsAreValid() {
 			return !signUpPane.tfFirstName.getText().isEmpty() && 
 					!signUpPane.tfLastName.getText().isEmpty() && 
 					!signUpPane.tfUsername.getText().isEmpty();

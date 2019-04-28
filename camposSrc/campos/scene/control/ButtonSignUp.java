@@ -1,9 +1,11 @@
 package campos.scene.control;
 
-import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import campos.net.IPv4;
+import campos.net.SocketType;
 import campos.scene.layout.SignUpPane;
 import campos.util.FXUtil;
 import javafx.event.ActionEvent;
@@ -24,9 +26,11 @@ public class ButtonSignUp extends Button {
 		@Override
 		public void handle(ActionEvent e) {
 			try {
-				Socket socket = new Socket(IPv4.HOST, IPv4.PORT);
-				new Thread(new ClientHandler(socket)).start();
-			} catch (IOException ex) {
+				if (signUpPane.fieldsAreValid()) {
+					Socket socket = new Socket(IPv4.HOST, IPv4.PORT);
+					new Thread(new ClientHandler(socket)).start();
+				}
+			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		}
@@ -41,7 +45,15 @@ public class ButtonSignUp extends Button {
 		
 		@Override
 		public void run() {
-			System.out.println("Attempting to Sign Up...(WIP)");
+			try {
+				System.out.println("Attempting to Sign Up...(WIP)");
+				ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+				ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+				oos.writeObject(SocketType.SignUp);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
