@@ -5,14 +5,18 @@ import java.net.Socket;
 
 import campos.net.ClientHandler;
 import campos.net.IPv4;
+import campos.scene.layout.SignUpPane;
 import campos.util.FXUtil;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
 public class ButtonSignUp extends Button {
-	public ButtonSignUp() {
+	private SignUpPane signUpPane;
+	
+	public ButtonSignUp(SignUpPane signUpPane) {
 		super("Sign Up");
+		this.signUpPane = signUpPane;
 		setPrefWidth(FXUtil.BT_WIDTH);
 		setOnAction(new SignUpHandler());
 	}
@@ -22,7 +26,7 @@ public class ButtonSignUp extends Button {
 		public void handle(ActionEvent e) {
 			try {
 				Socket socket = new Socket(IPv4.HOST, IPv4.PORT);
-				new Thread(new ClientHandler(socket)).start();
+				new Thread(new ClientHandler(socket, signUpPane)).start();
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}

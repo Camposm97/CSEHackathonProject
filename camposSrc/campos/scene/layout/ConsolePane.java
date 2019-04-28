@@ -1,12 +1,11 @@
 package campos.scene.layout;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Date;
 
-import campos.net.ServerHandler;
 import campos.net.MyServerSocket;
+import campos.net.ServerHandler;
 import campos.util.FXUtil;
 import javafx.scene.control.TextArea;
 
@@ -43,7 +42,7 @@ public class ConsolePane extends TextArea {
 						Socket socket = server.accept();
 						new Thread(new ServerHandler(socket, ta)).start();
 					}
-				} catch (IOException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}).start();

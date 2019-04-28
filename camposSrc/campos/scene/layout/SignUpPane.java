@@ -39,7 +39,7 @@ public class SignUpPane extends BorderPane {
 		}
 		
 		public void loadControls() {
-			btSignUp = new ButtonSignUp();
+			btSignUp = new ButtonSignUp(signUpPane);
 			btCancel = loadBtCancel();
 			tfFirstName = new TextField();
 			tfLastName = new TextField();

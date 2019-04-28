@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import campos.models.UserAccount;
+import campos.net.ClientHandler;
 import campos.net.IPv4;
 import campos.scene.layout.LoginPane;
 import campos.util.FXUtil;
@@ -31,6 +32,7 @@ public class ButtonLogin extends Button {
 			try {
 				Socket socket = new Socket(IPv4.HOST, IPv4.PORT);
 				new Thread(new SocketHandler(socket)).start();
+//				new Thread(new ClientHandler(socket, loginPane)).start();
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				Platform.runLater(() -> {
@@ -65,8 +67,7 @@ public class ButtonLogin extends Button {
 						loginPane.getLblStatus().setText("Failure :(");
 						loginPane.getLblStatus().setTextFill(Color.RED);
 					}
-				});
-				
+				});				
 				oos.close();
 				ois.close();
 				socket.close();
