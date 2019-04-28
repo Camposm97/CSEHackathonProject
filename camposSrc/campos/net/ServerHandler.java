@@ -8,7 +8,6 @@ import java.net.Socket;
 
 import campos.models.UserAccount;
 import campos.scene.layout.ConsolePane;
-import campos.scene.layout.LoginPane;
 import javafx.application.Platform;
 
 public class ServerHandler implements Runnable {
@@ -16,7 +15,6 @@ public class ServerHandler implements Runnable {
 	private ConsolePane ta;
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
-	private Object o;
 
 	/**
 	 * We can have it where the client sends a number and that number means
@@ -32,20 +30,15 @@ public class ServerHandler implements Runnable {
 	public ServerHandler(Socket socket, ConsolePane ta) throws IOException, ClassNotFoundException { // Constructor
 		this.socket = socket;
 		this.ta = ta;
+		this.ois = new ObjectInputStream(socket.getInputStream());
+		this.oos = new ObjectOutputStream(socket.getOutputStream());
 	}
 
 	@Override
 	public void run() {
 		try {
-			this.ois = new ObjectInputStream(socket.getInputStream());
-			this.oos = new ObjectOutputStream(socket.getOutputStream());
-			System.out.println("Server: Displaying client...");
 			displayClient();
-//			this.o = ois.readObject();
-//			if (o instanceof LoginPane) {
-				System.out.println("Server: Verifying Credentials");
-				verifyLogin();
-//			}
+			resolveSocket();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -57,10 +50,20 @@ public class ServerHandler implements Runnable {
 		ta.appendText("Host Name: " + inet.getHostName() + " | ");
 		ta.appendText("IP: " + inet.getHostAddress() + "]\n");
 	}
+	
+	public void resolveSocket() throws ClassNotFoundException, IOException {
+		SocketType socketType = (SocketType) ois.readObject();
+		switch (socketType.toString()) {
+		case "Login":
+			verifyLogin();
+			break;
+		case "SignUp":
+			signUp();
+		}
+	}
 
 	public void verifyLogin() throws IOException, ClassNotFoundException {
-//		this.ois = new ObjectInputStream(socket.getInputStream());
-//		this.oos = new ObjectOutputStream(socket.getOutputStream());
+		System.out.println("Verifying Credentials...");
 		UserAccount temp = (UserAccount) ois.readObject();
 		boolean userExists = ta.getServer().getUserBag().contains(temp);
 
@@ -82,5 +85,9 @@ public class ServerHandler implements Runnable {
 		ois.close();
 		oos.close();
 		socket.close();
+	}
+	
+	public void signUp() {
+		System.out.println("Signing Up...(WIP)");
 	}
 }

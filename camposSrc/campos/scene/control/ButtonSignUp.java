@@ -3,7 +3,6 @@ package campos.scene.control;
 import java.io.IOException;
 import java.net.Socket;
 
-import campos.net.ClientHandler;
 import campos.net.IPv4;
 import campos.scene.layout.SignUpPane;
 import campos.util.FXUtil;
@@ -26,10 +25,23 @@ public class ButtonSignUp extends Button {
 		public void handle(ActionEvent e) {
 			try {
 				Socket socket = new Socket(IPv4.HOST, IPv4.PORT);
-				new Thread(new ClientHandler(socket, signUpPane)).start();
+				new Thread(new ClientHandler(socket)).start();
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
+		}
+	}
+	
+	private class ClientHandler implements Runnable {
+		private Socket socket;
+
+		public ClientHandler(Socket socket) { // Constructor
+			this.socket = socket;
+		}
+		
+		@Override
+		public void run() {
+			System.out.println("Attempting to Sign Up...(WIP)");
 		}
 	}
 }

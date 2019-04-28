@@ -6,8 +6,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import campos.models.UserAccount;
-import campos.net.ClientHandler;
 import campos.net.IPv4;
+import campos.net.SocketType;
 import campos.scene.layout.LoginPane;
 import campos.util.FXUtil;
 import javafx.application.Platform;
@@ -31,7 +31,7 @@ public class ButtonLogin extends Button {
 		public void handle(ActionEvent e) {
 			try {
 				Socket socket = new Socket(IPv4.HOST, IPv4.PORT);
-				new Thread(new SocketHandler(socket)).start();
+				new Thread(new ClientHandler(socket)).start();
 //				new Thread(new ClientHandler(socket, loginPane)).start();
 			} catch (Exception ex) {
 				ex.printStackTrace();
@@ -43,10 +43,10 @@ public class ButtonLogin extends Button {
 		}
 	}
 
-	private class SocketHandler implements Runnable {
+	private class ClientHandler implements Runnable {
 		private Socket socket;
 
-		public SocketHandler(Socket socket) { // Constructor
+		public ClientHandler(Socket socket) { // Constructor
 			this.socket = socket;
 		}
 
@@ -54,6 +54,7 @@ public class ButtonLogin extends Button {
 		public void run() {
 			try {
 				ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+				oos.writeObject(SocketType.Login);
 				oos.writeObject(loginPane.getUserAccount());
 				ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 				UserAccount user = (UserAccount) ois.readObject();

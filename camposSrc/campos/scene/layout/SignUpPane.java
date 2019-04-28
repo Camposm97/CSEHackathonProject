@@ -1,5 +1,7 @@
 package campos.scene.layout;
 
+import java.io.Serializable;
+
 import campos.event.EventLoader;
 import campos.models.Gender;
 import campos.models.Major;
@@ -16,7 +18,8 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
-public class SignUpPane extends BorderPane {
+@SuppressWarnings("serial")
+public class SignUpPane extends BorderPane implements Serializable {
 	private TextField tfFirstName, tfLastName, tfUsername;
 	private ComboBox<Gender> cbGender;
 	private ComboBox<Major> cbMajor;

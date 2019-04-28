@@ -1,5 +1,7 @@
 package campos.scene.layout;
 
+import java.io.Serializable;
+
 import campos.event.EventLoader;
 import campos.models.UserAccount;
 import campos.scene.control.ButtonLogin;
@@ -17,7 +19,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
-public class LoginPane extends BorderPane {
+@SuppressWarnings("serial")
+public class LoginPane extends BorderPane implements Serializable {
 	private MyLabel lblStatus;
 	private TextField tfUser;
 	private PasswordField tfPassword;
