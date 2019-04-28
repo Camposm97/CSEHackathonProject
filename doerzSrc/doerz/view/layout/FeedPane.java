@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /*
- * All of the testing lines are there to make sure
+ * All of the debugging lines are there to make sure
  * things are working and aren't necessarily part of the final design.
  */
 
@@ -24,26 +24,33 @@ public class FeedPane {
 	 */
 	private static final int MESSAGE_VIEW_CAP = 10;
 	
-	private Button clrBtn, clrDataBtn;								// testing
+	private Button clrBtn, clrDataBtn;	// for debugging								
 	private ScrollPane scrlPane;
 	private static VBox feedBox;
 	private static LinkedList<Post> feed;
 	
 	public FeedPane(BorderPane root, Stage stage, LinkedList<Post> feed) {
 		FeedPane.feed = feed;
+		
+		initilizePanes();
+		scrollPaneSettings();
+		devOperations(root);	// for debugging
+		callBacks();
+	
+		root.setBottom(scrlPane);
+	}
+	
+	private void devOperations(BorderPane root) {
+		HBox box = new HBox();
+		clrBtn = new Button("Clear Feed View");						
+		clrDataBtn = new Button("Remove All Posts");				
+		box.getChildren().addAll(clrBtn, clrDataBtn);
+		root.setTop(box);
+	}
+	
+	private void initilizePanes() {
 		feedBox = new VBox();
 		scrlPane = new ScrollPane();
-		scrollPaneSettings();
-		
-		HBox box = new HBox();
-		clrBtn = new Button("Clear Feed View");						// testing
-		clrDataBtn = new Button("Remove All Posts");				// testing
-		box.getChildren().addAll(clrBtn, clrDataBtn);
-		
-		callBack();
-	
-		root.setTop(box);
-		root.setBottom(scrlPane);
 	}
 
 	private void scrollPaneSettings() {
@@ -53,22 +60,21 @@ public class FeedPane {
         scrlPane.setMaxHeight(500);
 	}
 
-	private void callBack() {
-		clrBtn.setOnAction(e -> {		// Erases messages from viewport. Does NOT delete data. 
+	private void callBacks() {
+		clrBtn.setOnAction(e -> {		// Erases messages from viewport. Does NOT delete data. -For debugging
 			feedBox.getChildren().clear();
 		});
-		clrDataBtn.setOnAction(e -> {	// Deletes all currently stored messages. 
+		clrDataBtn.setOnAction(e -> {	// Deletes all currently stored messages. -For debugging
 			feed.clear();
 		});
 	}
 	
-	public static void addToFeed(Post post) {
-//		System.out.println(post);
+	public static void addToFeed(Post post, double height) {
 		feed.add(post);
-		refresh();
+		refresh(height);
 	}
 	
-	public static void refresh() {
+	public static void refresh(double height) {
 		feedBox.getChildren().clear();	// Clear messages from viewport
 		
 		/*
@@ -91,7 +97,7 @@ public class FeedPane {
 		 *  		where 10 is MESSAGE_VIEW_CAP.
 		 */
 		for(Post p : feed.subList(lowerBound, upperBound)) {
-			PostView newPost = new PostView(p);
+			PostView newPost = new PostView(p, height);
 			feedBox.getChildren().add(0, newPost.getPost());
 		}
 	}

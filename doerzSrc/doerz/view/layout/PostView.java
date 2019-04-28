@@ -23,45 +23,55 @@ import javafx.scene.paint.Color;
 public class PostView {
 	private Label authorLbl, idLbl;
 	private TextArea msgBdy;
-	private GridPane grid;
+	private GridPane grid, header, body;
+	private double msgHeight;
 	
-	public PostView(Post post){
-		grid = new GridPane();
-		grid.setVgap(10);
-		grid.setPadding(new Insets(20));		
-		grid.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+	public PostView(Post post, double height){
+		msgHeight = height; // Used to give the message text area the proper height (to avoid scroll bars)
 		
-		
-		GridPane body = new GridPane();
-		drawBody(body, post);
-		
-		GridPane header = new GridPane();
-		drawHeader(header, post);
+		drawGrid();
+		drawHeader(post);
+		drawBody(post);
 		
 		grid.add(header, 0, 0, 2, 1);
 		grid.add(body, 0, 1);
-		
 	}
 	
+	private void drawGrid() {
+		grid = new GridPane();
+		grid.setVgap(10);
+		grid.setPadding(new Insets(20));		
+		grid.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, 
+				CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+	}
+
 	// Builds the header of the post from author's information
-	private void drawHeader(GridPane header, Post post) {
+	private void drawHeader(Post post) {
+		header = new GridPane();
 		authorLbl = new Label(post.getAuthor().getUsername());
-		idLbl = new Label(post.getId());
+		authorLbl.setStyle("-fx-font-size: 18");
+		idLbl = new Label("#" + post.getId() + "  ");
+		idLbl.setStyle("-fx-font-size: 8");
 		
-		header.add(authorLbl, 0, 0);
-		header.add(idLbl, 2, 0);
-		header.add(gridColumn(400), 1, 0);
+		header.add(authorLbl, 1, 0);
+		header.add(idLbl, 0, 0);
+//		header.add(gridColumn(350), 1, 0);
 	}
 	
 	// Builds the body of the post from the composed message
-	private void drawBody(GridPane body, Post post) {
+	private void drawBody(Post post) {
+		body = new GridPane();
 		msgBdy = new TextArea();
+		msgBdy.setPrefHeight(msgHeight);
 		msgBdy.setText(post.getMessage());
-		msgBdy.setPrefHeight(30);
+		msgBdy.setWrapText(true);
+		msgBdy.setEditable(false);
 		body.add(msgBdy, 0, 0);
 	}
 	
+	
 	// Used to create a blank column in a gridPane
+	// NOT IN USE - will remove when I'm sure I won't use it for anything.
 	private Pane gridColumn(double minWidth) {
 		Pane column = new Pane();
 		column.setMinWidth(minWidth);
