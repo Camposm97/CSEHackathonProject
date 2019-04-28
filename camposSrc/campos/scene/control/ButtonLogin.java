@@ -31,7 +31,7 @@ public class ButtonLogin extends Button {
 		public void handle(ActionEvent e) {
 			try {
 				Socket socket = new Socket(IPv4.HOST, IPv4.PORT);
-				new Thread(new ClientHandler(socket)).start();
+				new Thread(new SocketHandler(socket)).start();
 //				new Thread(new ClientHandler(socket, loginPane)).start();
 			} catch (Exception ex) {
 				ex.printStackTrace();
@@ -43,10 +43,10 @@ public class ButtonLogin extends Button {
 		}
 	}
 
-	private class ClientHandler implements Runnable {
+	private class SocketHandler implements Runnable {
 		private Socket socket;
 
-		public ClientHandler(Socket socket) { // Constructor
+		public SocketHandler(Socket socket) { // Constructor
 			this.socket = socket;
 		}
 
@@ -54,9 +54,9 @@ public class ButtonLogin extends Button {
 		public void run() {
 			try {
 				ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+				ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 				oos.writeObject(SocketType.Login);
 				oos.writeObject(loginPane.getUserAccount());
-				ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 				UserAccount user = (UserAccount) ois.readObject();
 				
 				Platform.runLater(() -> { 

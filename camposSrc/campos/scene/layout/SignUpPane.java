@@ -79,23 +79,22 @@ public class SignUpPane extends BorderPane implements Serializable {
 		private TextField loadTfUsername() {
 			TextField tf = new TextField();
 			Tooltip tip = new Tooltip("Valid username!");
-			tip.setStyle("-fx-hide-delay: 10ms");
 			tf.setTooltip(tip);
 			
-			tf.textProperty().addListener((observable, oldValue, newValue) -> {
-				if (newValue.contains("\\"))
-					return;
+//			tf.textProperty().addListener((observable, oldValue, newValue) -> {
+//				if (newValue.contains("\\"))
+//					return;
 //				UserAccount user = userBag.findByUsername(newValue);
 //				if (user != null) {
-					tfUsername.setStyle("-fx-border-color: red; -fx-background-color: #FFF0F0;");
-					tip.setText("Sorry, that username is already taken :(");
-					btSignUp.setDisable(true);
+//					tfUsername.setStyle("-fx-border-color: red; -fx-background-color: #FFF0F0;");
+//					tip.setText("Sorry, that username is already taken :(");
+//					btSignUp.setDisable(true);
 //				} else {
-					tfUsername.setStyle("");
-					tip.setText("Valid Username!");
-					btSignUp.setDisable(false);
+//					tfUsername.setStyle("");
+//					tip.setText("Valid Username!");
+//					btSignUp.setDisable(false);
 //				}
-			});
+//			});
 			return tf;
 		}
 		
