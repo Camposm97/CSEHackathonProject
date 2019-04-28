@@ -1,5 +1,8 @@
 package doerz.model;
 
+/*
+ * depreciated - Will remove when I'm sure I don't need it anymore.
+ */
 
 public class Queue {
 	private int maxSize;
@@ -21,9 +24,8 @@ public class Queue {
 			tail = -1;
 		}
 		queArray[++tail] = p;
-		if(nElems != maxSize) {
+		if(nElems != maxSize) 
 			nElems++;
-		}
 	}
 	
 	public Post peek() {

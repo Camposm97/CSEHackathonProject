@@ -1,5 +1,8 @@
 package doerz.model;
 
+/*
+ * depreciated - Will remove when I'm sure I don't need it anymore.
+ */
 
 public class PostQueue {
 	private Queue postQ;

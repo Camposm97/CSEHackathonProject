@@ -14,13 +14,14 @@ import util.Dummy;
 
 /*
  * This builds a low-tech "post editor" that allows users write and post things into the feed.
- * Because this isn't tied into any user account functionality yet, I've set it up to automatically
- * generate a dummy user account every time you make a new post.
- * (Think of it like creating a new user account for every post you make.)
+ * 
+ * Because this isn't tied into any user account functionality yet, I have provided a means of
+ * creating a userAccount to attach to posts that are created. 
+ * If no user is created, a default one is automatically provided for each post.
  */
 
 public class ComposePane {
-	private TextField composeField, userNameField;
+	private TextField composeField;
 	private Button postBtn, userBtn;
 	private UserAccount user;
 	
@@ -31,13 +32,11 @@ public class ComposePane {
 		grid.setHgap(10);
 		grid.setVgap(10);
 		
-//		userNameField = new TextField("NewUser");
-//		userNameField.setPrefWidth(100);
 		userBtn = new Button("New Account");
 		
 		composeField = new TextField();
 		composeField.setPromptText("Write something!");
-		composeField.setMinWidth(300);						// Magic number
+		composeField.setMinWidth(300);						// Magic number - Defines width of the textField
 		
 		postBtn = new Button("Post");
 		
@@ -57,17 +56,20 @@ public class ComposePane {
 			String message = composeField.getText();
 			Post newPost = null;
 			
-			if(user == null) {
+			if(user == null) { 
+				// Generate default dummy account if none provided by user
 				newPost = new Post(message, Dummy.getDummyAcc("defaultUser"));
 			} else {
+				// Use user provided account.
 				newPost = new Post(message, user);
 			}
+//			System.out.println(newPost);
 			
 			FeedPane.addToFeed(newPost);
 			clearAll();
 		});
 		userBtn.setOnAction(e -> {
-			user = Dummy.getDummyAcc("def");
+			user = Dummy.getDummyAcc("def"); // "def" is a default username. This is provided to avoid a nullPointer.
 			new UserWindow(user);
 		});
 	}
