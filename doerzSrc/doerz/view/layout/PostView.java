@@ -1,6 +1,7 @@
 package doerz.view.layout;
 
 import doerz.model.Post;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -23,15 +24,13 @@ import javafx.scene.paint.Color;
 public class PostView {
 	private Label authorLbl, idLbl;
 	private TextArea msgBdy;
-	private GridPane grid, header, body;
+	private GridPane grid;
 	
 	public PostView(Post post){
 		drawGrid();
 		drawHeader(post);
 		drawBody(post);
 		
-		grid.add(header, 0, 0, 2, 1);
-		grid.add(body, 0, 1);
 	}
 	
 	private void drawGrid() {
@@ -44,27 +43,25 @@ public class PostView {
 
 	// Builds the header of the post from author's information
 	private void drawHeader(Post post) {
-		header = new GridPane();
 		authorLbl = new Label(post.getAuthor().getUsername());
 		authorLbl.setStyle("-fx-font-size: 18");
 		idLbl = new Label("#" + post.getId() + "  ");
 		idLbl.setStyle("-fx-font-size: 8");
 		
-		header.add(authorLbl, 1, 0);
-		header.add(idLbl, 0, 0);
-//		header.add(gridColumn(350), 1, 0);
+		grid.add(authorLbl, 0, 0);
+		grid.add(idLbl, 1, 0);
+		GridPane.setHalignment(idLbl, HPos.RIGHT);
 	}
 	
 	// Builds the body of the post from the composed message
 	private void drawBody(Post post) {
-		body = new GridPane();
 		msgBdy = new TextArea();
 		msgBdy.setPrefHeight(post.getHeight());
-		msgBdy.setPrefWidth(590);
+		msgBdy.setPrefWidth(500);
 		msgBdy.setText(post.getMessage());
 		msgBdy.setWrapText(true);
 		msgBdy.setEditable(false);
-		body.add(msgBdy, 0, 0);
+		grid.add(msgBdy, 0, 1, 2, 1);
 	}
 	
 	

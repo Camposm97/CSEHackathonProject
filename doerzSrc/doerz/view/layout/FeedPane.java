@@ -48,8 +48,8 @@ public class FeedPane {
 	
 	private void devOperations(BorderPane root) {
 		HBox box = new HBox();
-		box.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, 
-				CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+//		box.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, 
+//				CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		clrBtn = new Button("Clear Feed View");						
 		clrDataBtn = new Button("Delete All Posts");				
 		box.getChildren().addAll(clrBtn, clrDataBtn);
@@ -64,12 +64,13 @@ public class FeedPane {
 	private void scrollPaneSettings() {
 		scrlPane.setContent(feedBox);
 		scrlPane.setHbarPolicy(ScrollBarPolicy.NEVER);
-		scrlPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+		scrlPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
         scrlPane.setMaxHeight(500);
+        scrlPane.setPrefHeight(450);
 	}
 
 	private void callBacks() {
-		clrBtn.setOnAction(e -> {		// Erases messages from viewport. Does NOT delete data. -For debugging
+		clrBtn.setOnAction(e -> {		// Clear messages from viewport. Does NOT delete data. -For debugging
 			feedBox.getChildren().clear();
 		});
 		clrDataBtn.setOnAction(e -> {	// Deletes all currently stored messages. -For debugging
@@ -81,7 +82,7 @@ public class FeedPane {
 		/*
 		 * Server Interaction should be written here, replacing the next line of code. 
 		 * Send the post to the server, where it is appended into the LinkedList, then sent
-		 * back to the client to be read and displayed on their screen.
+		 * back to the client to be read and displayed on their GUI.
 		 */
 		feed.add(post);	// Line to be replaced
 		refresh();

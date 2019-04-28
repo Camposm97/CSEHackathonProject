@@ -18,7 +18,6 @@ public class MainWindow {
 		root.setCenter(nest);
 		Scene scene = new Scene(root, 750, 650);
 		
-//		int feedLength = 10;
 		LinkedList<Post> feed = new LinkedList<Post>();
 		new ComposePane(nest, stage);
 		new FeedPane(nest, stage, feed);

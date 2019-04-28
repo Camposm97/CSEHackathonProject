@@ -5,7 +5,9 @@ import doerz.model.Message;
 import doerz.model.Post;
 import doerz.view.UserWindow;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextArea;
@@ -41,8 +43,9 @@ public class ComposePane {
 		composeArea = new TextArea();
 		composeArea.setPromptText("Write something!");
 		composeArea.setPrefHeight(60);
-		composeArea.setMinWidth(400);						// Magic number - Defines width of the textField
+		composeArea.setMinWidth(400);						
 		postBtn = new Button("Post");		
+		postBtn.setPrefSize(50, 50);
 	}
 
 	private void drawGrid() {
@@ -51,9 +54,11 @@ public class ComposePane {
 		grid.setHgap(10);
 		grid.setVgap(10);
 		
-		grid.add(userBtn, 1, 0);
+		grid.add(userBtn, 0, 0);
+		GridPane.setHalignment(userBtn, HPos.RIGHT);
 		grid.add(composeArea, 0, 1);
 		grid.add(postBtn, 1, 1);
+		GridPane.setValignment(postBtn, VPos.TOP);
 		
 		Separator sep = new Separator();
 		grid.add(sep, 0, 2, 2, 1);
