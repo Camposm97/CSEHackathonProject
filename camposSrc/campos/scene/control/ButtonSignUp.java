@@ -1,6 +1,5 @@
 package campos.scene.control;
 
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -27,9 +26,11 @@ public class ButtonSignUp extends Button {
 		@Override
 		public void handle(ActionEvent e) {
 			try {
-				Socket socket = new Socket(IPv4.HOST, IPv4.PORT);
-				new Thread(new ClientHandler(socket)).start();
-			} catch (IOException ex) {
+				if (signUpPane.fieldsAreValid()) {
+					Socket socket = new Socket(IPv4.HOST, IPv4.PORT);
+					new Thread(new ClientHandler(socket)).start();
+				}
+			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		}

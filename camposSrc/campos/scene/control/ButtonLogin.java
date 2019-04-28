@@ -49,7 +49,7 @@ public class ButtonLogin extends Button {
 		public SocketHandler(Socket socket) { // Constructor
 			this.socket = socket;
 		}
-
+		
 		@Override
 		public void run() {
 			try {

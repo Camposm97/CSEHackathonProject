@@ -1,7 +1,5 @@
 package campos.scene.layout;
 
-import java.io.Serializable;
-
 import campos.event.EventLoader;
 import campos.models.Gender;
 import campos.models.Major;
@@ -18,8 +16,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
-@SuppressWarnings("serial")
-public class SignUpPane extends BorderPane implements Serializable {
+public class SignUpPane extends BorderPane {
 	private TextField tfFirstName, tfLastName, tfUsername;
 	private ComboBox<Gender> cbGender;
 	private ComboBox<Major> cbMajor;
@@ -30,6 +27,12 @@ public class SignUpPane extends BorderPane implements Serializable {
 	public SignUpPane() {
 		new SignUpPaneUtil(this);
 		EventLoader.loadEnterKey(this, btSignUp);
+	}
+	
+	public boolean fieldsAreValid() {
+		return !tfFirstName.getText().isEmpty() && 
+				!tfLastName.getText().isEmpty() && 
+				!tfUsername.getText().isEmpty();
 	}
 	
 	private class SignUpPaneUtil {
@@ -138,16 +141,16 @@ public class SignUpPane extends BorderPane implements Serializable {
 			return tf;
 		}
 
-		private Button loadBtSignUp() {
-			Button bt = new Button("Sign Up");
-			bt.setPrefWidth(FXUtil.BT_WIDTH);
-			bt.setOnAction(e -> {
-				if (fieldsAreValid()) {
+//		private Button loadBtSignUp() {
+//			Button bt = new Button("Sign Up");
+//			bt.setPrefWidth(FXUtil.BT_WIDTH);
+//			bt.setOnAction(e -> {
+//				if (fieldsAreValid()) {
 //					addUserToBag();
-				}
-			});
-			return bt;
-		}
+//				}
+//			});
+//			return bt;
+//		}
 
 		private Button loadBtCancel() {
 			Button bt = new Button("Cancel");
@@ -158,7 +161,7 @@ public class SignUpPane extends BorderPane implements Serializable {
 			return bt;
 		}
 		
-		public boolean fieldsAreValid() {
+		private boolean fieldsAreValid() {
 			return !signUpPane.tfFirstName.getText().isEmpty() && 
 					!signUpPane.tfLastName.getText().isEmpty() && 
 					!signUpPane.tfUsername.getText().isEmpty();
