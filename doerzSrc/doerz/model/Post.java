@@ -1,5 +1,7 @@
 package doerz.model;
 
+import java.util.Date;
+
 import campos.models.UserAccount;
 
 public class Post {
@@ -7,11 +9,17 @@ public class Post {
 	private String id;
 	private Message message;
 	private UserAccount author;
+	private Date date;
 
 	public Post(Message message, UserAccount author) {
 		this.id = String.valueOf(idNumber++);
 		this.message = message;
 		this.author = author;
+		date = new Date();
+	}
+
+	public Date getDate() {
+		return date;
 	}
 
 	public String getId() {
@@ -36,6 +44,6 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [id:" + id + ", msg:" + message + "]";
+		return "Post [id:" + id + ", msg:" + message + ", time:" + date +"]";
 	}
 }

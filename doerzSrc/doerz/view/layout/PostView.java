@@ -22,7 +22,7 @@ import javafx.scene.paint.Color;
  */
 
 public class PostView {
-	private Label authorLbl, idLbl;
+	private Label authorLbl, idLbl, dateLbl;
 	private TextArea msgBdy;
 	private GridPane grid;
 	
@@ -47,9 +47,12 @@ public class PostView {
 		authorLbl.setStyle("-fx-font-size: 18");
 		idLbl = new Label("#" + post.getId() + "  ");
 		idLbl.setStyle("-fx-font-size: 8");
+		dateLbl = new Label("\t" + post.getDate().toString());
+		dateLbl.setStyle("-fx-font-size: 8");
 		
 		grid.add(authorLbl, 0, 0);
-		grid.add(idLbl, 1, 0);
+		grid.add(dateLbl, 1, 0);
+		grid.add(idLbl, 2, 0);
 		GridPane.setHalignment(idLbl, HPos.RIGHT);
 	}
 	
@@ -61,7 +64,7 @@ public class PostView {
 		msgBdy.setText(post.getMessage());
 		msgBdy.setWrapText(true);
 		msgBdy.setEditable(false);
-		grid.add(msgBdy, 0, 1, 2, 1);
+		grid.add(msgBdy, 0, 1, 3, 1);
 	}
 	
 	
