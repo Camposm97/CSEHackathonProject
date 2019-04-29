@@ -10,8 +10,14 @@ import campos.util.UserAccountFactory;
 
 public class DataSaver implements DataConstants {
 	public static void main(String[] args) {
+		Integer id = 0;
+		saveObject(id, ID_SRC);
 		UserAccountBag bag = UserAccountFactory.emitUserAccounts(10);
 		saveUserBag(bag);
+	}
+	
+	public static void saveIdNumber(int idNumber) {
+		saveObject(idNumber, ID_SRC);
 	}
 	
 	public static void saveUserBag(UserAccountBag userBag) {

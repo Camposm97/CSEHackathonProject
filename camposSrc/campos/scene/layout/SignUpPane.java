@@ -3,6 +3,9 @@ package campos.scene.layout;
 import campos.event.EventLoader;
 import campos.models.Gender;
 import campos.models.Major;
+import campos.models.Name;
+import campos.models.Student;
+import campos.models.UserAccount;
 import campos.scene.control.ButtonSignUp;
 import campos.util.FXUtil;
 import campos.util.PasswordUtil;
@@ -32,7 +35,33 @@ public class SignUpPane extends BorderPane {
 	public boolean fieldsAreValid() {
 		return !tfFirstName.getText().isEmpty() && 
 				!tfLastName.getText().isEmpty() && 
-				!tfUsername.getText().isEmpty();
+				!tfUsername.getText().isEmpty() &&
+				!tfPass.getText().isEmpty() &&
+				!tfPassReType.getText().isEmpty();
+	}
+	
+	public TextField getTfUsername() {
+		return tfUsername;
+	}
+	
+	public void setValidUsername(boolean flag) {
+		Tooltip tip = new Tooltip();
+		tfUsername.setTooltip(tip);
+		if (flag) {
+			tfUsername.setStyle("-fx-border-color: red; -fx-background-color: #FFF0F0;");
+			tip.setText("Sorry, that username is already taken :(");
+			btSignUp.setDisable(true);
+		} else {
+			tfUsername.setStyle("");
+			tip.setText("Valid Username!");
+			btSignUp.setDisable(false);
+		}
+	}
+	
+	public UserAccount getUserAccount() {
+		Name name = new Name(tfFirstName.getText(), tfLastName.getText(), cbGender.getValue());
+		Student s = new Student(name, cbMajor.getValue());
+		return new UserAccount(s, tfUsername.getText(), tfPass.getText());
 	}
 	
 	private class SignUpPaneUtil {
@@ -49,7 +78,7 @@ public class SignUpPane extends BorderPane {
 			btCancel = loadBtCancel();
 			tfFirstName = new TextField();
 			tfLastName = new TextField();
-			tfUsername = loadTfUsername();
+			tfUsername = new TextField();
 			tfPass = loadTfPass();
 			tfPassReType = loadTfPassReType();
 			cbGender = FXUtil.loadCbGender();
@@ -78,32 +107,10 @@ public class SignUpPane extends BorderPane {
 			gridPane.add(FXUtil.asHBox(btSignUp, btCancel), 0, 7, 3, 1);
 			signUpPane.setCenter(gridPane);
 		}
-		
-		private TextField loadTfUsername() {
-			TextField tf = new TextField();
-			Tooltip tip = new Tooltip("Valid username!");
-			tf.setTooltip(tip);
-			
-//			tf.textProperty().addListener((observable, oldValue, newValue) -> {
-//				if (newValue.contains("\\"))
-//					return;
-//				UserAccount user = userBag.findByUsername(newValue);
-//				if (user != null) {
-//					tfUsername.setStyle("-fx-border-color: red; -fx-background-color: #FFF0F0;");
-//					tip.setText("Sorry, that username is already taken :(");
-//					btSignUp.setDisable(true);
-//				} else {
-//					tfUsername.setStyle("");
-//					tip.setText("Valid Username!");
-//					btSignUp.setDisable(false);
-//				}
-//			});
-			return tf;
-		}
-		
+				
 		private PasswordField loadTfPass() {
 			PasswordField tf = new PasswordField();
-			Tooltip tip = new Tooltip("Valid Password!");
+			Tooltip tip = new Tooltip();
 			tf.setTooltip(tip);
 			tf.textProperty().addListener((observable, oldValue, newValue) -> {
 				if (PasswordUtil.isValid(newValue)) {
@@ -141,17 +148,6 @@ public class SignUpPane extends BorderPane {
 			return tf;
 		}
 
-//		private Button loadBtSignUp() {
-//			Button bt = new Button("Sign Up");
-//			bt.setPrefWidth(FXUtil.BT_WIDTH);
-//			bt.setOnAction(e -> {
-//				if (fieldsAreValid()) {
-//					addUserToBag();
-//				}
-//			});
-//			return bt;
-//		}
-
 		private Button loadBtCancel() {
 			Button bt = new Button("Cancel");
 			bt.setPrefWidth(FXUtil.BT_WIDTH);
@@ -160,26 +156,5 @@ public class SignUpPane extends BorderPane {
 			});
 			return bt;
 		}
-		
-		private boolean fieldsAreValid() {
-			return !signUpPane.tfFirstName.getText().isEmpty() && 
-					!signUpPane.tfLastName.getText().isEmpty() && 
-					!signUpPane.tfUsername.getText().isEmpty();
-		}
-		
-//		public void addUserToBag() {
-//			String lastName = signUpPane.tfLastName.getText();
-//			String firstName = signUpPane.tfFirstName.getText();
-//			
-//			String username = signUpPane.tfUsername.getText();
-//			String password = signUpPane.tfPass.getText();
-//			
-//			Student student = new Student(new Name(lastName, firstName, cbGender.getValue()), cbMajor.getValue());
-////			signUpPane.getUserTree().add(new UserAccount(student, username, password));
-////			signUpPane.getUserTree().sortByUsername();
-////			System.out.println();
-////			signUpPane.getUserTree().display();
-//			FXUtil.toLoginPane(signUpPane);
-//		}
 	}
 }

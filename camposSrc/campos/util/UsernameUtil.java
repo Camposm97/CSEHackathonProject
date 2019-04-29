@@ -4,7 +4,7 @@ import campos.models.Name;
 import campos.models.UserAccount;
 import campos.scene.layout.LoginPane;
 
-public class UserAccountUtil {
+public class UsernameUtil {
 	public static String createUsername(Name name, String id) {
 		String username = parseLastName(name.getLastName());
 		username += name.getFirstName().charAt(0);

@@ -1,5 +1,6 @@
 package campos.scene.control;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -44,16 +45,30 @@ public class ButtonSignUp extends Button {
 		}
 		
 		@Override
-		public void run() {
+		public synchronized void run() {
 			try {
-				System.out.println("Attempting to Sign Up...(WIP)");
-				ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-				ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-				oos.writeObject(SocketType.SignUp);
-				
+				attemptToSignUp();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+		
+		public synchronized void attemptToSignUp() throws IOException, InterruptedException {
+			System.out.println("Attempting to Sign Up...");
+			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+			ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeObject(SocketType.SignUp);				
+			oos.writeObject(signUpPane.getUserAccount());
+			boolean flag = ois.readBoolean();
+			System.out.println("Valid? " + flag);
+			if (flag) {
+				signUpPane.setValidUsername(flag);
+			} else {
+				signUpPane.setValidUsername(flag);
+			}
+			oos.close();
+			ois.close();
+			socket.close();
 		}
 	}
 }
