@@ -26,7 +26,7 @@ public class FriendsPane {
 		users = new ListView<String>();
 		users.setItems(Controller.populateFriends());
 		users.setOnMouseClicked(e ->{
-			Controller.updateTextArea(users.getSelectionModel().getSelectedItem());
+			Controller.updateSelectedFriend(users.getSelectionModel().getSelectedItem());
 		});
 		box.getChildren().add(users);
 		

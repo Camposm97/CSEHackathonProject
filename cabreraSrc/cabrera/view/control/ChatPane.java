@@ -13,11 +13,13 @@ import javafx.scene.text.Font;
 public class ChatPane {
 	VBox box;
 	TextArea text;
+	Label label;
+	TextField textF;
 
 	public ChatPane() {
 		box = new VBox();
 		
-		Label label = new Label("Chatting with Name");
+		label = new Label("Chatting with: ");
 		label.setFont(new Font(20));
 		box.getChildren().add(label);
 		
@@ -26,19 +28,17 @@ public class ChatPane {
 		text.setPrefHeight(300);
 		box.getChildren().add(text);
 		
-		TextField textF = new TextField();
+		textF = new TextField();
 		textF.setPromptText("Enter message here");
 		textF.setOnAction(e ->{
-			text.appendText("<userName> " + textF.getText() + "\n");
-			textF.clear();
+			sendMessage();
 		});
 		box.getChildren().add(textF);
 		
 		Button button = new Button("Send");
 		button.setPrefWidth(200);
 		button.setOnAction(e ->{
-			text.appendText("<userName> " + textF.getText() + "\n");
-			textF.clear();
+			sendMessage();
 		});
 		box.getChildren().add(button);
 		
@@ -47,10 +47,21 @@ public class ChatPane {
 		box.setPadding(new Insets(0,0,0,20));
 	}
 
+	private void sendMessage() {
+		//Will change to users username
+		String message = "<userName> " + textF.getText() + "\n";
+		Controller.addMessage(message);
+		text.appendText(message);
+		textF.clear();
+	}
+
 	public VBox getVBox() {
 		return box;
 	}
 	public TextArea getText() {
 		return text;
+	}
+	public Label getLabel() {
+		return label;
 	}
 }

@@ -1,8 +1,10 @@
 package cabrera.models;
 
+import cabrera.controllers.Controller;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 public class FriendsList {
@@ -12,10 +14,10 @@ public class FriendsList {
 	
 	public FriendsList() {
 		friendList = FXCollections.observableArrayList();
-		friendList.addListener(new InvalidationListener() {
-			
-			public void invalidated(Observable observable) {
-				System.out.println("List Invalidated");
+		friendList.addListener(new ListChangeListener<String>() {
+
+			public void onChanged(Change c) {
+				System.out.println(c.toString());
 			}
 			
 		});
