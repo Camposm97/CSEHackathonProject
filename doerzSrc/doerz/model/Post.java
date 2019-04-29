@@ -5,10 +5,10 @@ import campos.models.UserAccount;
 public class Post {
 	private static int idNumber = 0;
 	private String id;
-	private String message;
+	private Message message;
 	private UserAccount author;
 
-	public Post(String message, UserAccount author) {
+	public Post(Message message, UserAccount author) {
 		this.id = String.valueOf(idNumber++);
 		this.message = message;
 		this.author = author;
@@ -23,11 +23,15 @@ public class Post {
 	}
 
 	public String getMessage() {
-		return message;
+		return message.getMessage();
 	}
 
 	public void setMessage(String message) {
-		this.message = message;
+		this.message.setMessage(message);
+	}
+	
+	public double getHeight() {
+		return message.getHeight();
 	}
 
 	@Override
