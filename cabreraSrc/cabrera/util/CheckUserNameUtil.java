@@ -2,12 +2,13 @@ package cabrera.util;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
 
 public class CheckUserNameUtil {
 
-	public static ObservableList<String> filterList(ObservableList<String> temp, String input) {
+	public static void check(ListView<String> users, String input) {
 		ObservableList<String> newList = FXCollections.observableArrayList();
-		temp.forEach((String) -> {
+		users.getItems().forEach((String) -> {
 			String testList = "";
 			String testInput = "";
 			if (input.length() <= String.length()) {
@@ -17,11 +18,10 @@ public class CheckUserNameUtil {
 			testList = "";
 			testInput = "";
 			}
-			if (!testList.equals("")  &&testInput.equals(testList)) {
+			if (!testList.equals("")  && testInput.equals(testList)) {
 				newList.add(String);
 			}
-
 		});
-		return newList;
+		users.setItems(newList);
 	}
 }
