@@ -35,7 +35,7 @@ public class FeedPane {
 	private static VBox feedBox;
 	private static LinkedList<Post> feed;
 	
-	public FeedPane(BorderPane root, Stage stage, LinkedList<Post> feed) {
+	public FeedPane(BorderPane root, LinkedList<Post> feed) {
 		FeedPane.feed = feed;
 		
 		initilizePanes();
