@@ -29,6 +29,11 @@ public class Controller {
 		chatPane = boxRight;
 		friendPane = boxLeft;
 	}
+	
+	public static void addToList(String userName) {
+		friends.getUsersAsArrayList().add(userName);
+		chatLog.addLog(userName);
+	}
 
 	public static void addLog(String userName) {
 		chatLog.addLog(userName);

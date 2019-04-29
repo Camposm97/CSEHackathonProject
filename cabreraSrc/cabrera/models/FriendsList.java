@@ -1,8 +1,5 @@
 package cabrera.models;
 
-import cabrera.controllers.Controller;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -22,9 +19,9 @@ public class FriendsList {
 			
 		});
 		
-		friendList.add("EJ");
-		friendList.add("Michael");
-		friendList.add("Richard");
+//		friendList.add("EJ");
+//		friendList.add("Michael");
+//		friendList.add("Richard");
 	}
 
 	public ObservableList<String> getUsersAsArrayList() {
