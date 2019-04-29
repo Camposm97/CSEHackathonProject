@@ -17,7 +17,8 @@ public class Random {
 	}
 	
 	public static String getChars(int n) {
-		String alphabet = "AaBcCcDdEeFfGgHhIiJjKkMmNnOoPpQqRrSsTtUuVvWwXxYyZz !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~";
+//		String alphabet = "AaBcCcDdEeFfGgHhIiJjKkMmNnOoPpQqRrSsTtUuVvWwXxYyZz !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~";
+		String alphabet = "AaBcCcDdEeFfGgHhIiJjKkMmNnOoPpQqRrSsTtUuVvWwXxYyZz~!@#$%^&*()-_=+";
 		String str = "";
 		for (int i = 0; i < n; i++)
 			str += alphabet.charAt(getNumber(alphabet.length(), 0));

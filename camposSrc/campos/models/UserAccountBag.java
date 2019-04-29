@@ -33,4 +33,13 @@ public class UserAccountBag extends TreeSet<UserAccount> {
 			System.out.println(u);
 		System.out.println();
 	}
+	
+	@Override
+	public String toString() {
+		String str = "";
+		for (UserAccount u : this) {
+			str += u + "\n";
+		}
+		return str;
+	}
 }

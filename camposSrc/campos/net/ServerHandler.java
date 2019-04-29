@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 import campos.models.UserAccount;
+import campos.models.UserAccountBag;
 import campos.scene.layout.ConsolePane;
 import javafx.application.Platform;
 
@@ -35,7 +36,7 @@ public class ServerHandler implements Runnable {
 	}
 
 	@Override
-	public void run() {
+	public synchronized void run() {
 		try {
 			displayClient();
 			resolveSocket();
@@ -44,14 +45,14 @@ public class ServerHandler implements Runnable {
 		}
 	}
 
-	public void displayClient() {
+	public synchronized void displayClient() {
 		InetAddress inet = socket.getInetAddress();
 		ta.appendText("Connected [");
 		ta.appendText("Host Name: " + inet.getHostName() + " | ");
 		ta.appendText("IP: " + inet.getHostAddress() + "]\n");
 	}
 	
-	public void resolveSocket() throws ClassNotFoundException, IOException {
+	public synchronized void resolveSocket() throws ClassNotFoundException, IOException {
 		SocketType socketType = (SocketType) ois.readObject();
 		switch (socketType.toString()) {
 		case "Login":
@@ -87,7 +88,17 @@ public class ServerHandler implements Runnable {
 		socket.close();
 	}
 	
-	public void signUp() {
-		System.out.println("Signing Up...(WIP)");
+	public synchronized void signUp() throws ClassNotFoundException, IOException {
+		UserAccountBag userBag = ta.getServer().getUserBag();
+		UserAccount user = (UserAccount) ois.readObject();
+		boolean flag = userBag.contains(user);
+		if (flag) { // Does User Exist in UserBag?
+			userBag.add(user);
+		}
+		oos.writeBoolean(flag);
+		oos.flush();
+		ois.close();
+		oos.close();
+		socket.close();
 	}
 }
