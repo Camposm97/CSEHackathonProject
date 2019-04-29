@@ -1,40 +1,41 @@
 package cabrera.view.control;
 
 import cabrera.controllers.Controller;
+import cabrera.util.CheckUserNameUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
-public class VBoxLeft {
+public class FriendsPane {
 	VBox box;
 	ListView<String> users;
 
-	public VBoxLeft() {
+	public FriendsPane() {
 		box = new VBox();
 		
 		TextField userSearch = new TextField();
 		userSearch.setPromptText("Search By User Name");
 		box.getChildren().add(userSearch);
-		
-		users = new ListView<>(Controller.populateFriends());
+		users = new ListView<String>();
+		users.setItems(Controller.populateFriends());
+		users.setOnMouseClicked(e ->{
+			Controller.updateSelectedFriend(users.getSelectionModel().getSelectedItem());
+		});
 		box.getChildren().add(users);
 		
 		
 		userSearch.textProperty().addListener((observable, oldValue, newValue) -> {
-			if (!newValue.isEmpty()) {
-				box.getChildren().remove(users);
-				users = new ListView<>(Controller.checkUser(newValue));
-				box.getChildren().add(users);
+			if(!newValue.isEmpty()) {
+				CheckUserNameUtil.check(users, newValue);
 			} else {
-				box.getChildren().remove(users);
-				users = new ListView<>(Controller.populateFriends());
-				box.getChildren().add(users);
+				users.setItems(Controller.populateFriends());
 			}
 		});
 		

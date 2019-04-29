@@ -27,10 +27,10 @@ import util.Dummy;
 public class ComposePane {
 	private TextArea composeArea;
 	private Button postBtn, userBtn;
-	private UserAccount user;
+	private UserAccount devUser, user;
 	private GridPane grid;
 	
-	public ComposePane(BorderPane root, Stage stage) {
+	public ComposePane(BorderPane root, Stage stage, UserAccount user) {
 		initializeNodes();
 		drawGrid();
 		root.setCenter(grid);
@@ -39,7 +39,7 @@ public class ComposePane {
 	}
 	
 	private void initializeNodes() {
-		userBtn = new Button("New Account");
+		userBtn = new Button("New Account");	// For development
 		composeArea = new TextArea();
 		composeArea.setPromptText("Write something!");
 		composeArea.setPrefHeight(60);
@@ -85,20 +85,24 @@ public class ComposePane {
 			Message message = new Message(composeArea.getText(), composeArea.getHeight());
 			Post newPost = null;
 			
-			if(user == null) { 
+			/*
+			 * The following if statement must be adjusted when a user is connected to the
+			 * server. That user will be the user attached to authoring a post.
+			 */
+			if(devUser == null) { 
 				// Generate default dummy account if none provided by user
 				newPost = new Post(message, Dummy.getDummyAcc("defaultUser"));
 			} else {
 				// Use user provided account.
-				newPost = new Post(message, user);
+				newPost = new Post(message, devUser);
 			}
 			FeedPane.addToFeed(newPost);
 			composeArea.setPrefHeight(60);
 			clearAll();
 		});
 		userBtn.setOnAction(e -> {
-			user = Dummy.getDummyAcc("def"); // "def" is a default username. This is provided to avoid a nullPointer.
-			new UserWindow(user);
+			devUser = Dummy.getDummyAcc("def"); // "def" is a default username. This is provided to avoid a nullPointer.
+			new UserWindow(devUser);
 		});
 	}
 	

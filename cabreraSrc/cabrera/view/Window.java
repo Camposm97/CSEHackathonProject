@@ -1,7 +1,8 @@
 package cabrera.view;
 
-import cabrera.view.control.VBoxLeft;
-import cabrera.view.control.VBoxRight;
+import cabrera.controllers.Controller;
+import cabrera.view.control.ChatPane;
+import cabrera.view.control.FriendsPane;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -16,8 +17,9 @@ public class Window {
 		SplitPane root = new SplitPane();
 		root.setStyle("-fx-background-color: #B0C4DE");
 		
-		VBoxLeft boxLeft = new VBoxLeft();
-		VBoxRight boxRight = new VBoxRight();
+		FriendsPane boxLeft = new FriendsPane();
+		ChatPane boxRight = new ChatPane();
+		Controller.setPanes(boxLeft, boxRight);
 		
 		root.getItems().add(boxLeft.getVBox());
 		root.getItems().add(boxRight.getVBox());

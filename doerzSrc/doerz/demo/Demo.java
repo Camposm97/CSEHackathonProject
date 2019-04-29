@@ -1,8 +1,10 @@
 package doerz.demo;
 
+import campos.models.UserAccount;
 import doerz.view.MainWindow;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import util.Dummy;
 
 /**
  * 
@@ -20,7 +22,8 @@ public class Demo extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		new MainWindow(primaryStage);
+		UserAccount user = Dummy.getDummyAcc("defaultUser");
+		new MainWindow(primaryStage, user);
 	}
 
 }
