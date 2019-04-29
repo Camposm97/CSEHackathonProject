@@ -1,11 +1,13 @@
 package campos.models;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 
 import campos.io.DataLoader;
 import campos.io.DataSaver;
 import campos.util.Random;
 import campos.util.UsernameUtil;
+import doerz.model.Post;
 
 @SuppressWarnings("serial")
 public class UserAccount implements Serializable, Comparable<UserAccount> {
@@ -14,23 +16,27 @@ public class UserAccount implements Serializable, Comparable<UserAccount> {
 	private Student s;
 	private String username;
 	private String password;
-	
-	public UserAccount(Student s) {
+	private UserAccountBag userFollowBag;
+	private LinkedList<Post> postList;
+
+	public UserAccount(Student s) { // For Auto-Generated UserAccounts
 		this.id = String.valueOf(idNumber++);
 		this.s = s;
 		username = UsernameUtil.createUsername(s.getName(), id);
 		password = Random.getPassword();
 		DataSaver.saveIdNumber(idNumber);
 	}
-	
-	public UserAccount(Student student, String username, String password) {
+
+	public UserAccount(Student student, String username, String password) { // Default Constructor
 		this.id = String.valueOf(idNumber++);
 		this.s = student;
 		this.username = username;
 		this.password = password;
 		DataSaver.saveIdNumber(idNumber);
+		this.userFollowBag = new UserAccountBag();
+		this.postList = new LinkedList<>();
 	}
-	
+
 	public String getId() {
 		return id;
 	}
@@ -58,6 +64,16 @@ public class UserAccount implements Serializable, Comparable<UserAccount> {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public UserAccountBag getUserFollowBag() {
+		return userFollowBag;
+	}
+	
+
+	public LinkedList<Post> getPostList() {
+		return postList;
+	}
+	
 
 	@Override
 	public String toString() {
