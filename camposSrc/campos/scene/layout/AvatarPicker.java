@@ -2,8 +2,12 @@ package campos.scene.layout;
 
 import java.util.ArrayList;
 
+import campos.util.FXUtil;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * AvatarPicker might be on a window of it's own (best not to be, but time is short), so
@@ -14,13 +18,31 @@ import javafx.scene.image.Image;
  */
 public class AvatarPicker extends Alert {
 	private ArrayList<Image> imageList;
+	private ArrayList<Button> buttonList;
 	private Image chosenOne;
 	
 	public AvatarPicker() {
 		super(AlertType.INFORMATION);
 		super.setTitle("Avatar Picker (By Camposm)");
 		super.setContentText("Please pick an avatar to represent your profile picture");
+		this.imageList = FXUtil.loadAvatarImages();
+		this.buttonList = loadButtonList();
+		this.chosenOne = null;
 		new AvatarPickerUtil(this);
+	}
+	
+	private ArrayList<Button> loadButtonList() {
+		ArrayList<Button> list = new ArrayList<Button>();
+		for (int i = 0; i < imageList.size(); i++) {
+			Button bt = new Button("#" + i);
+			ImageView iv = new ImageView(imageList.get(i));
+			bt.setGraphic(iv);
+			bt.setContentDisplay(ContentDisplay.CENTER);
+			bt.setOnAction(e -> {
+				
+			});
+		}
+		return list;
 	}
 	
 	private class AvatarPickerUtil {
