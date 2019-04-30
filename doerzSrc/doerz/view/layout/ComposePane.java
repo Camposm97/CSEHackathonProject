@@ -30,7 +30,8 @@ public class ComposePane {
 	private UserAccount devUser, user;
 	private GridPane grid;
 	
-	public ComposePane(BorderPane root, Stage stage, UserAccount user) {
+	public ComposePane(BorderPane root, UserAccount user) {
+		this.user = user;
 		initializeNodes();
 		drawGrid();
 		root.setCenter(grid);
@@ -39,7 +40,7 @@ public class ComposePane {
 	}
 	
 	private void initializeNodes() {
-		userBtn = new Button("New Account");	// For development
+		userBtn = new Button("New Dev");	// For development
 		composeArea = new TextArea();
 		composeArea.setPromptText("Write something!");
 		composeArea.setPrefHeight(60);
@@ -65,10 +66,10 @@ public class ComposePane {
 	}
 
 	/*
-	 * This method increases the height of the textArea used to compose a post.
+	 * This method automatically resizes the post editor as you type to prevent scrolling.
 	 */
 	private void autoSizeMsg() {
-		SimpleIntegerProperty count=new SimpleIntegerProperty(50);
+		SimpleIntegerProperty count = new SimpleIntegerProperty(50);
 		int rowHeight = 10;
 
 		composeArea.prefHeightProperty().bindBidirectional(count);
@@ -85,27 +86,31 @@ public class ComposePane {
 			Message message = new Message(composeArea.getText(), composeArea.getHeight());
 			Post newPost = null;
 			
-			/*
-			 * The following if statement must be adjusted when a user is connected to the
-			 * server. That user will be the user attached to authoring a post.
-			 */
-			if(devUser == null) { 
-				// Generate default dummy account if none provided by user
-				newPost = new Post(message, Dummy.getDummyAcc("defaultUser"));
-			} else {
-				// Use user provided account.
+			// The following determines the author of a post when submitted.
+			if(devUser != null) {
+				// devUser overrides login account.
 				newPost = new Post(message, devUser);
+			} else {
+				// login user account.
+				newPost = new Post(message, user);
 			}
 			FeedPane.addToFeed(newPost);
-			composeArea.setPrefHeight(60);
-			clearAll();
+			resetTextArea();
 		});
+		
 		userBtn.setOnAction(e -> {
-			devUser = Dummy.getDummyAcc("def"); // "def" is a default username. This is provided to avoid a nullPointer.
+			// "def" is a default username. This is provided to avoid a nullPointer 
+			// if window is closed with no input.
+			devUser = Dummy.getDummyAcc("def"); 
 			new UserWindow(devUser);
 		});
 	}
 	
+	private void resetTextArea() {
+		composeArea.setPrefHeight(60);
+		clearAll();
+	}
+
 	private void clearAll() {
 		composeArea.clear();
 	}

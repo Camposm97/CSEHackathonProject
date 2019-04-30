@@ -29,9 +29,9 @@ public class ProfilePane {
 	private ImageView image;
 	private Label userLbl;
 	private Hyperlink editLbl;
-	private GridPane pane;
+	private GridPane grid;
 	
-	public ProfilePane(BorderPane root, Stage stage) {
+	public ProfilePane(BorderPane root) {
 		
 		initializeNodes();
 		drawPane(root);
@@ -39,22 +39,22 @@ public class ProfilePane {
 	}
 
 	private void drawPane(BorderPane root) {
-		pane = new GridPane();
-		pane.setPadding(new Insets(10));
-		pane.setVgap(5);
-		pane.setHgap(5);
-		pane.setMinWidth(175);
-		pane.setMinHeight(500);
-		pane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, 
+		grid = new GridPane();
+		grid.setPadding(new Insets(10));
+		grid.setVgap(5);
+		grid.setHgap(5);
+		grid.setMinWidth(175);
+		grid.setMinHeight(500);
+		grid.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, 
 				CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		
-		pane.add(image, 0, 0);
-		pane.add(userLbl, 1, 0);
+		grid.add(image, 0, 0);
+		grid.add(userLbl, 1, 0);
 		GridPane.setValignment(userLbl, VPos.TOP);
-		pane.add(gridRow(10), 0, 1);
-		pane.add(editLbl, 0, 2);
+		grid.add(gridRow(10), 0, 1);
+		grid.add(editLbl, 0, 2);
 		
-		root.setLeft(pane);		
+		root.setLeft(grid);		
 	}
 
 	private void initializeNodes() {

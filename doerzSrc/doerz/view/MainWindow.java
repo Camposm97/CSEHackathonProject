@@ -6,25 +6,34 @@ import campos.models.UserAccount;
 import doerz.model.Post;
 import doerz.view.layout.ComposePane;
 import doerz.view.layout.FeedPane;
+import doerz.view.layout.HeaderPane;
 import doerz.view.layout.ProfilePane;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class MainWindow {
+	
+	/*
+	 * MainWindow is the hub that controls what is displayed as the home screen.
+	 * After being successfully logged in, users should be sent here. 
+	 * 
+	 * Pass in the app's primary stage as well as the successful login account.
+	 */
 
 	public MainWindow(Stage stage, UserAccount user) {
 		BorderPane root = new BorderPane();
 		BorderPane nest = new BorderPane();
 		root.setCenter(nest);
 		Scene scene = new Scene(root, 750, 650);
-		
-		LinkedList<Post> feed = new LinkedList<Post>();
-		new ComposePane(nest, stage, user);
-		new FeedPane(nest, stage, feed);
-		new ProfilePane(root, stage);
-		
 		stage.setScene(scene);
 		stage.show();
+		
+		LinkedList<Post> feed = new LinkedList<Post>();
+		new ComposePane(nest, user);
+		new FeedPane(nest, feed);
+		new ProfilePane(root);
+		new HeaderPane(root, stage);
+		
 	}
 }
