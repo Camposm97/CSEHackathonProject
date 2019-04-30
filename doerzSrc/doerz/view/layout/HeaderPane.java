@@ -42,10 +42,20 @@ public class HeaderPane {
 		});
 		
 		searchBtn.setOnAction(e -> {
-			
+			searchFunction();
 		});
 	}
 
+	private void searchFunction() {
+		String key = searchTf.getText();
+		/*
+		 * write key to server
+		 * read list back
+		 * 
+		 * send list to feedPane
+		 */
+	}
+	
 	private void drawPane(BorderPane root, Stage stage) {
 		hRoot = new HBox();
 		HBox logo = new HBox();
@@ -85,7 +95,6 @@ public class HeaderPane {
 		searchTf.setPrefWidth(300);
 		logoutBtn = new Button("Sign out");
 		searchBtn = new Button("Search");
-		
 	}
 
 	private void drawLogo() {

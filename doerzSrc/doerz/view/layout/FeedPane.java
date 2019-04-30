@@ -65,8 +65,8 @@ public class FeedPane {
 		scrlPane.setContent(feedBox);
 		scrlPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 		scrlPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
-        scrlPane.setMaxHeight(500);
-        scrlPane.setPrefHeight(450);
+        scrlPane.setMaxHeight(700);
+        scrlPane.setPrefHeight(650);
 	}
 
 	private void callBacks() {

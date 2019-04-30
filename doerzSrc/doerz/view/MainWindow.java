@@ -25,7 +25,8 @@ public class MainWindow {
 		BorderPane root = new BorderPane();
 		BorderPane nest = new BorderPane();
 		root.setCenter(nest);
-		Scene scene = new Scene(root, 750, 650);
+		Scene scene = new Scene(root, 950, 850);
+		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.show();
 		

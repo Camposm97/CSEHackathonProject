@@ -44,9 +44,9 @@ public class ComposePane {
 		composeArea = new TextArea();
 		composeArea.setPromptText("Write something!");
 		composeArea.setPrefHeight(60);
-		composeArea.setMinWidth(400);						
+		composeArea.setMinWidth(600);			
 		postBtn = new Button("Post");		
-		postBtn.setPrefSize(50, 50);
+		postBtn.setPrefSize(60, 50);
 	}
 
 	private void drawGrid() {
