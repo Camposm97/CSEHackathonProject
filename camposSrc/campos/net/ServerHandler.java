@@ -92,7 +92,7 @@ public class ServerHandler implements Runnable {
 		UserAccountBag userBag = ta.getServer().getUserBag();
 		UserAccount user = (UserAccount) ois.readObject();
 		boolean flag = userBag.contains(user);
-		if (flag) { // Does User Exist in UserBag?
+		if (!flag) { // Does User Exist in UserBag?
 			userBag.add(user);
 		}
 		oos.writeBoolean(flag);
