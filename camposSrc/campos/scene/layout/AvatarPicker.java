@@ -1,6 +1,9 @@
 package campos.scene.layout;
 
-import javafx.scene.layout.StackPane;
+import java.util.ArrayList;
+
+import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 
 /**
  * AvatarPicker might be on a window of it's own (best not to be, but time is short), so
@@ -9,12 +12,26 @@ import javafx.scene.layout.StackPane;
  * Displayed when the user decides to sign up or wants to change his/her profile picture.  
  * @author Camposm97
  */
-public class AvatarPicker extends StackPane {
+public class AvatarPicker extends Alert {
+	private ArrayList<Image> imageList;
+	private Image chosenOne;
+	
 	public AvatarPicker() {
-		new AvatarPickerUtil();
+		super(AlertType.INFORMATION);
+		super.setTitle("Avatar Picker (By Camposm)");
+		super.setContentText("Please pick an avatar to represent your profile picture");
+		new AvatarPickerUtil(this);
 	}
 	
 	private class AvatarPickerUtil {
+		public AvatarPicker avaPicker;
 		
+		public AvatarPickerUtil(AvatarPicker avaPicker) {
+			this.avaPicker = avaPicker;
+		}
+		
+		private void loadControls() {
+			
+		}
 	}
 }

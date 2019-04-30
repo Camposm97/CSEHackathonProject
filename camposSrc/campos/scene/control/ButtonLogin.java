@@ -32,7 +32,6 @@ public class ButtonLogin extends Button {
 			try {
 				Socket socket = new Socket(IPv4.HOST, IPv4.PORT);
 				new Thread(new SocketHandler(socket)).start();
-//				new Thread(new ClientHandler(socket, loginPane)).start();
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				Platform.runLater(() -> {
@@ -64,6 +63,7 @@ public class ButtonLogin extends Button {
 						// If !null, then login was a success, move to post feed and pass the UserAccount
 						loginPane.getLblStatus().setText("Success! :D");
 						loginPane.getLblStatus().setTextFill(Color.GREEN);
+						// change to post feed
 					} else { // Invalid Credentials
 						loginPane.getLblStatus().setText("Failure :(");
 						loginPane.getLblStatus().setTextFill(Color.RED);
