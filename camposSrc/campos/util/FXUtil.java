@@ -31,7 +31,7 @@ public class FXUtil {
 		ArrayList<Image> list = new ArrayList<>();
 		for (int i = 0; i < SIZE; i++) {
 			Image image = ImgUtil.loadImg("resources/images/avatars/" + String.valueOf(i) + ".jpg");
-			System.out.println(image.getWidth() + " | " + image.getHeight());
+//			System.out.println(image.getWidth() + " | " + image.getHeight());
 			list.add(image);
 		}
 		return list;
