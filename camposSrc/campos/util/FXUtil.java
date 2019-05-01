@@ -30,7 +30,9 @@ public class FXUtil {
 		final int SIZE = 5;
 		ArrayList<Image> list = new ArrayList<>();
 		for (int i = 0; i < SIZE; i++) {
-			list.add(ImgUtil.loadImg("resources/images/avatars/" + String.valueOf(i) + ".jpg"));
+			Image image = ImgUtil.loadImg("resources/images/avatars/" + String.valueOf(i) + ".jpg");
+			System.out.println(image.getWidth() + " | " + image.getHeight());
+			list.add(image);
 		}
 		return list;
 	}
@@ -42,7 +44,7 @@ public class FXUtil {
 			vBox.getChildren().add(e);
 		return vBox;
 	}
-
+	
 	public static HBox asHBox(Node... nodes) {
 		HBox hBox = new HBox(10);
 		hBox.setAlignment(Pos.CENTER);
