@@ -22,12 +22,12 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class FXUtil {
-	public static final String TITLE = "Connect v1.0";
+	public static final String TITLE = "Connect v1.0"; // Because you'll only connect with one person with this app
 	public static final Insets DEFAULT_INSETS = new Insets(10);
 	public static final double BT_WIDTH = 86;
 	
 	public static ArrayList<Image> loadAvatarImages() {
-		final int SIZE = 5;
+		final int SIZE = 7;
 		ArrayList<Image> list = new ArrayList<>();
 		for (int i = 0; i < SIZE; i++) {
 			Image image = ImgUtil.loadImg("resources/images/avatars/" + String.valueOf(i) + ".jpg");

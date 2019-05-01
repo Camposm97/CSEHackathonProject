@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import campos.util.FXUtil;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,6 +20,7 @@ import javafx.scene.layout.VBox;
  * @author Camposm97
  */
 public class AvatarPicker extends Alert {
+	private static final int COL_SIZE = 3;
 	private ArrayList<Image> imageList;
 	private GridPane buttonGridPane;
 	private Image chosenOne;
@@ -30,15 +32,14 @@ public class AvatarPicker extends Alert {
 		this.imageList = FXUtil.loadAvatarImages();
 		this.buttonGridPane = loadButtonGridPane();
 		this.chosenOne = null;
-		super.getDialogPane().setExpandableContent(new ScrollPane(buttonGridPane));
+		super.getDialogPane().setContent(new ScrollPane(buttonGridPane));
 		super.setResizable(false);
 	}
 	
 	private GridPane loadButtonGridPane() {
-//		ArrayList<Button> list = new ArrayList<Button>();
-//		VBox vBox = new VBox(10);
 		GridPane gridPane = new GridPane();
 		float ratio = (float) 0.5;
+		int col = 0, row = 0;
 		for (int i = 0; i < imageList.size(); i++) {
 			Button bt = new Button("#" + i);
 			Image img = imageList.get(i);
@@ -46,14 +47,17 @@ public class AvatarPicker extends Alert {
 			iv.setFitHeight(img.getHeight() * ratio);
 			iv.setFitWidth(img.getWidth() * ratio);
 			bt.setGraphic(iv);
-//			bt.setContentDisplay(ContentDisplay.CENTER);
+			bt.setContentDisplay(ContentDisplay.BOTTOM);
 			bt.setOnAction(e -> {
 				chosenOne = iv.getImage();
 				System.out.println("Chosen one is now: " + chosenOne);
 			});
-//			list.add(bt);
-//			vBox.getChildren().add(bt);
-			gridPane.add(bt, 0, i);
+			gridPane.add(bt, col, row);
+			col++;
+			if (col > (COL_SIZE - 1)) {
+				col = 0;
+				row++;
+			}
 		}
 		return gridPane;
 	}
