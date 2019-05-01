@@ -34,9 +34,11 @@ public class FeedPane {
 	private ScrollPane scrlPane;
 	private static VBox feedBox;
 	private static LinkedList<Post> feed;
+//	private BorderPane root;
 	
 	public FeedPane(BorderPane root, LinkedList<Post> feed) {
 		FeedPane.feed = feed;
+//		root = new BorderPane();
 		
 		initilizePanes();
 		scrollPaneSettings();
@@ -46,6 +48,10 @@ public class FeedPane {
 		root.setBottom(scrlPane);
 	}
 	
+//	public BorderPane getNode() {
+//		return root;
+//	}
+
 	private void devOperations(BorderPane root) {
 		HBox box = new HBox();
 //		box.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, 

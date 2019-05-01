@@ -32,6 +32,8 @@ public class MainWindow {
 		
 		LinkedList<Post> feed = new LinkedList<Post>();
 		new ComposePane(nest, user);
+//		FeedPane fp = new FeedPane(feed);
+//		nest.setBottom(fp.getNode());
 		new FeedPane(nest, feed);
 		new ProfilePane(root);
 		new HeaderPane(root, stage);
