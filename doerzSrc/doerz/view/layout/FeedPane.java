@@ -34,9 +34,20 @@ public class FeedPane {
 	private ScrollPane scrlPane;
 	private static VBox feedBox;
 	private static LinkedList<Post> feed;
+	private BorderPane root;
 	
-	public FeedPane(BorderPane root, LinkedList<Post> feed) {
+	// May change BorderPane to something else since it isn't necessary anymore.
+	// It works so I might not change it.
+	
+	// Implement feed: initialize a feed ("new FeedPane(LinkedList<Post>  ") and
+	// call .getNode();
+	// Place that into GUI.
+	
+	// You will need to import Post.java and PostView.java from doerzSrc folder
+	
+	public FeedPane(LinkedList<Post> feed) {
 		FeedPane.feed = feed;
+		root = new BorderPane();
 		
 		initilizePanes();
 		scrollPaneSettings();
@@ -46,6 +57,10 @@ public class FeedPane {
 		root.setBottom(scrlPane);
 	}
 	
+	public BorderPane getNode() {
+		return root;
+	}
+
 	private void devOperations(BorderPane root) {
 		HBox box = new HBox();
 //		box.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, 
@@ -65,8 +80,8 @@ public class FeedPane {
 		scrlPane.setContent(feedBox);
 		scrlPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 		scrlPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
-        scrlPane.setMaxHeight(500);
-        scrlPane.setPrefHeight(450);
+        scrlPane.setMaxHeight(700);
+        scrlPane.setPrefHeight(650);
 	}
 
 	private void callBacks() {

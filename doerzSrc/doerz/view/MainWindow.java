@@ -25,13 +25,14 @@ public class MainWindow {
 		BorderPane root = new BorderPane();
 		BorderPane nest = new BorderPane();
 		root.setCenter(nest);
-		Scene scene = new Scene(root, 750, 650);
+		Scene scene = new Scene(root, 950, 850);
+		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.show();
 		
 		LinkedList<Post> feed = new LinkedList<Post>();
 		new ComposePane(nest, user);
-		new FeedPane(nest, feed);
+		nest.setBottom(new FeedPane(feed).getNode());
 		new ProfilePane(root);
 		new HeaderPane(root, stage);
 		

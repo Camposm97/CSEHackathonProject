@@ -60,7 +60,7 @@ public class PostView {
 	private void drawBody(Post post) {
 		msgBdy = new TextArea();
 		msgBdy.setPrefHeight(post.getHeight());
-		msgBdy.setPrefWidth(500);
+		msgBdy.setPrefWidth(700);
 		msgBdy.setText(post.getMessage());
 		msgBdy.setWrapText(true);
 		msgBdy.setEditable(false);
