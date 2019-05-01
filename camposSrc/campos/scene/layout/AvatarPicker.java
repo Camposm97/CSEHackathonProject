@@ -3,6 +3,8 @@ package campos.scene.layout;
 import java.util.ArrayList;
 
 import campos.util.FXUtil;
+import campos.util.ImgUtil;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -10,7 +12,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 
 /**
  * AvatarPicker might be on a window of it's own (best not to be, but time is short), so
@@ -31,13 +32,18 @@ public class AvatarPicker extends Alert {
 		super.setHeaderText("Please select your avatar: (Will be Used to Represent Your Profile Picture");
 		this.imageList = FXUtil.loadAvatarImages();
 		this.buttonGridPane = loadButtonGridPane();
-		this.chosenOne = null;
-		super.getDialogPane().setContent(new ScrollPane(buttonGridPane));
+		this.chosenOne = ImgUtil.loadImg("resources/images/avatars/default.png");
+		super.getDialogPane().setContent(buttonGridPane);
 		super.setResizable(false);
+	}
+	
+	public Image getChosenOne() {
+		return chosenOne;
 	}
 	
 	private GridPane loadButtonGridPane() {
 		GridPane gridPane = new GridPane();
+		gridPane.setAlignment(Pos.CENTER);
 		float ratio = (float) 0.5;
 		int col = 0, row = 0;
 		for (int i = 0; i < imageList.size(); i++) {
