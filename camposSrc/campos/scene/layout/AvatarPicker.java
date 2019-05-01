@@ -1,6 +1,16 @@
 package campos.scene.layout;
 
-import javafx.scene.layout.StackPane;
+import java.util.ArrayList;
+
+import campos.util.FXUtil;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 /**
  * AvatarPicker might be on a window of it's own (best not to be, but time is short), so
@@ -9,12 +19,46 @@ import javafx.scene.layout.StackPane;
  * Displayed when the user decides to sign up or wants to change his/her profile picture.  
  * @author Camposm97
  */
-public class AvatarPicker extends StackPane {
+public class AvatarPicker extends Alert {
+	private static final int COL_SIZE = 3;
+	private ArrayList<Image> imageList;
+	private GridPane buttonGridPane;
+	private Image chosenOne;
+	
 	public AvatarPicker() {
-		new AvatarPickerUtil();
+		super(AlertType.INFORMATION);
+		super.setTitle("Avatar Picker (By Camposm)");
+		super.setHeaderText("Please select your avatar: (Will be Used to Represent Your Profile Picture");
+		this.imageList = FXUtil.loadAvatarImages();
+		this.buttonGridPane = loadButtonGridPane();
+		this.chosenOne = null;
+		super.getDialogPane().setContent(new ScrollPane(buttonGridPane));
+		super.setResizable(false);
 	}
 	
-	private class AvatarPickerUtil {
-		
+	private GridPane loadButtonGridPane() {
+		GridPane gridPane = new GridPane();
+		float ratio = (float) 0.5;
+		int col = 0, row = 0;
+		for (int i = 0; i < imageList.size(); i++) {
+			Button bt = new Button("#" + i);
+			Image img = imageList.get(i);
+			ImageView iv = new ImageView(imageList.get(i));
+			iv.setFitHeight(img.getHeight() * ratio);
+			iv.setFitWidth(img.getWidth() * ratio);
+			bt.setGraphic(iv);
+			bt.setContentDisplay(ContentDisplay.BOTTOM);
+			bt.setOnAction(e -> {
+				chosenOne = iv.getImage();
+				System.out.println("Chosen one is now: " + chosenOne);
+			});
+			gridPane.add(bt, col, row);
+			col++;
+			if (col > (COL_SIZE - 1)) {
+				col = 0;
+				row++;
+			}
+		}
+		return gridPane;
 	}
 }
