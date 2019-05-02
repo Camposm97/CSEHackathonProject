@@ -47,17 +47,15 @@ public class SignUpPane extends BorderPane {
 		return tfUsername;
 	}
 	
-	public void setValidUsername(boolean flag) {
+	public void setValidSignUp(boolean flag) {
 		Tooltip tip = new Tooltip();
 		tfUsername.setTooltip(tip);
 		if (flag) {
-			tfUsername.setStyle("-fx-border-color: red; -fx-background-color: #FFF0F0;");
-			tip.setText("Sorry, that username is already taken :(");
-			btSignUp.setDisable(true);
-		} else {
 			tfUsername.setStyle("");
 			tip.setText("Valid Username!");
-			btSignUp.setDisable(false);
+		} else {
+			tfUsername.setStyle("-fx-border-color: red; -fx-background-color: #FFF0F0;");
+			tip.setText("Sorry, that username is already taken :(");
 		}
 	}
 	

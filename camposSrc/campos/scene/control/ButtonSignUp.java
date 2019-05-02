@@ -9,6 +9,7 @@ import campos.net.IPv4;
 import campos.net.SocketType;
 import campos.scene.layout.SignUpPane;
 import campos.util.FXUtil;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -60,11 +61,14 @@ public class ButtonSignUp extends Button {
 			oos.writeObject(SocketType.SignUp);				
 			oos.writeObject(signUpPane.getUserAccount());
 			boolean flag = ois.readBoolean();
-			System.out.println("Valid? " + flag);
+			System.out.println("Successful SignUp?? " + flag);
 			if (flag) {
-				signUpPane.setValidUsername(flag);
+				signUpPane.setValidSignUp(flag); // Yes
+				Platform.runLater(() -> { // Gives Some Thread Exception Unless Not Used
+					FXUtil.toLoginPane(signUpPane);
+				});
 			} else {
-				signUpPane.setValidUsername(flag);
+				signUpPane.setValidSignUp(flag); // No
 			}
 			oos.close();
 			ois.close();

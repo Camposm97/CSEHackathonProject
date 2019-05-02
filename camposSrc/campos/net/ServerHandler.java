@@ -63,20 +63,20 @@ public class ServerHandler implements Runnable {
 		}
 	}
 
-	public void verifyLogin() throws IOException, ClassNotFoundException {
+	public synchronized void verifyLogin() throws IOException, ClassNotFoundException {
 		System.out.println("Verifying Credentials...");
-		UserAccount temp = (UserAccount) ois.readObject();
-		boolean userExists = ta.getServer().getUserBag().contains(temp);
+		UserAccount keyAccount = (UserAccount) ois.readObject();
+		boolean userExists = ta.getServer().getUserBag().contains(keyAccount);
 
 		Platform.runLater(() -> {
-			ta.appendText("Does " + temp.getUsername() + " exist? " + userExists + "\n");
+			ta.appendText("Does " + keyAccount.getUsername() + " exist? " + userExists + "\n");
 			ta.appendText("\n");
 		});
 
 		if (userExists) {
-			UserAccount user = ta.getServer().getUserBag().findByUsername(temp.getUsername());
-			if (user.getPassword().equals(temp.getPassword())) {
-				oos.writeObject(user);
+			UserAccount temp = ta.getServer().getUserBag().findByUsername(keyAccount.getUsername());
+			if (temp.getPassword().equals(keyAccount.getPassword())) {
+				oos.writeObject(temp);
 			} else {
 				oos.writeObject(null);
 			}
@@ -91,11 +91,12 @@ public class ServerHandler implements Runnable {
 	public synchronized void signUp() throws ClassNotFoundException, IOException {
 		UserAccountBag userBag = ta.getServer().getUserBag();
 		UserAccount user = (UserAccount) ois.readObject();
-		boolean flag = userBag.contains(user);
-		if (!flag) { // Does User Exist in UserBag?
+		if (userBag.contains(user)) { // Does User Exist in UserBag?
+			oos.writeBoolean(false); // Unsuccessful Sign Up
+		} else {
 			userBag.add(user);
+			oos.writeBoolean(true); // Successful Sign Up
 		}
-		oos.writeBoolean(flag);
 		oos.flush();
 		ois.close();
 		oos.close();
