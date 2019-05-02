@@ -7,7 +7,7 @@ public class ButtonAvatar extends Button {
 	private AvatarPicker avatarPicker;
 	
 	public ButtonAvatar() {
-		super("Pick my Avatar");
+		super("Pick My Avatar");
 		this.avatarPicker = new AvatarPicker();
 		this.setOnAction(e -> {
 			avatarPicker = new AvatarPicker();

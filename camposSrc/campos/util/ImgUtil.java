@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 public class ImgUtil {
 	public static final String ICON_MAIN = "resources/images/icons/puzzle.png";
+	public static final int NUM_OF_AVATARS = 7;
 	
 	public static void loadStageIcon(Stage stage) {
 		stage.getIcons().add(loadImg(ICON_MAIN));
@@ -18,7 +19,9 @@ public class ImgUtil {
 	public static Image loadImg(String url) {
 		FileInputStream fis = null;
 		try {
-			fis = new FileInputStream(new File(url));
+			File file = new File(url);
+//			System.out.println(file.getPath());
+			fis = new FileInputStream(file);
 		} catch (FileNotFoundException e) { e.printStackTrace(); }
 		return new Image(fis);
 	}

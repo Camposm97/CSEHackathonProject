@@ -23,7 +23,7 @@ public class UserAccount implements Serializable, Comparable<UserAccount> {
 		this.id = String.valueOf(idNumber++);
 		this.s = s;
 		username = UsernameUtil.createUsername(s.getName(), id);
-		password = Random.getPassword();
+		password = Random.emitPassword();
 		DataSaver.saveIdNumber(idNumber);
 	}
 

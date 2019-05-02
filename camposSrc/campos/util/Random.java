@@ -1,35 +1,43 @@
 package campos.util;
 
 import campos.models.Major;
+import javafx.scene.image.Image;
 
-public class Random {	
-	public static double getGpa() {
+public class Random {
+	public static double emitGpa() {
 		final double GPA = 4.0;
 		return (Math.random() * GPA) + 1;
 	}
-	
-	public static String getPassword() {
+
+	public static String emitPassword() {
 		final int length = 8;
 		String str = "";
-		do { str = getChars(length);
+		do {
+			str = emitCharacters(length);
 		} while (!PasswordUtil.isValid(str));
 		return str;
 	}
-	
-	public static String getChars(int n) {
+
+	public static String emitCharacters(int n) {
 //		String alphabet = "AaBcCcDdEeFfGgHhIiJjKkMmNnOoPpQqRrSsTtUuVvWwXxYyZz !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~";
 		String alphabet = "AaBcCcDdEeFfGgHhIiJjKkMmNnOoPpQqRrSsTtUuVvWwXxYyZz~!@#$%^&*()-_=+";
 		String str = "";
 		for (int i = 0; i < n; i++)
-			str += alphabet.charAt(getNumber(alphabet.length(), 0));
+			str += alphabet.charAt(emitNumber(alphabet.length(), 0));
 		return str;
 	}
-	
-	public static int getNumber(int max, int min) {
+
+	public static int emitNumber(int max, int min) {
 		return (int) ((Math.random() * max) + min);
 	}
-	
+
 	public static Major emitMajor() {
 		return Major.values()[(int) (Math.random() * Major.values().length)];
+	}
+	
+	public static Image emitAvatar() {
+		int n = emitNumber(ImgUtil.NUM_OF_AVATARS, 0);
+		Image image = ImgUtil.loadImg("resources/images/avatars/" + String.valueOf(n) + ".jpg");
+		return image;
 	}
 }

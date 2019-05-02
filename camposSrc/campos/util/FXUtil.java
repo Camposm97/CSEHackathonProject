@@ -27,9 +27,8 @@ public class FXUtil {
 	public static final double BT_WIDTH = 86;
 	
 	public static ArrayList<Image> loadAvatarImages() {
-		final int SIZE = 7;
 		ArrayList<Image> list = new ArrayList<>();
-		for (int i = 0; i < SIZE; i++) {
+		for (int i = 0; i < ImgUtil.NUM_OF_AVATARS; i++) {
 			Image image = ImgUtil.loadImg("resources/images/avatars/" + String.valueOf(i) + ".jpg");
 //			System.out.println(image.getWidth() + " | " + image.getHeight());
 			list.add(image);

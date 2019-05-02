@@ -63,6 +63,7 @@ public class SignUpPane extends BorderPane {
 	
 	public UserAccount getUserAccount() {
 		Image image = btAvatar.getAvatarPicker().getChosenOne();
+		image.cancel();
 		Name name = new Name(tfFirstName.getText(), tfLastName.getText(), cbGender.getValue());
 		Student s = new Student(name, cbMajor.getValue());
 		return new UserAccount(s, tfUsername.getText(), tfPass.getText());
@@ -103,21 +104,29 @@ public class SignUpPane extends BorderPane {
 			gridPane.setAlignment(Pos.CENTER);
 			gridPane.setHgap(10);
 			gridPane.setVgap(10);
-			gridPane.add(new Label("First Name:"), 0, 0);
-			gridPane.add(new Label("Last Name:"), 0, 1);
-			gridPane.add(new Label("Gender:"), 0, 2);
-			gridPane.add(new Label("Major:"), 0, 3);
-			gridPane.add(new Label("Username:"), 0, 4);
-			gridPane.add(new Label("Password"), 0, 5);
-			gridPane.add(new Label("Re-Type Password:"), 0, 6);
-			gridPane.add(tfFirstName, 1, 0);
-			gridPane.add(tfLastName, 1, 1);
-			gridPane.add(cbGender, 1, 2);
-			gridPane.add(cbMajor, 1, 3);
-			gridPane.add(tfUsername, 1, 4);
-			gridPane.add(tfPass, 1, 5);
-			gridPane.add(tfPassReType, 1, 6);
-			gridPane.add(FXUtil.asHBox(btSignUp, btCancel), 0, 7, 3, 1);
+			gridPane.add(FXUtil.asVBox(btAvatar), 0, 0, 2, 1);
+			gridPane.addRow(1, new Label("First Name:"), tfFirstName); // Wow OP Function
+			gridPane.addRow(2, new Label("Last Name:"), tfLastName); // Since JavaFX 1.0
+			gridPane.addRow(3, new Label("Gender:"), cbGender); // Wow look how many
+			gridPane.addRow(4, new Label("Major:"), cbMajor); // lines of code I 
+			gridPane.addRow(5, new Label("Username:"), tfUsername); // saved :D
+			gridPane.addRow(6, new Label("Password:"), tfPass);
+			gridPane.addRow(7, new Label("Re-Type Password:"), tfPassReType);
+//			gridPane.add(new Label("First Name:"), 0, 0);
+//			gridPane.add(new Label("Last Name:"), 0, 1);
+//			gridPane.add(new Label("Gender:"), 0, 2);
+//			gridPane.add(new Label("Major:"), 0, 3);
+//			gridPane.add(new Label("Username:"), 0, 4);
+//			gridPane.add(new Label("Password"), 0, 5);
+//			gridPane.add(new Label("Re-Type Password:"), 0, 6);
+//			gridPane.add(tfFirstName, 1, 0);
+//			gridPane.add(tfLastName, 1, 1);
+//			gridPane.add(cbGender, 1, 2);
+//			gridPane.add(cbMajor, 1, 3);
+//			gridPane.add(tfUsername, 1, 4);
+//			gridPane.add(tfPass, 1, 5);
+//			gridPane.add(tfPassReType, 1, 6);
+			gridPane.add(FXUtil.asHBox(btSignUp, btCancel), 0, 8, 3, 1);
 			signUpPane.setCenter(gridPane);
 		}
 				
