@@ -8,7 +8,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -29,7 +28,7 @@ public class AvatarPicker extends Alert {
 	public AvatarPicker() {
 		super(AlertType.INFORMATION);
 		super.setTitle("Avatar Picker (By Camposm)");
-		super.setHeaderText("Please select your avatar: (Will be Used to Represent Your Profile Picture");
+		super.setHeaderText("Please select your Avatar: (Will be Used to Represent Your Profile Picture");
 		this.imageList = FXUtil.loadAvatarImages();
 		this.buttonGridPane = loadButtonGridPane();
 		this.chosenOne = ImgUtil.loadImg("resources/images/avatars/default.png");

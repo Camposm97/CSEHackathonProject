@@ -6,6 +6,7 @@ import campos.models.Major;
 import campos.models.Name;
 import campos.models.Student;
 import campos.models.UserAccount;
+import campos.scene.control.ButtonAvatar;
 import campos.scene.control.ButtonSignUp;
 import campos.util.FXUtil;
 import campos.util.PasswordUtil;
@@ -16,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
@@ -25,6 +27,7 @@ public class SignUpPane extends BorderPane {
 	private ComboBox<Major> cbMajor;
 	private PasswordField tfPass, tfPassReType;
 	private ButtonSignUp btSignUp;
+	private ButtonAvatar btAvatar;
 	private Button btCancel;
 
 	public SignUpPane() {
@@ -59,11 +62,20 @@ public class SignUpPane extends BorderPane {
 	}
 	
 	public UserAccount getUserAccount() {
+		Image image = btAvatar.getAvatarPicker().getChosenOne();
 		Name name = new Name(tfFirstName.getText(), tfLastName.getText(), cbGender.getValue());
 		Student s = new Student(name, cbMajor.getValue());
 		return new UserAccount(s, tfUsername.getText(), tfPass.getText());
 	}
 	
+	/** PRO TIP [2019-May-02 | 8:46 AM EST]
+	 * Benefits of Using Inner Classes:
+	 * 1. It can access the members from the outer class (instance variables and methods)
+	 * 2. Inner classes (Alternative Name: Nested Classes :O) can be used to develop
+	 * more readable and maintainable code
+	 * 3. (Big OOF) CODE OPTIMIZATION, requires less code to write :)
+	 * @author Camposm97
+	 */
 	private class SignUpPaneUtil {
 		private SignUpPane signUpPane;
 		
@@ -76,6 +88,7 @@ public class SignUpPane extends BorderPane {
 		public void loadControls() {
 			btSignUp = new ButtonSignUp(signUpPane);
 			btCancel = loadBtCancel();
+			btAvatar = new ButtonAvatar();
 			tfFirstName = new TextField();
 			tfLastName = new TextField();
 			tfUsername = new TextField();
