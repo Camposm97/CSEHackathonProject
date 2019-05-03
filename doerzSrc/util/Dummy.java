@@ -23,15 +23,9 @@ public class Dummy {
 		return dummyAcc;
 	}
 	
-	// Not sure what this method was intended for. Will delete when sure it isn't in use.
-	public static UserAccount setAcc(String first, String last, String user, String pass) {
-		
-		
-		return null;
-	}
 	
 	public static String getRandomPass() {
-		return Random.getPassword();
+		return Random.emitPassword();
 	}
 	
 }
