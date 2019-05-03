@@ -4,16 +4,22 @@ import java.util.Date;
 
 import campos.models.UserAccount;
 
-public class Post {
+public class Post extends Message {
 	private static int idNumber = 0;
 	private String id;
-	private Message message;
 	private UserAccount author;
 	private Date date;
 
-	public Post(Message message, UserAccount author) {
+	public Post(String message, UserAccount author) {
+		super(message);
 		this.id = String.valueOf(idNumber++);
-		this.message = message;
+		this.author = author;
+		date = new Date();
+	}
+	
+	public Post(String message, double height, UserAccount author) {
+		super(message, height);
+		this.id = String.valueOf(idNumber++);
 		this.author = author;
 		date = new Date();
 	}
@@ -31,19 +37,19 @@ public class Post {
 	}
 
 	public String getMessage() {
-		return message.getMessage();
+		return super.getMessage();
 	}
 
 	public void setMessage(String message) {
-		this.message.setMessage(message);
+		super.setMessage(message);
 	}
 	
 	public double getHeight() {
-		return message.getHeight();
+		return super.getHeight();
 	}
 
 	@Override
 	public String toString() {
-		return "Post [id:" + id + ", msg:" + message + ", time:" + date +"]";
+		return "Post [id:" + id + ", msg:" + super.getMessage() + ", time:" + date +"]";
 	}
 }

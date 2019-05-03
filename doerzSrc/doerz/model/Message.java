@@ -1,12 +1,17 @@
 package doerz.model;
 
-public class Message {
+public abstract class Message {
 	private String message;
 	private double height;
 	
 	public Message(String message, double height) {
 		this.message = message;
 		this.height = height;
+	}
+	
+	public Message(String message) {
+		this.message = message;
+		this.height = 60;
 	}
 
 	public String getMessage() {

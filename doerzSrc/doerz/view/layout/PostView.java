@@ -25,12 +25,22 @@ public class PostView {
 	private Label authorLbl, idLbl, dateLbl;
 	private TextArea msgBdy;
 	private GridPane grid;
+	private double width;
 	
 	public PostView(Post post){
+		this.width = 700;	// default value for post width
+		initialize(post);
+	}
+	
+	public PostView(Post post, double width) {
+		this.width = width;
+		initialize(post);
+	}
+	
+	private void initialize(Post post) {
 		drawGrid();
 		drawHeader(post);
 		drawBody(post);
-		
 	}
 	
 	private void drawGrid() {
@@ -60,7 +70,7 @@ public class PostView {
 	private void drawBody(Post post) {
 		msgBdy = new TextArea();
 		msgBdy.setPrefHeight(post.getHeight());
-		msgBdy.setPrefWidth(700);
+		msgBdy.setPrefWidth(width);
 		msgBdy.setText(post.getMessage());
 		msgBdy.setWrapText(true);
 		msgBdy.setEditable(false);
@@ -77,7 +87,7 @@ public class PostView {
 	}
 	
 	// Returns the post as a pane that can be displayed on the GUI.
-	public GridPane getPost() {
+	public GridPane getNode() {
 		return grid;
 	}
 }
