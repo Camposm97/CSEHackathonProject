@@ -30,44 +30,72 @@ public class FeedPane {
 	 */
 	private static final int MESSAGE_VIEW_CAP = 10;
 	
-	private Button clrBtn, clrDataBtn;	// for debugging								
+	private Button clrBtn, clrDataBtn;	// for debugging	
+	
 	private ScrollPane scrlPane;
 	private static VBox feedBox;
 	private static LinkedList<Post> feed;
 	private BorderPane root;
+	private static double height, width;
 	
-	// May change BorderPane to something else since it isn't necessary anymore.
-	// It works so I might not change it.
+/*	May change BorderPane to something else since it isn't necessary anymore.
+			-It works so I might not change it.
 	
-	// Implement feed: initialize a feed ("new FeedPane(LinkedList<Post>  ") and
-	// call .getNode();
-	// Place that into GUI.
+	To Implement feed: initialize a feed ("new FeedPane(LinkedList<Post>  ") and
+	call .getNode();
+	Place that into GUI.
 	
-	// You will need to import Post.java and PostView.java from doerzSrc folder
+	You will need to import Post.java and PostView.java from doerzSrc folder
 	
+	*Alternative constructor takes height and width parameters.
+		Height: The height of the scrollPane the feed sits within. If this value isn't 
+				set correctly, your feed may scroll beyond your viewport.
+	
+		Width: The width of individual posts within the feed. 
+*/	
 	public FeedPane(LinkedList<Post> feed) {
+		FeedPane.height = 650;	// Default value for height of feed
+		FeedPane.width = 700;	// Default value of post width.
+		constructFeedPane(feed);
+	}
+	
+	public FeedPane(LinkedList<Post> feed, double height, double width) {
+		FeedPane.height = height;
+		FeedPane.width = width;
+		constructFeedPane(feed);
+	}
+	
+	private void constructFeedPane(LinkedList<Post> feed) {
 		FeedPane.feed = feed;
 		root = new BorderPane();
 		
 		initilizePanes();
 		scrollPaneSettings();
-		devOperations(root);	// for debugging
+//		devOperations(root);	// for debugging
 		callBacks();
 	
 		root.setBottom(scrlPane);
 	}
+
 	
 	public BorderPane getNode() {
 		return root;
 	}
 
+	// debugging tools
 	private void devOperations(BorderPane root) {
 		HBox box = new HBox();
-//		box.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, 
-//				CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		clrBtn = new Button("Clear Feed View");						
 		clrDataBtn = new Button("Delete All Posts");				
 		box.getChildren().addAll(clrBtn, clrDataBtn);
+		
+		clrBtn.setOnAction(e -> {		// Clear messages from viewport. Does NOT delete data.
+			feedBox.getChildren().clear();
+		});
+		clrDataBtn.setOnAction(e -> {	// Deletes all currently stored messages.
+			feed.clear();
+		});
+		
 		root.setTop(box);
 	}
 	
@@ -80,17 +108,11 @@ public class FeedPane {
 		scrlPane.setContent(feedBox);
 		scrlPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 		scrlPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
-        scrlPane.setMaxHeight(700);
-        scrlPane.setPrefHeight(650);
+        scrlPane.setPrefHeight(height);
 	}
 
 	private void callBacks() {
-		clrBtn.setOnAction(e -> {		// Clear messages from viewport. Does NOT delete data. -For debugging
-			feedBox.getChildren().clear();
-		});
-		clrDataBtn.setOnAction(e -> {	// Deletes all currently stored messages. -For debugging
-			feed.clear();
-		});
+
 	}
 	
 	public static void addToFeed(Post post) {
@@ -126,8 +148,8 @@ public class FeedPane {
 		 *  		where 10 is MESSAGE_VIEW_CAP.
 		 */
 		for(Post p : feed.subList(lowerBound, upperBound)) {
-			PostView newPost = new PostView(p);
-			feedBox.getChildren().add(0, newPost.getPost());
+			PostView newPost = new PostView(p, width);
+			feedBox.getChildren().add(0, newPost.getNode());
 		}
 	}
 

@@ -11,6 +11,7 @@ import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -20,33 +21,45 @@ import util.Dummy;
  * This builds a low-tech "post editor" that allows users write and post things into the feed.
  * 
  * Because this isn't tied into any user account functionality yet, I have provided a means of
- * creating a userAccount to attach to posts that are created. 
+ * creating a developer userAccount to attach to posts that are created. 
  * If no user is created, a default one is automatically provided for each post.
  */
 
 public class ComposePane {
 	private TextArea composeArea;
 	private Button postBtn, userBtn;
+	private ToggleButton boldBtn;
 	private UserAccount devUser, user;
 	private GridPane grid;
+	private BorderPane container;
 	
-	public ComposePane(BorderPane root, UserAccount user) {
+	public ComposePane(UserAccount user) {
 		this.user = user;
+		
 		initializeNodes();
 		drawGrid();
-		root.setCenter(grid);
+		
+		container = new BorderPane();
+		container.setCenter(grid);
+		
 		autoSizeMsg();
 		callBacks();
 	}
 	
+	public BorderPane getNode() {
+		return container;
+	}
+	
 	private void initializeNodes() {
-		userBtn = new Button("New Dev");	// For development
+		userBtn = new Button("New Dev User");	// For development
 		composeArea = new TextArea();
 		composeArea.setPromptText("Write something!");
 		composeArea.setPrefHeight(60);
 		composeArea.setMinWidth(600);			
 		postBtn = new Button("Post");		
 		postBtn.setPrefSize(60, 50);
+		
+//		boldBtn = new ToggleButton("B");
 	}
 
 	private void drawGrid() {
@@ -55,7 +68,9 @@ public class ComposePane {
 		grid.setHgap(10);
 		grid.setVgap(10);
 		
-		grid.add(userBtn, 0, 0);
+//		grid.add(boldBtn, 0, 0);
+		
+		grid.add(userBtn, 1, 0);
 		GridPane.setHalignment(userBtn, HPos.RIGHT);
 		grid.add(composeArea, 0, 1);
 		grid.add(postBtn, 1, 1);
@@ -83,16 +98,16 @@ public class ComposePane {
 
 	private void callBacks() {
 		postBtn.setOnAction(e -> {
-			Message message = new Message(composeArea.getText(), composeArea.getHeight());
+			String message = composeArea.getText();
 			Post newPost = null;
 			
 			// The following determines the author of a post when submitted.
 			if(devUser != null) {
 				// devUser overrides login account.
-				newPost = new Post(message, devUser);
+				newPost = new Post(message, composeArea.getHeight(), devUser);
 			} else {
 				// login user account.
-				newPost = new Post(message, user);
+				newPost = new Post(message, composeArea.getHeight(), user);
 			}
 			FeedPane.addToFeed(newPost);
 			resetTextArea();
@@ -104,6 +119,10 @@ public class ComposePane {
 			devUser = Dummy.getDummyAcc("def"); 
 			new UserWindow(devUser);
 		});
+		
+//		boldBtn.setOnAction(e -> {
+//			composeArea.setF
+//		});
 	}
 	
 	private void resetTextArea() {
