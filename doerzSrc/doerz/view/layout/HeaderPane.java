@@ -68,7 +68,7 @@ public class HeaderPane {
 		hRoot.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, 
 				CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		logo.getChildren().add(image);
-		logo.setAlignment(Pos.CENTER);
+		logo.setAlignment(Pos.CENTER_LEFT);
 		
 		search.getChildren().addAll(searchTf, searchBtn);
 		search.setAlignment(Pos.CENTER_LEFT);
