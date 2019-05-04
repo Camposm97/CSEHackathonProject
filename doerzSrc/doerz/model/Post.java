@@ -4,7 +4,7 @@ import java.util.Date;
 
 import campos.models.UserAccount;
 
-public class Post extends Message {
+public class Post extends Message implements Comparable<Post> {
 	private static int idNumber = 0;
 	private String id;
 	private UserAccount author;
@@ -51,5 +51,10 @@ public class Post extends Message {
 	@Override
 	public String toString() {
 		return "Post [id:" + id + ", msg:" + super.getMessage() + ", time:" + date +"]";
+	}
+
+	@Override
+	public int compareTo(Post p) {
+		return date.compareTo(p.date);
 	}
 }
