@@ -1,5 +1,8 @@
 package campos.scene.layout;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import campos.util.FXUtil;
@@ -21,42 +24,34 @@ import javafx.scene.layout.GridPane;
  */
 public class AvatarPicker extends Alert {
 	private static final int COL_SIZE = 3;
-	private ArrayList<Image> imageList;
+	private ArrayList<File> fileList;
 	private GridPane buttonGridPane;
-	private Image chosenOne;
+//	private Image chosenOne;
+	private File chosenOne;
 	
 	public AvatarPicker() {
 		super(AlertType.INFORMATION);
 		super.setTitle("Avatar Picker (By Camposm)");
 		super.setHeaderText("Please select your Avatar: (Will be Used to Represent Your Profile Picture");
-		this.imageList = FXUtil.loadAvatarImages();
+		this.fileList = FXUtil.loadAvatarFiles();
 		this.buttonGridPane = loadButtonGridPane();
-		this.chosenOne = ImgUtil.loadImg("resources/images/avatars/default.png");
+//		this.chosenOne = ImgUtil.loadImg("resources/images/avatars/default.png");
+		this.chosenOne = new File(ImgUtil.DEFAULT_PROFILE);
 		super.getDialogPane().setContent(buttonGridPane);
 		super.setResizable(false);
 	}
 	
-	public Image getChosenOne() {
+	public File getChosenOne() {
 		return chosenOne;
 	}
 	
 	private GridPane loadButtonGridPane() {
 		GridPane gridPane = new GridPane();
 		gridPane.setAlignment(Pos.CENTER);
-		float ratio = (float) 0.5;
 		int col = 0, row = 0;
-		for (int i = 0; i < imageList.size(); i++) {
-			Button bt = new Button("#" + i);
-			Image img = imageList.get(i);
-			ImageView iv = new ImageView(imageList.get(i));
-			iv.setFitHeight(img.getHeight() * ratio);
-			iv.setFitWidth(img.getWidth() * ratio);
-			bt.setGraphic(iv);
-			bt.setContentDisplay(ContentDisplay.BOTTOM);
-			bt.setOnAction(e -> {
-				chosenOne = iv.getImage();
-				System.out.println("Chosen one is now: " + chosenOne);
-			});
+		
+		for (int i = 0; i < fileList.size(); i++) {
+			Button bt = loadBt(i);
 			gridPane.add(bt, col, row);
 			col++;
 			if (col > (COL_SIZE - 1)) {
@@ -65,5 +60,25 @@ public class AvatarPicker extends Alert {
 			}
 		}
 		return gridPane;
+	}
+	
+	private Button loadBt(int i) {
+		int x = i;
+		float ratio = (float) 0.5;
+		Button bt = new Button("#" + i);
+		try {
+			Image img = new Image(new FileInputStream(fileList.get(i)));
+			ImageView iv = new ImageView(img);
+			iv.setFitHeight(img.getHeight() * ratio);
+			iv.setFitWidth(img.getWidth() * ratio);
+			bt.setGraphic(iv);
+			bt.setOnAction(e -> {
+				chosenOne = fileList.get(x);
+				System.out.println("Chosen one is now: " + chosenOne);
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bt;
 	}
 }

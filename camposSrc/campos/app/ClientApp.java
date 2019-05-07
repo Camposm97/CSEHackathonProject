@@ -1,4 +1,4 @@
-package campos.app;
+ package campos.app;
 
 import campos.stage.LoginWindow;
 import javafx.application.Application;

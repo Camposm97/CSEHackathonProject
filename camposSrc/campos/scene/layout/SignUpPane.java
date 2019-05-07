@@ -18,6 +18,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
@@ -60,11 +61,14 @@ public class SignUpPane extends BorderPane {
 	}
 	
 	public UserAccount getUserAccount() {
-		Image image = btAvatar.getAvatarPicker().getChosenOne();
-		image.cancel();
+		String imageUrl = btAvatar.getAvatarPicker().getChosenOne().getPath();
+		System.out.println(imageUrl);
+		ImageView iv = new ImageView(new Image(imageUrl));
+		
 		Name name = new Name(tfFirstName.getText(), tfLastName.getText(), cbGender.getValue());
 		Student s = new Student(name, cbMajor.getValue());
-		return new UserAccount(s, tfUsername.getText(), tfPass.getText());
+		UserAccount user = new UserAccount(s, imageUrl, tfUsername.getText(), tfPass.getText());
+		return user;
 	}
 	
 	/** PRO TIP [2019-May-02 | 8:46 AM EST]

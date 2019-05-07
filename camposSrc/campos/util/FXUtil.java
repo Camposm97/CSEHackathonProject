@@ -1,5 +1,6 @@
 package campos.util;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import campos.models.Gender;
@@ -32,6 +33,15 @@ public class FXUtil {
 			Image image = ImgUtil.loadImg("resources/images/avatars/" + String.valueOf(i) + ".jpg");
 //			System.out.println(image.getWidth() + " | " + image.getHeight());
 			list.add(image);
+		}
+		return list;
+	}
+
+	public static ArrayList<File> loadAvatarFiles() {
+		ArrayList<File> list = new ArrayList<>();
+		for (int i = 0; i < ImgUtil.NUM_OF_AVATARS; i++) {
+			File file = new File("resources/images/avatars/" + String.valueOf(i) + ".jpg");
+			list.add(file);
 		}
 		return list;
 	}

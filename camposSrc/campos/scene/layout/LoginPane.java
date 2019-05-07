@@ -75,7 +75,7 @@ public class LoginPane extends BorderPane implements Serializable {
 			gridPane.add(tfPassword, 1, 2);
 			gridPane.add(FXUtil.asVBox(btLogin), 0, 3, 4, 1);
 			
-			VBox vBox = FXUtil.asVBox(FXUtil.loadLblTitle(), ImgUtil.loadImgViewRatio(ImgUtil.ICON_MAIN, 0.5));
+			VBox vBox = FXUtil.asVBox(FXUtil.loadLblTitle(), ImgUtil.loadImgVR(ImgUtil.ICON_MAIN, 0.5));
 			vBox.setPadding(FXUtil.DEFAULT_INSETS);
 			
 			StackPane pane = new StackPane(linkSignUp);

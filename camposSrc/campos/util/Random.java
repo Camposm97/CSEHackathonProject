@@ -35,6 +35,12 @@ public class Random {
 		return Major.values()[(int) (Math.random() * Major.values().length)];
 	}
 	
+	public static String emitAvatarUrl() {
+		int n = emitNumber(ImgUtil.NUM_OF_AVATARS, 0);
+		String url = "resources/images/avatar/" + String.valueOf(n) + ".jpg";
+		return url;
+	}
+	
 	public static Image emitAvatar() {
 		int n = emitNumber(ImgUtil.NUM_OF_AVATARS, 0);
 		Image image = ImgUtil.loadImg("resources/images/avatars/" + String.valueOf(n) + ".jpg");
