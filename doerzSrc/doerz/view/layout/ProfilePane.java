@@ -1,13 +1,18 @@
 package doerz.view.layout;
 
 
+import java.util.LinkedList;
+
 import campos.models.UserAccount;
 import campos.util.ImgUtil;
 import doerz.view.UserWindow;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
@@ -27,9 +32,12 @@ public class ProfilePane {
 	
 	private ImageView imageV;
 	private static Label userLbl;
+	private Label followLbl;
 	private Hyperlink editLbl;
 	private GridPane grid;
 	private static UserAccount user;
+	private ListView<String> followingView;
+	
 	
 	public ProfilePane(UserAccount user) {
 		ProfilePane.user = user;
@@ -64,10 +72,14 @@ public class ProfilePane {
 		GridPane.setValignment(userLbl, VPos.TOP);
 		grid.add(gridRow(10), 0, 1);
 		grid.add(editLbl, 0, 2);
+		grid.add(gridRow(50), 0, 3);
+		grid.add(followLbl, 0, 4);
+		grid.add(followingView, 0, 5, 2, 3);
 		
 //		root.setLeft(grid);		
 	}
 
+	@SuppressWarnings("null")
 	private void initializeNodes() {
 		getAvatar();
 		userLbl = new Label(user.getUsername());
@@ -76,6 +88,16 @@ public class ProfilePane {
 		editLbl = new Hyperlink("Edit profile");
 		editLbl.setStyle("-fx-font-size: 10");
 		editLbl.setMinWidth(50);
+		
+		LinkedList<String> list = new LinkedList<>();
+		for(UserAccount u : user.getUserFollowBag()) {
+			list.add(u.getUsername());
+		}
+		ObservableList<String> followed = FXCollections.observableList(list);
+		followingView = new ListView<String>(followed);
+		followingView.setPrefWidth(100);
+		
+		followLbl = new Label("Following:");
 	}
 
 	private void getAvatar() {
@@ -88,7 +110,7 @@ public class ProfilePane {
 	
 	private Pane gridRow(double minHeight) {
 		Pane row = new Pane();
-		row.setMinWidth(minHeight);
+		row.setMinHeight(minHeight);
 		return row;
 	}
 	
