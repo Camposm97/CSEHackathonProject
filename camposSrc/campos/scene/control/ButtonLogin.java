@@ -9,12 +9,16 @@ import campos.models.UserAccount;
 import campos.net.IPv4;
 import campos.net.SocketType;
 import campos.scene.layout.LoginPane;
+import campos.scene.layout.ProfilePane;
 import campos.util.FXUtil;
+import campos.util.ImgUtil;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class ButtonLogin extends Button {
 	private LoginPane loginPane;
@@ -64,6 +68,9 @@ public class ButtonLogin extends Button {
 						loginPane.getLblStatus().setText("Success! :D");
 						loginPane.getLblStatus().setTextFill(Color.GREEN);
 						// change to post feed
+						Stage stage = (Stage) loginPane.getScene().getWindow();
+						stage.close();
+						new doerz.view.Ej.copy.MainWindow(user);
 					} else { // Invalid Credentials
 						loginPane.getLblStatus().setText("Failure :(");
 						loginPane.getLblStatus().setTextFill(Color.RED);

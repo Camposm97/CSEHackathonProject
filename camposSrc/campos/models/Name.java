@@ -2,6 +2,7 @@ package campos.models;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Name implements Serializable {
 	private String lastName;
 	private String firstName;
@@ -40,11 +41,6 @@ public class Name implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Name [lastName=" + lastName + ", firstName=" + firstName + ", gender=" + gender + "]";
+		return firstName + " " + lastName;
 	}
-	
-//	@Override
-//	public String toString() {
-//		return lastName + ", " + firstName + ", " + gender;
-//	}
 }

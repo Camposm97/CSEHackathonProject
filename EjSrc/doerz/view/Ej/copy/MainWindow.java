@@ -3,6 +3,7 @@ package doerz.view.Ej.copy;
 import java.util.LinkedList;
 
 import campos.models.UserAccount;
+import campos.util.ImgUtil;
 import doerz.collection.FollowedFeed;
 import doerz.model.Post;
 import doerz.view.layout.ComposePane;
@@ -26,8 +27,9 @@ public class MainWindow {
 		BorderPane root = new BorderPane();
 		BorderPane nest = new BorderPane();
 		root.setCenter(nest);
-		Scene scene = new Scene(root, 950, 850);
+		Scene scene = new Scene(root, 1000, 850);
 		Stage stage = new Stage();
+		ImgUtil.loadStageIcon(stage);
 		stage.setTitle("Connect");
 		stage.setResizable(false);
 		stage.setScene(scene);

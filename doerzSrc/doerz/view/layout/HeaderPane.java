@@ -1,8 +1,8 @@
 package doerz.view.layout;
 
 
+import campos.stage.LoginWindow;
 import campos.util.ImgUtil;
-import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -20,7 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class HeaderPane {
-	private ImageView imageV;
+	private ImageView imageVLogo;
 	private TextField searchTf;
 	private Button logoutBtn, searchBtn;
 	private HBox hRoot;
@@ -40,7 +40,9 @@ public class HeaderPane {
 
 	private void callBacks() {
 		logoutBtn.setOnAction(e -> {
-			Platform.exit();
+			stage.close();
+			stage = new LoginWindow();
+			stage.show();
 		});
 		
 		searchBtn.setOnAction(e -> {
@@ -69,7 +71,7 @@ public class HeaderPane {
 		logout.setPrefWidth(stage.getWidth() / 4);
 		hRoot.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, 
 				CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-		logo.getChildren().add(imageV);
+		logo.getChildren().add(imageVLogo);
 		logo.setAlignment(Pos.CENTER_LEFT);
 		
 		search.getChildren().addAll(searchTf, searchBtn);
@@ -100,8 +102,8 @@ public class HeaderPane {
 	}
 
 	private void drawLogo() {
-		imageV = ImgUtil.loadImgV(ImgUtil.ICON_MAIN);
-		imageV.setFitHeight(40);
-		imageV.setFitWidth(40);
+		imageVLogo = ImgUtil.loadImgV(ImgUtil.ICON_MAIN);
+		imageVLogo.setFitHeight(imageVLogo.getImage().getHeight() / 4);
+		imageVLogo.setFitWidth(imageVLogo.getImage().getWidth() / 4);
 	}
 }

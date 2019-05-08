@@ -7,7 +7,7 @@ import Date.Picker.DatePickerSample;
 import cabrera.controllers.Controller;
 import cabrera.view.Window;
 import campos.models.UserAccount;
-import campos.util.ImgUtil;
+import campos.scene.control.MyLabel;
 import doerz.view.UserWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,9 +34,8 @@ import javafx.stage.Stage;
  */
 
 public class ProfilePane {
-	
 	private ImageView imageV;
-	private static Label userLbl;
+	private static MyLabel userLbl;
 	private Label followLbl;
 	private Hyperlink editLbl;
 	private Button chatBtn , appointmentBtn;
@@ -104,11 +103,9 @@ public class ProfilePane {
 
 	private void initializeNodes() {
 		getAvatar();
-		userLbl = new Label(user.getUsername());
+		userLbl = new MyLabel(user.getUsername(), 24);
 		userLbl.setMinWidth(50);
-		userLbl.setStyle("-fx-font-size: 14");
-		editLbl = new Hyperlink("Edit profile");
-		editLbl.setStyle("-fx-font-size: 10");
+		editLbl = new Hyperlink("Edit Profile");
 		editLbl.setMinWidth(50);
 		
 		LinkedList<String> list = new LinkedList<>();
@@ -126,10 +123,10 @@ public class ProfilePane {
 		appointmentBtn = new Button("Set Appointment");
 	}
 
-	private void getAvatar() {
+	private void getAvatar() { // Michael was here
 //		imageV = new ImageView(user.getImage()); 							// Broken
-		imageV = new ImageView(ImgUtil.loadImg(ImgUtil.DEFAULT_PROFILE));	// Temp fix
-			double ratio = 0.25;
+		imageV = new ImageView(user.getImage());	// Temp fix
+			double ratio = 0.35;
 			imageV.setFitWidth(imageV.getImage().getWidth() * ratio);
 			imageV.setFitHeight(imageV.getImage().getHeight() * ratio);
 	}

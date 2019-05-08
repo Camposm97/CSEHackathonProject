@@ -1,11 +1,12 @@
 package campos.models;
 
+import java.io.Serializable;
 import java.util.TreeSet;
 
 import campos.collections.UserAccountNameComparator;
 
 @SuppressWarnings("serial")
-public class UserAccountBag extends TreeSet<UserAccount> {
+public class UserAccountBag extends TreeSet<UserAccount> implements Serializable {
 	public UserAccountBag() {
 		super(new UserAccountNameComparator());
 	}

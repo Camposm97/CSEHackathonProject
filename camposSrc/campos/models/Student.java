@@ -1,7 +1,9 @@
 package campos.models;
 
+import java.io.Serializable;
+
 @SuppressWarnings("serial")
-public class Student extends Person {	
+public class Student extends Person implements Serializable {	
 	private Major major;
 	
 	public Student(Name name, Major major) {
@@ -10,7 +12,11 @@ public class Student extends Person {
 	}
 	
 	public Name getName() {
-		return super.getName();
+		return name;
+	}
+	
+	public Major getMajor() {
+		return major;
 	}
 
 	@Override

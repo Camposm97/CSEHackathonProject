@@ -1,5 +1,9 @@
 package campos.scene.layout;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import campos.event.EventLoader;
 import campos.models.Gender;
 import campos.models.Major;
@@ -8,8 +12,10 @@ import campos.models.Student;
 import campos.models.UserAccount;
 import campos.scene.control.ButtonAvatar;
 import campos.scene.control.ButtonSignUp;
+import campos.util.AlertFactory;
 import campos.util.FXUtil;
 import campos.util.PasswordUtil;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -52,8 +58,10 @@ public class SignUpPane extends BorderPane {
 		Tooltip tip = new Tooltip();
 		tfUsername.setTooltip(tip);
 		if (flag) {
-			tfUsername.setStyle("");
-			tip.setText("Valid Username!");
+			Platform.runLater(() -> {
+				tfUsername.setStyle("");
+				AlertFactory.emitInfoAlert("Sign Up", null, "Successfully signed up to Connect!");
+			});
 		} else {
 			tfUsername.setStyle("-fx-border-color: red; -fx-background-color: #FFF0F0;");
 			tip.setText("Sorry, that username is already taken :(");
@@ -61,13 +69,12 @@ public class SignUpPane extends BorderPane {
 	}
 	
 	public UserAccount getUserAccount() {
-		String imageUrl = btAvatar.getAvatarPicker().getChosenOne().getPath();
-		System.out.println(imageUrl);
-		ImageView iv = new ImageView(new Image(imageUrl));
+		File imageFile = btAvatar.getAvatarPicker().getChosenOne();
+		System.out.println(imageFile);
 		
-		Name name = new Name(tfFirstName.getText(), tfLastName.getText(), cbGender.getValue());
+		Name name = new Name(tfLastName.getText(), tfFirstName.getText(), cbGender.getValue());
 		Student s = new Student(name, cbMajor.getValue());
-		UserAccount user = new UserAccount(s, imageUrl, tfUsername.getText(), tfPass.getText());
+		UserAccount user = new UserAccount(s, imageFile, tfUsername.getText(), tfPass.getText());
 		return user;
 	}
 	
