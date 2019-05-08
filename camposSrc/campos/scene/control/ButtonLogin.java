@@ -9,6 +9,7 @@ import campos.models.UserAccount;
 import campos.net.IPv4;
 import campos.net.SocketType;
 import campos.scene.layout.LoginPane;
+import campos.scene.layout.ProfilePane;
 import campos.util.FXUtil;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -69,7 +70,7 @@ public class ButtonLogin extends Button {
 						Stage stage = (Stage) loginPane.getScene().getWindow();
 						stage.close();
 						stage = new Stage();
-						stage.setScene(new Scene(null));
+						stage.setScene(new Scene(new ProfilePane(user)));
 						stage.show();
 					} else { // Invalid Credentials
 						loginPane.getLblStatus().setText("Failure :(");

@@ -15,6 +15,7 @@ import campos.scene.control.ButtonSignUp;
 import campos.util.AlertFactory;
 import campos.util.FXUtil;
 import campos.util.PasswordUtil;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -57,8 +58,10 @@ public class SignUpPane extends BorderPane {
 		Tooltip tip = new Tooltip();
 		tfUsername.setTooltip(tip);
 		if (flag) {
-			tfUsername.setStyle("");
-			AlertFactory.emitInfoAlert("Sign Up", null, "Successfully signed up to Connect!");
+			Platform.runLater(() -> {
+				tfUsername.setStyle("");
+				AlertFactory.emitInfoAlert("Sign Up", null, "Successfully signed up to Connect!");
+			});
 		} else {
 			tfUsername.setStyle("-fx-border-color: red; -fx-background-color: #FFF0F0;");
 			tip.setText("Sorry, that username is already taken :(");
@@ -69,7 +72,7 @@ public class SignUpPane extends BorderPane {
 		File imageFile = btAvatar.getAvatarPicker().getChosenOne();
 		System.out.println(imageFile);
 		
-		Name name = new Name(tfFirstName.getText(), tfLastName.getText(), cbGender.getValue());
+		Name name = new Name(tfLastName.getText(), tfFirstName.getText(), cbGender.getValue());
 		Student s = new Student(name, cbMajor.getValue());
 		UserAccount user = new UserAccount(s, imageFile, tfUsername.getText(), tfPass.getText());
 		return user;

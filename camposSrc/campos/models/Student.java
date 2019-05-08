@@ -12,7 +12,7 @@ public class Student extends Person implements Serializable {
 	}
 	
 	public Name getName() {
-		return super.getName();
+		return name;
 	}
 	
 	public Major getMajor() {
