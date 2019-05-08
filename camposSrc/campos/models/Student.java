@@ -12,6 +12,10 @@ public class Student extends Person {
 	public Name getName() {
 		return super.getName();
 	}
+	
+	public Major getMajor() {
+		return major;
+	}
 
 	@Override
 	public String toString() {
