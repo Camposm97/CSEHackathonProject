@@ -1,12 +1,12 @@
 package doerz.view.layout;
 
-import java.io.File;
 
+import campos.util.ImgUtil;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
@@ -20,10 +20,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class HeaderPane {
-	private ImageView image;
+	private ImageView imageV;
 	private TextField searchTf;
 	private Button logoutBtn, searchBtn;
 	private HBox hRoot;
+	private Stage stage;
 	
 	/*
 	 * Sloppy code is sloppy. Will refactor eventually. Places a header on the MainWindow.
@@ -31,6 +32,7 @@ public class HeaderPane {
 	 */
 	
 	public HeaderPane(BorderPane root, Stage stage) {
+		this.stage = stage;
 		initializeNodes();
 		drawPane(root, stage);
 		callBacks();
@@ -38,7 +40,7 @@ public class HeaderPane {
 
 	private void callBacks() {
 		logoutBtn.setOnAction(e -> {
-			
+			Platform.exit();
 		});
 		
 		searchBtn.setOnAction(e -> {
@@ -67,7 +69,7 @@ public class HeaderPane {
 		logout.setPrefWidth(stage.getWidth() / 4);
 		hRoot.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, 
 				CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-		logo.getChildren().add(image);
+		logo.getChildren().add(imageV);
 		logo.setAlignment(Pos.CENTER_LEFT);
 		
 		search.getChildren().addAll(searchTf, searchBtn);
@@ -98,11 +100,8 @@ public class HeaderPane {
 	}
 
 	private void drawLogo() {
-		image = new ImageView();
-		File file = new File("resources/images/icons/puzzle.png");
-		Image avatar = new Image(file.toURI().toString());
-		image.setImage(avatar);		
-		image.setFitHeight(40);
-		image.setFitWidth(40);
+		imageV = ImgUtil.loadImgV(ImgUtil.ICON_MAIN);
+		imageV.setFitHeight(40);
+		imageV.setFitWidth(40);
 	}
 }
