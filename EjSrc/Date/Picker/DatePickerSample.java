@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -14,14 +15,14 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
  
 public class DatePickerSample extends Application {
- 
-    private Stage stage;
+	private Button done = new Button("Done");
+    private Stage stage; 
+    static GridPane gridPane = new GridPane();
     private DatePicker checkInDatePicker;
     public static void main(String[] args) {
         launch(args);
     }
  
-    @Override
     public void start(Stage stage) {
     	 Locale.setDefault(Locale.US);
         this.stage = stage;
@@ -31,14 +32,14 @@ public class DatePickerSample extends Application {
     }
  
     private void initUI() {
-        VBox vbox = new VBox(20);
+        VBox vbox = new VBox(40);
         vbox.setStyle("-fx-padding: 10;");
-        Scene scene = new Scene(vbox, 400, 400);
+        Scene scene = new Scene(vbox, 400, 500);
         stage.setScene(scene);
 
         checkInDatePicker = new DatePicker();
 
-        GridPane gridPane = new GridPane();
+       
         gridPane.setHgap(10);
         gridPane.setVgap(10);
 
@@ -49,14 +50,29 @@ public class DatePickerSample extends Application {
         name.setPromptText("John Doe");
         TextField email = new TextField();
         email.setPromptText("JohnDoe@email.com");
+        Label rtom = new Label("Reason to Meet:");
+        TextArea reason = new TextArea();
+        
+        done.setOnAction(e ->{
+        	stage.close();
+        });
+        
         gridPane.add(nameLabel, 0, 2);
         gridPane.add(emailLabel, 0, 4);
         gridPane.add(name, 0,3 );
         gridPane.add(email, 0, 5);
         gridPane.add(checkInlabel, 0, 0);
+        gridPane.add(reason, 0, 7);
+        gridPane.add(rtom, 0, 6);
 
         GridPane.setHalignment(checkInlabel, HPos.LEFT);
         gridPane.add(checkInDatePicker, 0, 1);
+        gridPane.add(done, 1, 1);
         vbox.getChildren().add(gridPane);
+        
+        }
+    
+    public static GridPane getGridPane() {
+        	return gridPane;
     }
 }
