@@ -12,6 +12,7 @@ import campos.models.Student;
 import campos.models.UserAccount;
 import campos.scene.control.ButtonAvatar;
 import campos.scene.control.ButtonSignUp;
+import campos.util.AlertFactory;
 import campos.util.FXUtil;
 import campos.util.PasswordUtil;
 import javafx.geometry.Pos;
@@ -57,7 +58,7 @@ public class SignUpPane extends BorderPane {
 		tfUsername.setTooltip(tip);
 		if (flag) {
 			tfUsername.setStyle("");
-			tip.setText("Valid Username!");
+			AlertFactory.emitInfoAlert("Sign Up", null, "Successfully signed up to Connect!");
 		} else {
 			tfUsername.setStyle("-fx-border-color: red; -fx-background-color: #FFF0F0;");
 			tip.setText("Sorry, that username is already taken :(");
