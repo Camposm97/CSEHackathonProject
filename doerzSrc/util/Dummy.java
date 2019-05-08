@@ -5,6 +5,7 @@ import campos.models.Major;
 import campos.models.Name;
 import campos.models.Student;
 import campos.models.UserAccount;
+import campos.util.ImgUtil;
 import campos.util.Random;
 
 /*

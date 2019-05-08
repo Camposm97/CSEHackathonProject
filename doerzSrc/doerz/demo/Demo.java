@@ -10,7 +10,7 @@ import util.Dummy;
  * 
  * @author rjdoerz
  * 
- * Start feed from here.
+ * Demo the mainWindow functionality.
  *
  */
 
@@ -23,7 +23,7 @@ public class Demo extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		UserAccount user = Dummy.getDummyAcc("defaultUser");
-		new MainWindow(primaryStage, user);
+		new MainWindow(user);
 	}
 
 }
