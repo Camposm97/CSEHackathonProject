@@ -3,6 +3,8 @@ package doerz.view.layout;
 
 import java.util.LinkedList;
 
+import cabrera.controllers.Controller;
+import cabrera.view.Window;
 import campos.models.UserAccount;
 import campos.util.ImgUtil;
 import doerz.view.UserWindow;
@@ -10,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -22,9 +25,10 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 /*
- * This is a placeholder for the profile pane that will display to the left of the feed.
+ * Profile pane displays user's information.
  * 
  */
 
@@ -34,6 +38,7 @@ public class ProfilePane {
 	private static Label userLbl;
 	private Label followLbl;
 	private Hyperlink editLbl;
+	private Button chatBtn;
 	private GridPane grid;
 	private static UserAccount user;
 	private ListView<String> followingView;
@@ -50,6 +55,15 @@ public class ProfilePane {
 		editLbl.setOnAction(e -> {
 			new UserWindow(user);
 //			refreshNodes();
+		});
+		
+		chatBtn.setOnAction(e -> {
+			Controller.addToList("EJ");
+			Controller.addToList("Richard");
+			Controller.addToList("Michael");
+			
+			Stage stage = new Stage();
+			new Window(stage);
 		});
 	}
 
@@ -76,10 +90,12 @@ public class ProfilePane {
 		grid.add(followLbl, 0, 4);
 		grid.add(followingView, 0, 5, 2, 3);
 		
+		grid.add(gridRow(50), 0, 8);
+		grid.add(chatBtn, 0, 9);
+		
 //		root.setLeft(grid);		
 	}
 
-	@SuppressWarnings("null")
 	private void initializeNodes() {
 		getAvatar();
 		userLbl = new Label(user.getUsername());
@@ -98,6 +114,8 @@ public class ProfilePane {
 		followingView.setPrefWidth(100);
 		
 		followLbl = new Label("Following:");
+		
+		chatBtn = new Button("Chat");
 	}
 
 	private void getAvatar() {
