@@ -1,10 +1,12 @@
 package doerz.view.layout;
 
+import campos.util.ImgUtil;
 import doerz.model.Post;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -22,6 +24,7 @@ import javafx.scene.paint.Color;
  */
 
 public class PostView {
+	private ImageView avatar;
 	private Label authorLbl, idLbl, dateLbl;
 	private TextArea msgBdy;
 	private GridPane grid;
@@ -60,9 +63,12 @@ public class PostView {
 		dateLbl = new Label("\t" + post.getDate().toString());
 		dateLbl.setStyle("-fx-font-size: 8");
 		
-		grid.add(authorLbl, 0, 0);
-		grid.add(dateLbl, 1, 0);
-		grid.add(idLbl, 2, 0);
+//		avatar = new ImageView(post.getAuthor().getImage());
+		avatar = ImgUtil.loadImgVR(ImgUtil.DEFAULT_PROFILE, 0.2);
+		grid.add(avatar, 0, 0);
+		grid.add(authorLbl, 1, 0);
+		grid.add(dateLbl, 2, 0);
+		grid.add(idLbl, 3, 0);
 		GridPane.setHalignment(idLbl, HPos.RIGHT);
 	}
 	

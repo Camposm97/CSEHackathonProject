@@ -1,15 +1,15 @@
 package doerz.view.layout;
 
-import java.io.File;
 
+import campos.models.UserAccount;
+import campos.util.ImgUtil;
+import doerz.view.UserWindow;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
@@ -17,7 +17,6 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 /*
  * This is a placeholder for the profile pane that will display to the left of the feed.
@@ -26,19 +25,31 @@ import javafx.stage.Stage;
 
 public class ProfilePane {
 	
-	private ImageView image;
-	private Label userLbl;
+	private ImageView imageV;
+	private static Label userLbl;
 	private Hyperlink editLbl;
 	private GridPane grid;
+	private static UserAccount user;
 	
-	public ProfilePane(BorderPane root) {
-		
+	public ProfilePane(UserAccount user) {
+		ProfilePane.user = user;
 		initializeNodes();
-		drawPane(root);
-		
+		drawPane();
+		callBacks();
 	}
 
-	private void drawPane(BorderPane root) {
+	private void callBacks() {
+		editLbl.setOnAction(e -> {
+			new UserWindow(user);
+//			refreshNodes();
+		});
+	}
+
+	public static void refreshNodes() {
+		userLbl.setText(user.getUsername());
+	}
+
+	private void drawPane() {
 		grid = new GridPane();
 		grid.setPadding(new Insets(10));
 		grid.setVgap(5);
@@ -48,18 +59,18 @@ public class ProfilePane {
 		grid.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, 
 				CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		
-		grid.add(image, 0, 0);
+		grid.add(imageV, 0, 0);
 		grid.add(userLbl, 1, 0);
 		GridPane.setValignment(userLbl, VPos.TOP);
 		grid.add(gridRow(10), 0, 1);
 		grid.add(editLbl, 0, 2);
 		
-		root.setLeft(grid);		
+//		root.setLeft(grid);		
 	}
 
 	private void initializeNodes() {
 		getAvatar();
-		userLbl = new Label("Your Name");
+		userLbl = new Label(user.getUsername());
 		userLbl.setMinWidth(50);
 		userLbl.setStyle("-fx-font-size: 14");
 		editLbl = new Hyperlink("Edit profile");
@@ -68,15 +79,20 @@ public class ProfilePane {
 	}
 
 	private void getAvatar() {
-		image = new ImageView();
-		File file = new File("resources/AvatarTemp.jpg");
-		Image avatar = new Image(file.toURI().toString());
-		image.setImage(avatar);
+//		imageV = new ImageView(user.getImage()); 							// Broken
+		imageV = new ImageView(ImgUtil.loadImg(ImgUtil.DEFAULT_PROFILE));	// Temp fix
+			double ratio = 0.25;
+			imageV.setFitWidth(imageV.getImage().getWidth() * ratio);
+			imageV.setFitHeight(imageV.getImage().getHeight() * ratio);
 	}
 	
 	private Pane gridRow(double minHeight) {
 		Pane row = new Pane();
 		row.setMinWidth(minHeight);
 		return row;
+	}
+	
+	public GridPane getNode() {
+		return grid;
 	}
 }
