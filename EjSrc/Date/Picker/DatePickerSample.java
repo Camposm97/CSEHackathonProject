@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -14,7 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
  
 public class DatePickerSample extends Application {
- 
+	private Button done = new Button("Done");
     private Stage stage; 
     static GridPane gridPane = new GridPane();
     private DatePicker checkInDatePicker;
@@ -31,9 +32,9 @@ public class DatePickerSample extends Application {
     }
  
     private void initUI() {
-        VBox vbox = new VBox(20);
+        VBox vbox = new VBox(40);
         vbox.setStyle("-fx-padding: 10;");
-        Scene scene = new Scene(vbox, 400, 400);
+        Scene scene = new Scene(vbox, 400, 500);
         stage.setScene(scene);
 
         checkInDatePicker = new DatePicker();
@@ -52,6 +53,10 @@ public class DatePickerSample extends Application {
         Label rtom = new Label("Reason to Meet:");
         TextArea reason = new TextArea();
         
+        done.setOnAction(e ->{
+        	stage.close();
+        });
+        
         gridPane.add(nameLabel, 0, 2);
         gridPane.add(emailLabel, 0, 4);
         gridPane.add(name, 0,3 );
@@ -62,6 +67,7 @@ public class DatePickerSample extends Application {
 
         GridPane.setHalignment(checkInlabel, HPos.LEFT);
         gridPane.add(checkInDatePicker, 0, 1);
+        gridPane.add(done, 1, 1);
         vbox.getChildren().add(gridPane);
         
         }
