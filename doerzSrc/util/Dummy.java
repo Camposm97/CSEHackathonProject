@@ -15,7 +15,7 @@ import campos.util.Random;
 public class Dummy {
 	// Creates dummy user account to tie into post creation (posts must be made by a user account)
 	public static UserAccount getDummyAcc(String username) {
-		Name dummyName = new Name("John", "Doe", Gender.Male);
+		Name dummyName = new Name("Doe", "John", Gender.Male);
 		Student dummyStudent = new Student(dummyName, Major.CSE);
 		String password = getRandomPass();
 		
