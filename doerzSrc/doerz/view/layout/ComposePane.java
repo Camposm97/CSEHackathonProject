@@ -1,21 +1,17 @@
 package doerz.view.layout;
 
 import campos.models.UserAccount;
-import doerz.model.Message;
 import doerz.model.Post;
-import doerz.view.UserWindow;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-import util.Dummy;
 
 /*
  * This builds a low-tech "post editor" that allows users write and post things into the feed.
@@ -27,9 +23,8 @@ import util.Dummy;
 
 public class ComposePane {
 	private TextArea composeArea;
-	private Button postBtn, userBtn;
-	private ToggleButton boldBtn;
-	private UserAccount devUser, user;
+	private Button postBtn, refBtn;
+	private UserAccount user;
 	private GridPane grid;
 	private BorderPane container;
 	
@@ -37,6 +32,7 @@ public class ComposePane {
 		this.user = user;
 		
 		initializeNodes();
+		validationStatus();	// Controls the disableProperty of the postBtn
 		drawGrid();
 		
 		container = new BorderPane();
@@ -51,7 +47,6 @@ public class ComposePane {
 	}
 	
 	private void initializeNodes() {
-		userBtn = new Button("New Dev User");	// For development
 		composeArea = new TextArea();
 		composeArea.setPromptText("Write something!");
 		composeArea.setPrefHeight(60);
@@ -59,7 +54,7 @@ public class ComposePane {
 		postBtn = new Button("Post");		
 		postBtn.setPrefSize(60, 50);
 		
-//		boldBtn = new ToggleButton("B");
+		refBtn = new Button("Refresh");
 	}
 
 	private void drawGrid() {
@@ -68,10 +63,8 @@ public class ComposePane {
 		grid.setHgap(10);
 		grid.setVgap(10);
 		
-//		grid.add(boldBtn, 0, 0);
+		grid.add(refBtn, 0, 3);
 		
-		grid.add(userBtn, 1, 0);
-		GridPane.setHalignment(userBtn, HPos.RIGHT);
 		grid.add(composeArea, 0, 1);
 		grid.add(postBtn, 1, 1);
 		GridPane.setValignment(postBtn, VPos.TOP);
@@ -98,31 +91,22 @@ public class ComposePane {
 
 	private void callBacks() {
 		postBtn.setOnAction(e -> {
+//			System.out.println("---");
 			String message = composeArea.getText();
 			Post newPost = null;
 			
-			// The following determines the author of a post when submitted.
-			if(devUser != null) {
-				// devUser overrides login account.
-				newPost = new Post(message, composeArea.getHeight(), devUser);
-			} else {
-				// login user account.
-				newPost = new Post(message, composeArea.getHeight(), user);
-			}
+			newPost = new Post(message, composeArea.getHeight(), user);
+//			user.getPostList().add(newPost);
+			
 			FeedPane.addToFeed(newPost);
+			
 			resetTextArea();
 		});
 		
-		userBtn.setOnAction(e -> {
-			// "def" is a default username. This is provided to avoid a nullPointer 
-			// if window is closed with no input.
-			devUser = Dummy.getDummyAcc("def"); 
-			new UserWindow(devUser);
-		});
 		
-//		boldBtn.setOnAction(e -> {
-//			composeArea.setF
-//		});
+		refBtn.setOnAction(e -> {
+			FeedPane.refresh();
+		});
 	}
 	
 	private void resetTextArea() {
@@ -132,5 +116,11 @@ public class ComposePane {
 
 	private void clearAll() {
 		composeArea.clear();
+	}
+	
+	// This method binds the textArea with the postBtn, keeping the button disabled if no text is present.
+	private void validationStatus() {
+		BooleanBinding disableBtn = Bindings.not(composeArea.textProperty().isNotEmpty());
+		postBtn.disableProperty().bind(disableBtn);
 	}
 }
