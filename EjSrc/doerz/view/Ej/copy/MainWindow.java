@@ -27,7 +27,7 @@ public class MainWindow {
 		BorderPane root = new BorderPane();
 		BorderPane nest = new BorderPane();
 		root.setCenter(nest);
-		Scene scene = new Scene(root, 950, 850);
+		Scene scene = new Scene(root, 1000, 850);
 		Stage stage = new Stage();
 		ImgUtil.loadStageIcon(stage);
 		stage.setTitle("Connect");
