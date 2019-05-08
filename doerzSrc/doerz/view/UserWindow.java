@@ -38,8 +38,8 @@ public class UserWindow {
 		userStage.setResizable(false);
 		
 		Scene userScene = new Scene(box, 210, 360);
-			firstFld = new TextField();
-			lastFld = new TextField();
+			firstFld = new TextField(user.getStudent().getName().getFirstName());
+			lastFld = new TextField(user.getStudent().getName().getLastName());
 			userFld = new TextField(user.getUsername());
 		
 			okBtn = new Button("Okay");
