@@ -34,7 +34,6 @@ import javafx.stage.Stage;
  */
 
 public class ProfilePane {
-	
 	private ImageView imageV;
 	private static Label userLbl;
 	private Label followLbl;
@@ -107,7 +106,7 @@ public class ProfilePane {
 		userLbl = new Label(user.getUsername());
 		userLbl.setMinWidth(50);
 		userLbl.setStyle("-fx-font-size: 14");
-		editLbl = new Hyperlink("Edit profile");
+		editLbl = new Hyperlink("Edit Profile");
 		editLbl.setStyle("-fx-font-size: 10");
 		editLbl.setMinWidth(50);
 		
@@ -128,7 +127,7 @@ public class ProfilePane {
 
 	private void getAvatar() {
 //		imageV = new ImageView(user.getImage()); 							// Broken
-		imageV = new ImageView(ImgUtil.loadImg(ImgUtil.DEFAULT_PROFILE));	// Temp fix
+		imageV = new ImageView(user.getImage());	// Temp fix
 			double ratio = 0.25;
 			imageV.setFitWidth(imageV.getImage().getWidth() * ratio);
 			imageV.setFitHeight(imageV.getImage().getHeight() * ratio);

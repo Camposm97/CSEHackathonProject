@@ -11,6 +11,7 @@ import campos.net.SocketType;
 import campos.scene.layout.LoginPane;
 import campos.scene.layout.ProfilePane;
 import campos.util.FXUtil;
+import campos.util.ImgUtil;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -69,9 +70,7 @@ public class ButtonLogin extends Button {
 						// change to post feed
 						Stage stage = (Stage) loginPane.getScene().getWindow();
 						stage.close();
-						stage = new Stage();
-						stage.setScene(new Scene(new ProfilePane(user)));
-						stage.show();
+						new doerz.view.Ej.copy.MainWindow(user);
 					} else { // Invalid Credentials
 						loginPane.getLblStatus().setText("Failure :(");
 						loginPane.getLblStatus().setTextFill(Color.RED);
