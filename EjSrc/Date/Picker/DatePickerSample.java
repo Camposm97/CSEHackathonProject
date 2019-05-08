@@ -15,13 +15,13 @@ import javafx.stage.Stage;
  
 public class DatePickerSample extends Application {
  
-    private Stage stage;
+    private Stage stage; 
+    static GridPane gridPane = new GridPane();
     private DatePicker checkInDatePicker;
     public static void main(String[] args) {
         launch(args);
     }
  
-    @Override
     public void start(Stage stage) {
     	 Locale.setDefault(Locale.US);
         this.stage = stage;
@@ -38,7 +38,7 @@ public class DatePickerSample extends Application {
 
         checkInDatePicker = new DatePicker();
 
-        GridPane gridPane = new GridPane();
+       
         gridPane.setHgap(10);
         gridPane.setVgap(10);
 
@@ -49,14 +49,24 @@ public class DatePickerSample extends Application {
         name.setPromptText("John Doe");
         TextField email = new TextField();
         email.setPromptText("JohnDoe@email.com");
+        Label rtom = new Label("Reason to Meet:");
+        TextArea reason = new TextArea();
+        
         gridPane.add(nameLabel, 0, 2);
         gridPane.add(emailLabel, 0, 4);
         gridPane.add(name, 0,3 );
         gridPane.add(email, 0, 5);
         gridPane.add(checkInlabel, 0, 0);
+        gridPane.add(reason, 0, 7);
+        gridPane.add(rtom, 0, 6);
 
         GridPane.setHalignment(checkInlabel, HPos.LEFT);
         gridPane.add(checkInDatePicker, 0, 1);
         vbox.getChildren().add(gridPane);
+        
+        }
+    
+    public static GridPane getGridPane() {
+        	return gridPane;
     }
 }
