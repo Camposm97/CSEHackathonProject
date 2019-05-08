@@ -8,6 +8,10 @@ public class Student extends Person {
 		super(name);
 		this.major = major;
 	}
+	
+	public Name getName() {
+		return super.getName();
+	}
 
 	@Override
 	public String toString() {
