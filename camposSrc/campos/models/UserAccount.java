@@ -1,5 +1,7 @@
 package campos.models;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.Serializable;
 import java.util.LinkedList;
 
@@ -16,7 +18,7 @@ public class UserAccount implements Serializable, Comparable<UserAccount> {
 	private static int idNumber = DataLoader.loadIdNumber();
 	private String id;
 	private Student s;
-	private String imageUrl;
+	private File imageFile;
 	private String username;
 	private String password;
 	private UserAccountBag userFollowBag;
@@ -25,7 +27,7 @@ public class UserAccount implements Serializable, Comparable<UserAccount> {
 	public UserAccount(Student s) { // For Auto-Generated UserAccounts
 		this.id = String.valueOf(idNumber++);
 		this.s = s;
-		this.imageUrl = Random.emitAvatarUrl();
+		this.imageFile = new File(Random.emitAvatarUrl());
 		this.username = UsernameUtil.createUsername(s.getName(), id);
 		this.password = Random.emitPassword();
 		DataSaver.saveIdNumber(idNumber);
@@ -34,7 +36,7 @@ public class UserAccount implements Serializable, Comparable<UserAccount> {
 	public UserAccount(Student s, String username, String password) { // Default Constructor
 		this.id = String.valueOf(idNumber++);
 		this.s = s;
-		this.imageUrl = ImgUtil.DEFAULT_PROFILE;
+		this.imageFile = new File(ImgUtil.DEFAULT_PROFILE);
 		this.username = username;
 		this.password = password;
 		DataSaver.saveIdNumber(idNumber);
@@ -42,10 +44,10 @@ public class UserAccount implements Serializable, Comparable<UserAccount> {
 		this.postList = new LinkedList<>();
 	}
 	
-	public UserAccount(Student s, String imageUrl, String username, String password) {
+	public UserAccount(Student s, File imageFile, String username, String password) {
 		this.id = String.valueOf(idNumber++);
 		this.s = s;
-		this.imageUrl = imageUrl;
+		this.imageFile = imageFile;
 		this.username = username;
 		this.password = password;
 		DataSaver.saveIdNumber(idNumber);
@@ -66,12 +68,17 @@ public class UserAccount implements Serializable, Comparable<UserAccount> {
 	}
 	
 	public Image getImage() {
-		Image image = new Image(imageUrl);
+		Image image = null;
+		try {
+			image = new Image(new FileInputStream(imageFile));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return image;
 	}
 	
-	public void setImage(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setImage(File imageFile) {
+		this.imageFile = imageFile;
 	}
 
 	public String getUsername() {

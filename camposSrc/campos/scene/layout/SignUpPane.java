@@ -1,5 +1,9 @@
 package campos.scene.layout;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import campos.event.EventLoader;
 import campos.models.Gender;
 import campos.models.Major;
@@ -61,13 +65,12 @@ public class SignUpPane extends BorderPane {
 	}
 	
 	public UserAccount getUserAccount() {
-		String imageUrl = btAvatar.getAvatarPicker().getChosenOne().getPath();
-		System.out.println(imageUrl);
-		ImageView iv = new ImageView(new Image(imageUrl));
+		File imageFile = btAvatar.getAvatarPicker().getChosenOne();
+		System.out.println(imageFile);
 		
 		Name name = new Name(tfFirstName.getText(), tfLastName.getText(), cbGender.getValue());
 		Student s = new Student(name, cbMajor.getValue());
-		UserAccount user = new UserAccount(s, imageUrl, tfUsername.getText(), tfPass.getText());
+		UserAccount user = new UserAccount(s, imageFile, tfUsername.getText(), tfPass.getText());
 		return user;
 	}
 	
